@@ -172,6 +172,61 @@ def score(deal):
     return math.log1p(deal["reviews"]) * 20 + deal["positive"] * 0.2 + deal["discount"] * 0.5
 
 
+def select_report_games(deals, previous):
+    """Вибираємо добірку один раз на день, без автоматичної заміни видалених."""
+    ranked = sorted(deals, key=score, reverse=True)
+    new = [d for d in ranked if str(d["appid"]) not in previous] if previous else []
+    return (new[:5] + [d for d in ranked if d not in new[:5]])[:MAX_DEALS]
+
+
+def deal_flag(deal, previous):
+    old = previous.get(str(deal["appid"])) if isinstance(previous, dict) else None
+    if old is None and previous:
+        return "🆕 "
+    if isinstance(old, dict) and old.get("discount", 0) < deal["discount"]:
+        return "🔥 "
+    return ""
+
+
+def spore_is_new_discount(spore, old_spore):
+    return bool(
+        spore.get("available") and spore.get("discount") and
+        (not old_spore.get("available") or
+         spore["discount"] > (old_spore.get("discount") or 0))
+    )
+
+
+def report_snapshot(deals, spore):
+    """Порівняння лише опублікованих ігор, не тисяч записів Steam."""
+    return {
+        "games": {
+            str(d["appid"]): [d["discount"], d["final"], d["original"], d.get("ends")]
+            for d in deals
+        },
+        "spore": {
+            "available": spore.get("available", False),
+            "discount": spore.get("discount"),
+            "final": spore.get("final"),
+        },
+    }
+
+
+def save_state(value):
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(
+        json.dumps(value, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+
+
+def checked_spore():
+    try:
+        return get_spore_price()
+    except (RuntimeError, TypeError, ValueError) as exc:
+        print(f"Попередження: SPORE зараз недоступний ({type(exc).__name__})")
+        return {"available": False, "discount": None, "final": None}
+
+
 def load_state():
     try:
         value = json.loads(STATE_FILE.read_text(encoding="utf-8"))
@@ -185,15 +240,8 @@ def discord_safe(text):
     return re.sub(r"([\\`*_[\]~|])", r"\\\1", str(text)).replace("@", "＠")
 
 
-def deal_line(deal, previous):
-    key = str(deal["appid"])
-    old = previous.get(key) if isinstance(previous, dict) else None
-    if old is None and previous:
-        flag = "🆕 "
-    elif isinstance(old, dict) and old.get("discount", 0) < deal["discount"]:
-        flag = "🔥 "
-    else:
-        flag = ""
+def deal_line(deal, previous, forced_flag=None):
+    flag = deal_flag(deal, previous) if forced_flag is None else forced_flag
     name = discord_safe(deal["name"])[:70]
     url = f"https://store.steampowered.com/app/{deal['appid']}/?cc=ua"
     end = ""
@@ -206,23 +254,27 @@ def deal_line(deal, previous):
     )
 
 
-def make_payload(deals, spore, previous_state, now):
+def make_payload(deals, spore, previous_state, now, selected_ids=None, flags=None,
+                 spore_alert=None, report_date=None, total_deals=None):
     prev = previous_state.get("deals") or {}
-    ranked = sorted(deals, key=score, reverse=True)
-    new = [d for d in ranked if str(d["appid"]) not in prev] if prev else []
-    # Спочатку до п'яти нових, потім найбільш помітні за відгуками.
-    picked = (new[:5] + [d for d in ranked if d not in new[:5]])[:MAX_DEALS]
+    if selected_ids is None:
+        picked = select_report_games(deals, prev)
+    else:
+        lookup = {d["appid"]: d for d in deals}
+        picked = [lookup[appid] for appid in selected_ids if appid in lookup]
+
     if spore.get("available"):
         discount = spore["discount"]
         message = (f"**−{discount}%** · {spore['price']} (було {spore['old_price']})"
                    if discount else f"Зараз **без знижки** · {spore['price']}")
     else:
         message = "Не вдалося перевірити ціну в гривнях. Не припускаємо, що знижки немає."
-    old_spore = previous_state.get("spore") or {}
-    if spore.get("available") and spore["discount"] and (
-        not old_spore.get("available") or spore["discount"] > (old_spore.get("discount") or 0)
-    ):
+
+    if spore_alert is None:
+        spore_alert = spore_is_new_discount(spore, previous_state.get("spore") or {})
+    if spore.get("available") and spore.get("discount") and spore_alert:
         message = "🔔 **Нова/краща знижка!**\n" + message
+
     embeds = [{
         "title": "⭐ SPORE — головний пріоритет",
         "url": "https://store.steampowered.com/app/17390/Spore/",
@@ -230,17 +282,27 @@ def make_payload(deals, spore, previous_state, now):
         "color": 0x34B3A0,
         "thumbnail": {"url": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/17390/header.jpg"},
     }]
-    date = now.strftime("%d.%m.%Y")
-    heading = f"🇺🇦 Український регіон · {date}\nІгор від −{MIN_DISCOUNT}%: **{len(deals)}**"
-    if not prev:
+
+    date = report_date or now.strftime("%d.%m.%Y")
+    available_count = len(deals) if total_deals is None else total_deals
+    heading = f"🇺🇦 Український регіон · {date}\nІгор від −{MIN_DISCOUNT}%: **{available_count}**"
+    if selected_ids is not None:
+        heading += f"\n🕒 Оновлено: {now.strftime('%d.%m о %H:%M')} за Києвом"
+    elif not prev:
         heading += "\nПерший запуск: позначки «нове» ще не визначаємо."
     if not picked:
-        heading += "\nСьогодні пропозицій для добірки немає."
+        heading += "\nУсі пропозиції з цього списку завершилися. Нова добірка — о 08:00."
+
     current = []
-    for line_deal in picked:
-        line = deal_line(line_deal, prev)
-        if len("\n".join(current + [line])) > 3600:
-            embeds.append({"title": "🎮 Знижки Steam від 70%", "description": heading + "\n\n" + "\n".join(current), "color": 0x2563EB})
+    for game in picked:
+        forced = (flags or {}).get(str(game["appid"]), "") if flags is not None else None
+        line = deal_line(game, prev, forced_flag=forced)
+        if len("\n".join(current + [line])) > 3500:
+            embeds.append({
+                "title": "🎮 Знижки Steam від 70%",
+                "description": heading + "\n\n" + "\n".join(current),
+                "color": 0x2563EB,
+            })
             current, heading = [], "Продовження списку"
         current.append(line)
     embeds.append({
@@ -252,24 +314,55 @@ def make_payload(deals, spore, previous_state, now):
     return {"username": "Steam Deals", "allowed_mentions": {"parse": []}, "embeds": embeds}
 
 
-def send_discord(webhook, payload):
-    if not webhook.startswith("https://discord.com/api/webhooks/") and not webhook.startswith("https://discordapp.com/api/webhooks/"):
+def validate_webhook(webhook):
+    if not (webhook.startswith("https://discord.com/api/webhooks/") or
+            webhook.startswith("https://discordapp.com/api/webhooks/")):
         raise RuntimeError("DISCORD_WEBHOOK_URL не схожий на Discord Webhook")
+
+
+def webhook_message_url(webhook, message_id):
+    if not str(message_id).isdigit():
+        raise RuntimeError("Не вдалося визначити ID повідомлення Discord")
+    return webhook.rstrip("/") + "/messages/" + str(message_id)
+
+
+def webhook_request(url, payload=None, method="POST"):
+    headers = {"Content-Type": "application/json", "User-Agent": HEADERS["User-Agent"]}
     request = Request(
-        webhook,
-        data=json.dumps(payload, ensure_ascii=False).encode("utf-8"),
-        headers={"Content-Type": "application/json", "User-Agent": HEADERS["User-Agent"]},
-        method="POST",
+        url,
+        data=json.dumps(payload, ensure_ascii=False).encode("utf-8") if payload is not None else None,
+        headers=headers,
+        method=method,
     )
     try:
         with urlopen(request, timeout=25) as response:
             if response.status not in (200, 204):
                 raise RuntimeError(f"Discord відповів HTTP {response.status}")
+            return json.load(response) if response.status == 200 else None
     except HTTPError as exc:
-        # Не виводимо URL вебхука з повідомлення про помилку!
+        # Не друкуємо повний URL: він містить секретний токен Webhook.
         raise RuntimeError(f"Discord повернув HTTP {exc.code}") from None
     except URLError:
         raise RuntimeError("Не вдалося підключитися до Discord") from None
+
+
+def send_discord(webhook, payload):
+    validate_webhook(webhook)
+    result = webhook_request(webhook.rstrip("/") + "?wait=true", payload, "POST")
+    message_id = (result or {}).get("id")
+    if not message_id or not str(message_id).isdigit():
+        raise RuntimeError("Discord не повернув ID повідомлення; не можна буде видаляти застарілі знижки")
+    return str(message_id)
+
+
+def edit_discord(webhook, message_id, payload):
+    validate_webhook(webhook)
+    webhook_request(webhook_message_url(webhook, message_id), payload, "PATCH")
+
+
+def delete_discord(webhook, message_id):
+    validate_webhook(webhook)
+    webhook_request(webhook_message_url(webhook, message_id), method="DELETE")
 
 
 def main():
@@ -278,26 +371,84 @@ def main():
         raise RuntimeError("Додай репозиторний секрет DISCORD_WEBHOOK_URL у GitHub Actions")
     now = datetime.now(KYIV)
     state = load_state()
+    mode = os.environ.get("RUN_MODE", "daily").strip()
+
+    if mode == "cleanup":
+        report = state.get("report") or {}
+        message_id = report.get("message_id")
+        if not message_id:
+            print("Ще немає повідомлення з ID для редагування. Запусти денний звіт.")
+            return
+        original_ids = report.get("active_appids", [])
+        # Беремо тільки ігри, вже показані в цьому повідомленні: не замінюємо їх новими.
+        live_deals = query_steam_sales() if original_ids else []
+        lookup = {d["appid"]: d for d in live_deals}
+        active_ids = [appid for appid in original_ids if appid in lookup]
+        active_games = [lookup[appid] for appid in active_ids]
+        spore = checked_spore()
+        snapshot = report_snapshot(active_games, spore)
+
+        if snapshot == report.get("snapshot"):
+            print("У списку немає змін; Discord-повідомлення не редагуємо")
+            return
+
+        payload = make_payload(
+            active_games, spore, state, now,
+            selected_ids=active_ids,
+            flags=report.get("flags") or {},
+            spore_alert=report.get("spore_alert", False),
+            report_date=report.get("date"),
+            total_deals=len(live_deals),
+        )
+        edit_discord(webhook, message_id, payload)
+        report["active_appids"] = active_ids
+        report["snapshot"] = snapshot
+        state["report"] = report
+        save_state(state)
+        print(f"Оновлено Discord-повідомлення: залишилось {len(active_ids)} активних ігор")
+        return
+
+    if mode != "daily":
+        raise RuntimeError("RUN_MODE має бути daily або cleanup")
     if state.get("last_post_date") == now.strftime("%Y-%m-%d") and os.environ.get("FORCE_SEND") != "1":
         print("Сьогодні вже відправлено; повтор не потрібний")
         return
+
     print("Отримую поточні знижки Steam для країни UA...")
     deals = query_steam_sales()
-    try:
-        spore = get_spore_price()
-    except RuntimeError as exc:
-        print(f"Попередження: SPORE зараз недоступний ({exc})")
-        spore = {"available": False, "discount": None, "final": None}
+    spore = checked_spore()
+    prev = state.get("deals") or {}
+    chosen = select_report_games(deals, prev)
+    chosen_ids = [d["appid"] for d in chosen]
+    flags = {str(d["appid"]): deal_flag(d, prev) for d in chosen}
+    spore_alert = spore_is_new_discount(spore, state.get("spore") or {})
     payload = make_payload(deals, spore, state, now)
-    send_discord(webhook, payload)
+    message_id = send_discord(webhook, payload)
+
+    # Після успішної публікації прибираємо вчорашній звіт,
+    # щоб старі пропозиції не висіли в історії каналу.
+    old_message_id = (state.get("report") or {}).get("message_id")
+    if old_message_id and old_message_id != message_id:
+        try:
+            delete_discord(webhook, old_message_id)
+        except RuntimeError:
+            print("Попередження: не вдалося видалити попередній звіт Discord")
+
     new_state = {
         "last_post_date": now.strftime("%Y-%m-%d"),
         "spore": spore,
         "deals": {str(d["appid"]): {"discount": d["discount"], "final": d["final"]} for d in deals},
+        "report": {
+            "message_id": message_id,
+            "date": now.strftime("%d.%m.%Y"),
+            "active_appids": chosen_ids,
+            "flags": flags,
+            "spore_alert": spore_alert,
+            "snapshot": report_snapshot(chosen, spore),
+        },
     }
-    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
-    STATE_FILE.write_text(json.dumps(new_state, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    print(f"Надіслано до Discord: {len(deals)} акцій, у звіті до {MAX_DEALS} ігор + SPORE")
+    save_state(new_state)
+    print(f"Надіслано до Discord: {len(deals)} акцій, у звіті {len(chosen)} ігор + SPORE")
 
 
 if __name__ == "__main__":
