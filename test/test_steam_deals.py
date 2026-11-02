@@ -60,13 +60,13 @@ class SteamDealsTests(unittest.TestCase):
         self.assertIn("25 ₴", card["description"])
         self.assertEqual(pages[0]["allowed_mentions"], {"parse": []})
 
-    def test_twenty_games_fit_discord_limits(self):
-        games = [dict(parse_game(self.game), appid=1000 + i, name="Game " + str(i)) for i in range(20)]
+    def test_thirty_games_fit_discord_limits(self):
+        games = [dict(parse_game(self.game), appid=1000 + i, name="Game " + str(i)) for i in range(30)]
         groups = chunk_game_ids(games)
         pages = make_payload_pages(groups, games, self.spore, {}, self.now)
-        self.assertEqual(list(map(len, groups)), [8, 10, 2])
-        self.assertEqual([len(page["embeds"]) for page in pages], [10, 10, 2])
-        self.assertEqual(sum(len(group) for group in groups), 20)
+        self.assertEqual(list(map(len, groups)), [8, 10, 10, 2])
+        self.assertEqual([len(page["embeds"]) for page in pages], [10, 10, 10, 2])
+        self.assertEqual(sum(len(group) for group in groups), 30)
         self.assertTrue(all(len(page["embeds"]) <= 10 for page in pages))
         for page in pages:
             self.assertLessEqual(sum(len(embed.get("title", "")) +
@@ -125,8 +125,8 @@ class SteamDealsTests(unittest.TestCase):
             self.assertEqual(resulting["groups"], [[123]])
             self.assertEqual(resulting["message_ids"], ["1111"])
 
-    def test_daily_sends_3_pages_and_deletes_legacy_report(self):
-        games = [dict(parse_game(self.game), appid=1000 + i) for i in range(20)]
+    def test_daily_sends_4_pages_and_deletes_legacy_report(self):
+        games = [dict(parse_game(self.game), appid=1000 + i) for i in range(30)]
         state = {"report": {"message_id": "99999"}, "deals": {}, "spore": self.spore}
         with patch.dict("os.environ", {
             "DISCORD_WEBHOOK_URL": "https://discord.com/api/webhooks/123/secret",
@@ -134,12 +134,12 @@ class SteamDealsTests(unittest.TestCase):
         }), patch("steam_deals.load_state", return_value=state), \
              patch("steam_deals.query_steam_sales", return_value=games), \
              patch("steam_deals.checked_spore", return_value=self.spore), \
-             patch("steam_deals.send_discord", side_effect=["101", "102", "103"]) as send, \
+             patch("steam_deals.send_discord", side_effect=["101", "102", "103", "104"]) as send, \
              patch("steam_deals.delete_discord") as delete, \
              patch("steam_deals.save_state") as save:
             main()
-            self.assertEqual(send.call_count, 3)
-            self.assertEqual(save.call_args.args[0]["report"]["message_ids"], ["101", "102", "103"])
+            self.assertEqual(send.call_count, 4)
+            self.assertEqual(save.call_args.args[0]["report"]["message_ids"], ["101", "102", "103", "104"])
             delete.assert_called_once_with(
                 "https://discord.com/api/webhooks/123/secret", "99999", ignore_missing=True
             )
