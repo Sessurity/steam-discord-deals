@@ -64,3 +64,30 @@ python -m unittest discover -s tests -v
 ## Перевірка видалення вручну
 
 У **Actions → Steam discounts → Discord → Run workflow** вибери **run_mode: cleanup**. Це запускає очищення **без нового повідомлення**: змінюються лише картки, знижка на які вже завершилася або опустилася нижче 70%. Якщо жодна знижка ще не завершилася, Discord не зміниться — це очікувана поведінка. Звичайний режим **daily** надсилає свіжий звіт і замінює попередній, а прапорець **force_send** застосовується лише до **daily**.
+
+ 
+## Команди Steam безпосередньо в Discord
+
+Webhook може тільки відправляти повідомлення. Для читання запитів потрібен Discord Bot (окремий від Webhook).
+
+### Налаштування Discord Bot
+
+1. Відкрий https://discord.com/developers/applications → New Application → Bot. Назви бота ZHAXO Commands.
+2. У Bot → Reset Token скопіюй Bot Token. У Privileged Gateway Intents увімкни Message Content Intent (без нього Discord API не поверне текст повідомлень).
+3. Через Installation / OAuth2 запроси бота на свій сервер. Дозволи: View Channel, Read Message History, Send Messages, Embed Links. Administrator не потрібен.
+4. У Discord увімкни Developer Mode та скопіюй числовий ID каналу #deals (Copy Channel ID).
+5. У GitHub відкрий Settings → Secrets and variables → Actions → Secrets, створи секрет DISCORD_BOT_TOKEN зі значенням токена і секрет DISCORD_CHANNEL_ID з ID каналу.
+6. Необов'язково: у Actions → Variables додай DISCORD_ALLOWED_USER_IDS (числові Discord User ID через кому), якщо команди має виконувати тільки обмежене коло користувачів. Інакше ними користуватимуться всі, хто може писати в канал.
+7. Для перевірки: Actions → Discord Steam Commands → Run workflow. Потім у Discord напиши !help та запусти перевірку знову або дочекайся чергової автоматичної.
+
+### Команди
+
+- !help — список можливостей
+- !deals — 10 популярних актуальних знижок Steam від 70%
+- !deals 90 — 10 ігор зі знижкою від 90% (поріг 70–100%)
+- !spore — ціна SPORE зараз
+- !find Dying Light — пошук серед активних знижок від 70%
+
+Перевірка каналу проводиться за графіком приблизно кожні 5 хвилин (через GitHub Actions; запуск може затримуватися). Для першого запуску враховуються лише команди за останні 10 хвилин. Запити не змінюють щоденний звіт або очищення завершених акцій. Команди не є довільним AI-чатом; підтримуються тільки зазначені дії.
+
+Стан запитів — data/command_state.json (лише ID останнього повідомлення, без токенів). Не додавай Bot Token у код, issue або повідомлення. 
