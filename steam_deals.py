@@ -277,7 +277,7 @@ def heading_embed(now, report_date, active_count, initial_count):
         "**Щоденний огляд знижок**\n"
         f"🇺🇦 Україна · {report_date} · UAH\n\n"
         f"🔎 **Від −{MIN_DISCOUNT}%**   ·   🎮 **{active_count}/{initial_count} активних**\n"
-        "🕗 Новий звіт: **08:00**   ·   🔄 Перевірка: **щогодини о :15**\n"
+        "🕗 Новий звіт: **08:00**   ·   🔄 Перевірка: **щогодини о :17**\n"
         f"🟢 Останнє оновлення: **{now.strftime('%H:%M')}** (Київ)"
     )
     if not active_count:
