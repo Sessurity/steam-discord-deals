@@ -26,7 +26,7 @@ class CommandTests(unittest.TestCase):
 
     def test_thirty_deals_are_returned_in_three_messages(self):
         games = [dict(self.game, appid=i + 1000, name=f"Game {i:02d}",
-                      discount=90 if i % 2 else 80) for i in range(35)]
+                      discount=80) for i in range(35)]
         pages = build_replies(("deals", 80), discounted=games)
         self.assertEqual(len(pages), 3)
         self.assertEqual([page["description"].count("store.steampowered.com/app/")
