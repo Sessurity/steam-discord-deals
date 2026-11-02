@@ -2,7 +2,7 @@ name: Discord Steam Commands
 
 on:
   schedule:
-    - cron: '4/5 * * * *'
+    - cron: '3/5 * * * *'
       timezone: 'Europe/Kyiv'
   workflow_dispatch:
 
