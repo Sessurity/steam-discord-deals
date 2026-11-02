@@ -78,10 +78,10 @@ class SteamDealsTests(unittest.TestCase):
         with patch.dict('os.environ', {
             'DISCORD_WEBHOOK_URL': 'https://discord.com/api/webhooks/123/secret',
             'RUN_MODE': 'cleanup',
-        }), patch('steam_deals.load_state', return_value=prior), \\
-             patch('steam_deals.query_steam_sales', return_value=[deal, other]), \\
-             patch('steam_deals.checked_spore', return_value=spore), \\
-             patch('steam_deals.edit_discord') as edit, \\
+        }), patch('steam_deals.load_state', return_value=prior), \
+             patch('steam_deals.query_steam_sales', return_value=[deal, other]), \
+             patch('steam_deals.checked_spore', return_value=spore), \
+             patch('steam_deals.edit_discord') as edit, \
              patch('steam_deals.save_state') as save:
             main()
             edit.assert_called_once()
