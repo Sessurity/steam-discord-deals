@@ -2,7 +2,7 @@ name: Discord Steam Commands
 
 on:
   schedule:
-    - cron: '2/5 * * * *'
+    - cron: '4/5 * * * *'
       timezone: 'Europe/Kyiv'
   workflow_dispatch:
 
@@ -15,7 +15,6 @@ concurrency:
 
 jobs:
   commands:
-    if: ${{ vars.DISCORD_COMMANDS_ENABLED == 'true' || github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -23,6 +22,15 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Diagnose scheduled runs
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          SCHEDULE_EXPRESSION: ${{ github.event.schedule }}
+        run: |
+          echo "GitHub event: $EVENT_NAME"
+          echo "Cron: ${SCHEDULE_EXPRESSION:-manual}"
+          date -u '+UTC: %Y-%m-%d %H:%M'
+          TZ=Europe/Kyiv date '+Kyiv: %Y-%m-%d %H:%M'
       - name: Test commands
         run: python -m unittest discover -s test -v
       - name: Read Discord commands and send replies

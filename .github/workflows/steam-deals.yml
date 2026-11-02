@@ -2,9 +2,9 @@ name: Steam discounts → Discord
 
 on:
   schedule:
-    - cron: '0 8 * * *'
+    - cron: '0 8 * * 0-6'
       timezone: 'Europe/Kyiv'
-    - cron: '15 * * * *'
+    - cron: '17 * * * *'
       timezone: 'Europe/Kyiv'
   workflow_dispatch:
     inputs:
@@ -36,13 +36,22 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Діагностика запуску
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          SCHEDULE_EXPRESSION: ${{ github.event.schedule }}
+        run: |
+          echo "GitHub event: $EVENT_NAME"
+          echo "Cron: ${SCHEDULE_EXPRESSION:-ручний запуск}"
+          date -u '+UTC: %Y-%m-%d %H:%M'
+          TZ=Europe/Kyiv date '+Kyiv: %Y-%m-%d %H:%M'
       - name: Запустити модульні тести
         run: python -m unittest discover -s test -v
       - name: Перевірити знижки та надіслати Discord-повідомлення
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
           FORCE_SEND: ${{ inputs.force_send && '1' || '0' }}
-          RUN_MODE: ${{ github.event_name == 'workflow_dispatch' && inputs.run_mode == 'cleanup' && 'cleanup' || github.event_name == 'schedule' && github.event.schedule == '15 * * * *' && 'cleanup' || 'daily' }}
+          RUN_MODE: ${{ github.event_name == 'workflow_dispatch' && inputs.run_mode == 'cleanup' && 'cleanup' || github.event_name == 'schedule' && github.event.schedule == '17 * * * *' && 'cleanup' || 'daily' }}
         run: python steam_deals.py
       - name: Зберегти стан для порівняння з попереднім днем
         run: |
