@@ -12,7 +12,9 @@ from steam_deals import discord_safe, get_spore_price, query_steam_sales, score
 
 API = "https://discord.com/api/v10"
 STATE = Path(__file__).resolve().parent / "data" / "command_state.json"
-MAX_REPLIES = 5
+MAX_COMMANDS = 5
+MAX_DEALS_REPLY = 30
+DEALS_PER_MESSAGE = 10
 
 def parse_command(content):
     parts = (content or "").strip().split(maxsplit=1)
@@ -48,8 +50,8 @@ def build_reply(command, discounted=None):
     kind, arg = command
     if kind == "help":
         return embed("⬡ ZHAXO · Steam Commands",
-                     "**!deals** — 10 знижок від 70%\n"
-                     "**!deals 90** — 10 знижок від 90%\n"
+                     "**!deals** — до 30 знижок від 70%\n"
+                     "**!deals 90** — до 30 знижок від 90%\n"
                      "**!spore** — актуальна ціна SPORE\n"
                      "**!find Dying Light** — пошук гри серед знижок від 70%\n"
                      "Перевірка приблизно кожні 5 хвилин; GitHub іноді затримує запуск.")
@@ -69,7 +71,7 @@ def build_reply(command, discounted=None):
                 "thumbnail": {"url": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/17390/header.jpg"}}
     sales = discounted if discounted is not None else query_steam_sales()
     if kind == "deals":
-        items = sorted((g for g in sales if g["discount"] >= arg), key=score, reverse=True)[:10]
+        items = sorted((g for g in sales if g["discount"] >= arg), key=score, reverse=True)[:DEALS_PER_MESSAGE]
         desc = (f"🇺🇦 Україна · знижки від −{arg}%\n\n" +
                 "\n\n".join(map(game_line, items))) if items else "Зараз таких акцій не знайдено."
         return embed("⬡ ZHAXO · Steam Deals", desc)
@@ -79,6 +81,32 @@ def build_reply(command, discounted=None):
                 "Не знайдено серед актуальних знижок від 70%. Це не означає, що гри немає у Steam.")
         return embed("🔎 Пошук знижок", desc)
     raise ValueError("Unknown command")
+
+def build_replies(command, discounted=None):
+    """Discord limits one embed description; split 30 game links into 3 replies."""
+    kind, arg = command
+    if kind != "deals":
+        return [build_reply(command, discounted)]
+    sales = discounted if discounted is not None else query_steam_sales()
+    matches = sorted(
+        (game for game in sales if game["discount"] >= arg),
+        key=score, reverse=True
+    )[:MAX_DEALS_REPLY]
+    if not matches:
+        return [embed("⬡ ZHAXO · Steam Deals", f"🇺🇦 Знижки від −{arg}%: зараз не знайдено.")]
+    pages = []
+    total = len(matches)
+    for offset in range(0, total, DEALS_PER_MESSAGE):
+        part = matches[offset:offset + DEALS_PER_MESSAGE]
+        start, end = offset + 1, offset + len(part)
+        description = f"🇺🇦 Україна · від **−{arg}%** · ігри **{start}–{end} із {total}**\n\n"
+        description += "\n\n".join(game_line(game) for game in part)
+        # Avoid silently cutting away games: every page must fit a Discord embed.
+        if len(description) > 4096:
+            raise RuntimeError("Надто довгий список знижок для Discord")
+        pages.append(embed(f"⬡ ZHAXO · Steam Deals ({len(pages)+1})", description))
+    return pages
+
 
 def discord_api(token, method, path, params=None, body=None):
     url = API + path + ("?" + urlencode(params) if params else "")
@@ -139,14 +167,15 @@ def process_messages(messages, cursor, token, channel, allowed=None, now=None, s
                 try:
                     if command[0] in ("deals", "find") and cache is None:
                         cache = query_steam_sales()
-                    answer = build_reply(command, discounted=cache)
+                    answers = build_replies(command, discounted=cache)
                 except (RuntimeError, ValueError, TypeError, KeyError) as exc:
                     print(f"Command error: {type(exc).__name__}")
-                    answer = embed("⚠️ Steam тимчасово недоступний", "Спробуй пізніше.")
-                send(msg_id, answer)
+                    answers = [embed("⚠️ Steam тимчасово недоступний", "Спробуй пізніше.")]
+                for answer in answers:
+                    send(msg_id, answer)
                 replies += 1
         seen = msg_id
-        if replies >= MAX_REPLIES:
+        if replies >= MAX_COMMANDS:
             break
     return seen, replies
 
