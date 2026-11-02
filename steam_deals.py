@@ -20,7 +20,7 @@ from zoneinfo import ZoneInfo
 
 COUNTRY = "UA"
 MIN_DISCOUNT = 70
-MAX_DEALS = 20
+MAX_DEALS = 30
 SPORE_APP_ID = 17390
 STEAM_QUERY_URL = "https://api.steampowered.com/IStoreQueryService/Query/v1/"
 STEAM_DETAILS_URL = "https://store.steampowered.com/api/appdetails"
@@ -254,8 +254,8 @@ def deal_line(deal, previous, forced_flag=None):
     )
 
 
-# Discord: максимум 10 embeds у одному повідомленні, тому 20 ігор
-# розбиваємо на 8 + 10 + 2 (перше також містить шапку та SPORE).
+# Discord: максимум 10 embeds у повідомленні, тому до 30 ігор
+# розбиваємо на 8 + 10 + 10 + 2 (перше також містить шапку та SPORE).
 DISCORD_EMBEDS_LIMIT = 10
 FIRST_PAGE_GAMES = 8
 NEXT_PAGE_GAMES = 10
