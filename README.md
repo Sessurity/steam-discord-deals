@@ -78,7 +78,8 @@ Webhook може тільки відправляти повідомлення. �
 4. У Discord увімкни Developer Mode та скопіюй числовий ID каналу #deals (Copy Channel ID).
 5. У GitHub відкрий Settings → Secrets and variables → Actions → Secrets, створи секрет DISCORD_BOT_TOKEN зі значенням токена і секрет DISCORD_CHANNEL_ID з ID каналу.
 6. Необов'язково: у Actions → Variables додай DISCORD_ALLOWED_USER_IDS (числові Discord User ID через кому), якщо команди має виконувати тільки обмежене коло користувачів. Інакше ними користуватимуться всі, хто може писати в канал.
-7. Для перевірки: Actions → Discord Steam Commands → Run workflow. Потім у Discord напиши !help та запусти перевірку знову або дочекайся чергової автоматичної.
+7. Після налаштування секретів увімкни автоматичну перевірку: у GitHub Actions → Variables додай DISCORD_COMMANDS_ENABLED = true. Поки значення не встановлено, фонові перевірки вимкнені.
+8. Для перевірки: Actions → Discord Steam Commands → Run workflow. Потім у Discord напиши !help та запусти перевірку знову або дочекайся чергової автоматичної.
 
 ### Команди
 
