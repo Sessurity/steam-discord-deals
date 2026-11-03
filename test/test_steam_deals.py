@@ -18,6 +18,9 @@ from steam_deals import (
 
 class SteamDealsTests(unittest.TestCase):
     def setUp(self):
+        self.ru_price_mock = patch("steam_deals.fetch_ru_prices", return_value={})
+        self.ru_price_mock.start()
+        self.addCleanup(self.ru_price_mock.stop)
         self.game = {
             "type": 0, "visible": True, "id": 123, "name": "Test Game",
             "best_purchase_option": {
@@ -62,6 +65,22 @@ class SteamDealsTests(unittest.TestCase):
         self.assertIn("−75%", card["description"])
         self.assertIn("25 ₴", card["description"])
         self.assertEqual(pages[0]["allowed_mentions"], {"parse": []})
+
+    def test_daily_card_displays_independent_ru_discount(self):
+        game = parse_game(self.game)
+        ru = {
+            "123": {"discount": 60, "final": 39900, "original": 99900,
+                    "price": "399 ₽", "old_price": "999 ₽"},
+            "17390": {"discount": 0, "final": 89900, "original": 89900,
+                      "price": "899 ₽", "old_price": "899 ₽"},
+        }
+        pages = make_payload_pages([[123]], [game], self.spore, {}, self.now,
+                                   ru_prices=ru)
+        _, priority, card = pages[0]["embeds"]
+        self.assertIn("399 ₽", card["description"])
+        self.assertIn("🇷🇺 **−60%**", card["description"])
+        self.assertIn("−75%", card["description"])
+        self.assertIn("899 ₽", priority["description"])
 
     def test_thirty_games_fit_discord_limits(self):
         games = [dict(parse_game(self.game), appid=1000 + i, name="Game " + str(i)) for i in range(30)]
