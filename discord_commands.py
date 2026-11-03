@@ -8,7 +8,9 @@ from urllib.error import HTTPError, URLError
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 
-from steam_deals import KYIV, STEAM_HEADER, deal_sort_key, select_popular_deals, discord_safe, get_spore_price, query_steam_sales
+from steam_deals import (KYIV, STEAM_HEADER, SPORE_APP_ID, deal_sort_key, select_popular_deals,
+                         discord_safe, get_spore_price, query_steam_sales,
+                         fetch_ru_prices, ru_line)
 
 API = "https://discord.com/api/v10"
 STATE = Path(__file__).resolve().parent / "data" / "command_state.json"
@@ -38,15 +40,17 @@ def parse_command(content):
         return ("find", arg)
     return None
 
-def game_line(game):
+def game_line(game, regional=None):
     link = f"https://store.steampowered.com/app/{game['appid']}/?cc=ua"
     name = discord_safe(game["name"])[:80]
-    return f"**[{name}]({link})** · **−{game['discount']}%**\n{game['price']} · було {game['old_price']}"
+    return (f"**[{name}]({link})** · **−{game['discount']}%**\n"
+            f"🇺🇦 {game['price']} · було {game['old_price']}\n"
+            + ru_line((regional or {}).get(str(game["appid"]))))
 
 def embed(title, description, color=0x39CFC6):
     return {"title": title, "description": description[:3800], "color": color}
 
-def build_reply(command, discounted=None):
+def build_reply(command, discounted=None, regional_prices=None):
     kind, arg = command
     if kind == "help":
         return embed("⬡ ZHAXO · Steam Commands",
@@ -66,23 +70,24 @@ def build_reply(command, discounted=None):
         else:
             text = f"Без знижки · **{s['price']}**"
         return {**embed("★ SPORE · пріоритет",
-                        text + "\n[Відкрити Steam](https://store.steampowered.com/app/17390/Spore/)",
+                        text + "\n" + ru_line((regional_prices or {}).get(str(SPORE_APP_ID)))
+                        + "\n[Відкрити Steam](https://store.steampowered.com/app/17390/Spore/)",
                         0xD6AF61),
                 "thumbnail": {"url": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/17390/header.jpg"}}
     sales = discounted if discounted is not None else query_steam_sales()
     if kind == "deals":
         items = select_popular_deals((g for g in sales if g["discount"] >= arg), DEALS_PER_MESSAGE)
         desc = (f"🇺🇦 Україна · знижки від −{arg}%\n\n" +
-                "\n\n".join(map(game_line, items))) if items else "Зараз таких акцій не знайдено."
+                "\n\n".join(game_line(g, regional_prices) for g in items)) if items else "Зараз таких акцій не знайдено."
         return embed("⬡ ZHAXO · Steam Deals", desc)
     if kind == "find":
         items = sorted((g for g in sales if arg.casefold() in g["name"].casefold()), key=deal_sort_key)[:5]
-        desc = ("\n\n".join(map(game_line, items)) if items else
+        desc = ("\n\n".join(game_line(g, regional_prices) for g in items) if items else
                 "Не знайдено серед актуальних знижок від 70%. Це не означає, що гри немає у Steam.")
         return embed("🔎 Пошук знижок", desc)
     raise ValueError("Unknown command")
 
-def game_card(game, number):
+def game_card(game, number, regional_price=None):
     """Варіант A: окрема Discord-картка зі збільшеною обкладинкою Steam."""
     appid = game["appid"]
     url = f"https://store.steampowered.com/app/{appid}/?cc=ua"
@@ -92,6 +97,7 @@ def game_card(game, number):
     )
     if game.get("ends"):
         description += "\n⏳ До " + datetime.fromtimestamp(game["ends"], KYIV).strftime("%d.%m.%Y %H:%M")
+    description += "\n" + ru_line(regional_price)
     description += f"\n[Відкрити у Steam]({url})"
     return {
         "title": f"{number:02d} / {name}",
@@ -106,7 +112,8 @@ def build_replies(command, discounted=None):
     """Повертає Discord payloads: максимум 10 великих карток у повідомленні."""
     kind, arg = command
     if kind not in ("deals", "find"):
-        return [{"embeds": [build_reply(command, discounted)]}]
+        regional = fetch_ru_prices([SPORE_APP_ID]) if kind == "spore" else {}
+        return [{"embeds": [build_reply(command, discounted, regional_prices=regional)]}]
     sales = discounted if discounted is not None else query_steam_sales()
     if kind == "deals":
         matches = select_popular_deals(
@@ -124,14 +131,18 @@ def build_replies(command, discounted=None):
         message = ("Зараз таких знижок не знайдено." if kind == "deals"
                    else "Не знайдено серед активних знижок від 70%.")
         return [{"embeds": [embed("⬡ ZHAXO · Steam", headline + "\n" + message)]}]
+    regional = fetch_ru_prices([g["appid"] for g in matches])
     pages = []
     total = len(matches)
     for offset in range(0, total, DEALS_PER_MESSAGE):
         part = matches[offset:offset + DEALS_PER_MESSAGE]
-        cards = [game_card(game, offset + i + 1) for i, game in enumerate(part)]
+        cards = [game_card(game, offset + i + 1, regional.get(str(game["appid"])))
+                 for i, game in enumerate(part)]
         if len(cards) > 10 or sum(len(c["title"]) + len(c["description"]) for c in cards) > 6000:
             raise RuntimeError("Перевищено ліміт Discord для карток")
-        summary = f"{headline} · **{offset + 1}–{offset + len(part)} із {total}**\n🔽 Від найбільшої знижки до найменшої"
+        summary = (f"{headline} · **{offset + 1}–{offset + len(part)} із {total}**"
+                   "\n🇺🇦 Україна · 🇷🇺 Steam RU (за наявності ціни)"
+                   "\n🔽 Від найбільшої знижки до найменшої")
         pages.append({"content": summary, "embeds": cards})
     return pages
 
