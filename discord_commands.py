@@ -8,7 +8,7 @@ from urllib.error import HTTPError, URLError
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 
-from steam_deals import discord_safe, get_spore_price, query_steam_sales, score
+from steam_deals import KYIV, STEAM_HEADER, deal_sort_key, discord_safe, get_spore_price, query_steam_sales
 
 API = "https://discord.com/api/v10"
 STATE = Path(__file__).resolve().parent / "data" / "command_state.json"
@@ -71,40 +71,68 @@ def build_reply(command, discounted=None):
                 "thumbnail": {"url": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/17390/header.jpg"}}
     sales = discounted if discounted is not None else query_steam_sales()
     if kind == "deals":
-        items = sorted((g for g in sales if g["discount"] >= arg), key=score, reverse=True)[:DEALS_PER_MESSAGE]
+        items = sorted((g for g in sales if g["discount"] >= arg), key=deal_sort_key)[:DEALS_PER_MESSAGE]
         desc = (f"🇺🇦 Україна · знижки від −{arg}%\n\n" +
                 "\n\n".join(map(game_line, items))) if items else "Зараз таких акцій не знайдено."
         return embed("⬡ ZHAXO · Steam Deals", desc)
     if kind == "find":
-        items = sorted((g for g in sales if arg.casefold() in g["name"].casefold()), key=score, reverse=True)[:5]
+        items = sorted((g for g in sales if arg.casefold() in g["name"].casefold()), key=deal_sort_key)[:5]
         desc = ("\n\n".join(map(game_line, items)) if items else
                 "Не знайдено серед актуальних знижок від 70%. Це не означає, що гри немає у Steam.")
         return embed("🔎 Пошук знижок", desc)
     raise ValueError("Unknown command")
 
+def game_card(game, number):
+    """Варіант A: окрема Discord-картка зі збільшеною обкладинкою Steam."""
+    appid = game["appid"]
+    url = f"https://store.steampowered.com/app/{appid}/?cc=ua"
+    name = discord_safe(game["name"])[:130]
+    description = (
+        f"**−{game['discount']}%**  ·  ~~{game['old_price']}~~  →  **{game['price']}**"
+    )
+    if game.get("ends"):
+        description += "\n⏳ До " + datetime.fromtimestamp(game["ends"], KYIV).strftime("%d.%m.%Y %H:%M")
+    description += f"\n[Відкрити у Steam]({url})"
+    return {
+        "title": f"{number:02d} / {name}",
+        "url": url,
+        "description": description,
+        "color": 0x39CFC6,
+        "image": {"url": STEAM_HEADER.format(appid)},
+    }
+
+
 def build_replies(command, discounted=None):
-    """Discord limits one embed description; split 30 game links into 3 replies."""
+    """Повертає Discord payloads: максимум 10 великих карток у повідомленні."""
     kind, arg = command
-    if kind != "deals":
-        return [build_reply(command, discounted)]
+    if kind not in ("deals", "find"):
+        return [{"embeds": [build_reply(command, discounted)]}]
     sales = discounted if discounted is not None else query_steam_sales()
-    matches = sorted(
-        (game for game in sales if game["discount"] >= arg),
-        key=score, reverse=True
-    )[:MAX_DEALS_REPLY]
+    if kind == "deals":
+        matches = sorted(
+            (game for game in sales if game["discount"] >= arg),
+            key=deal_sort_key
+        )[:MAX_DEALS_REPLY]
+        headline = f"🇺🇦 **ZHAXO // Steam Deals** · знижки від **−{arg}%**"
+    else:
+        matches = sorted(
+            (game for game in sales if arg.casefold() in game["name"].casefold()),
+            key=deal_sort_key
+        )[:5]
+        headline = f"🔎 **ZHAXO // Пошук** · {discord_safe(arg)[:80]}"
     if not matches:
-        return [embed("⬡ ZHAXO · Steam Deals", f"🇺🇦 Знижки від −{arg}%: зараз не знайдено.")]
+        message = ("Зараз таких знижок не знайдено." if kind == "deals"
+                   else "Не знайдено серед активних знижок від 70%.")
+        return [{"embeds": [embed("⬡ ZHAXO · Steam", headline + "\n" + message)]}]
     pages = []
     total = len(matches)
     for offset in range(0, total, DEALS_PER_MESSAGE):
         part = matches[offset:offset + DEALS_PER_MESSAGE]
-        start, end = offset + 1, offset + len(part)
-        description = f"🇺🇦 Україна · від **−{arg}%** · ігри **{start}–{end} із {total}**\n\n"
-        description += "\n\n".join(game_line(game) for game in part)
-        # Avoid silently cutting away games: every page must fit a Discord embed.
-        if len(description) > 4096:
-            raise RuntimeError("Надто довгий список знижок для Discord")
-        pages.append(embed(f"⬡ ZHAXO · Steam Deals ({len(pages)+1})", description))
+        cards = [game_card(game, offset + i + 1) for i, game in enumerate(part)]
+        if len(cards) > 10 or sum(len(c["title"]) + len(c["description"]) for c in cards) > 6000:
+            raise RuntimeError("Перевищено ліміт Discord для карток")
+        summary = f"{headline} · **{offset + 1}–{offset + len(part)} із {total}**\n🔽 Від найбільшої знижки до найменшої"
+        pages.append({"content": summary, "embeds": cards})
     return pages
 
 
@@ -150,7 +178,7 @@ def process_messages(messages, cursor, token, channel, allowed=None, now=None, s
     now = now or datetime.now(timezone.utc)
     send = send or (lambda msg_id, answer: discord_api(
         token, "POST", f"/channels/{channel}/messages", body={
-            "embeds": [answer],
+            **answer,
             "message_reference": {"message_id": msg_id, "channel_id": channel, "fail_if_not_exists": False},
             "allowed_mentions": {"parse": []},
         }))

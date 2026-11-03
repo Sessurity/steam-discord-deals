@@ -10,6 +10,7 @@ from steam_deals import (
     make_payload_pages,
     parse_game,
     report_snapshot,
+    select_report_games,
 )
 
 
@@ -71,6 +72,17 @@ class SteamDealsTests(unittest.TestCase):
         for page in pages:
             self.assertLessEqual(sum(len(embed.get("title", "")) +
                                     len(embed.get("description", "")) for embed in page["embeds"]), 6000)
+
+    def test_daily_sorted_by_discount_then_popularity(self):
+        base = parse_game(self.game)
+        games = [
+            dict(base, appid=101, name="Low", discount=70, reviews=50000),
+            dict(base, appid=102, name="High", discount=95, reviews=10),
+            dict(base, appid=103, name="Tie popular", discount=90, reviews=9000),
+            dict(base, appid=104, name="Tie less popular", discount=90, reviews=100),
+        ]
+        picked = select_report_games(games, {})
+        self.assertEqual([g["appid"] for g in picked], [102, 103, 104, 101])
 
     def test_expired_game_removed_from_its_original_page(self):
         deal = parse_game(self.game)
