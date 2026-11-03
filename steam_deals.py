@@ -172,11 +172,14 @@ def score(deal):
     return math.log1p(deal["reviews"]) * 20 + deal["positive"] * 0.2 + deal["discount"] * 0.5
 
 
+def deal_sort_key(deal):
+    """Найвищий відсоток першим; за рівної знижки — відгуки/популярність."""
+    return (-deal["discount"], -score(deal), deal["name"].casefold(), deal["appid"])
+
+
 def select_report_games(deals, previous):
-    """Вибираємо добірку один раз на день, без автоматичної заміни видалених."""
-    ranked = sorted(deals, key=score, reverse=True)
-    new = [d for d in ranked if str(d["appid"]) not in previous] if previous else []
-    return (new[:5] + [d for d in ranked if d not in new[:5]])[:MAX_DEALS]
+    """Щодня обираємо до 30 найбільших знижок без резервування місць."""
+    return sorted(deals, key=deal_sort_key)[:MAX_DEALS]
 
 
 def deal_flag(deal, previous):
