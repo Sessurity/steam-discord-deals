@@ -11,6 +11,7 @@ from steam_deals import (
     parse_game,
     report_snapshot,
     select_report_games,
+    select_popular_deals,
     resolve_run_mode,
 )
 
@@ -84,6 +85,44 @@ class SteamDealsTests(unittest.TestCase):
         ]
         picked = select_report_games(games, {})
         self.assertEqual([g["appid"] for g in picked], [102, 103, 104, 101])
+
+    def test_popular_games_beat_obscure_99_percent_deals(self):
+        base = parse_game(self.game)
+        well_known = [
+            dict(base, appid=1000+i, name=f"Known {i:02d}",
+                 discount=70+(i % 5), reviews=20000+i*100,
+                 positive=90)
+            for i in range(30)
+        ]
+        obscure = [
+            dict(base, appid=2000+i, name=f"Unknown {i:02d}",
+                 discount=99, reviews=25, positive=99)
+            for i in range(60)
+        ]
+        selected = select_report_games(obscure + well_known, {})
+        self.assertEqual(len(selected), 30)
+        self.assertTrue(all(game["appid"] < 2000 for game in selected))
+        self.assertEqual([game["discount"] for game in selected],
+                         sorted([game["discount"] for game in selected], reverse=True))
+
+    def test_less_known_games_fill_shortages_and_popularity_matters(self):
+        base = parse_game(self.game)
+        popular = [
+            dict(base, appid=1, name="Popular One", discount=70,
+                 reviews=25000, positive=93),
+            dict(base, appid=2, name="Popular Two", discount=80,
+                 reviews=6000, positive=85),
+        ]
+        unknown = [
+            dict(base, appid=3, name="Obscure", discount=99,
+                 reviews=10, positive=99),
+            dict(base, appid=4, name="Less known", discount=90,
+                 reviews=1400, positive=90),
+        ]
+        selected = select_popular_deals(unknown + popular, 3)
+        self.assertEqual({game["appid"] for game in selected}, {1, 2, 4})
+        self.assertEqual([game["appid"] for game in selected], [4, 2, 1])
+        self.assertEqual(select_popular_deals(unknown, 0), [])
 
     def test_scheduled_cleanup_catches_up_missed_morning_report(self):
         new_day = datetime(2026, 11, 3, 8, 33, tzinfo=ZoneInfo("Europe/Kyiv"))
