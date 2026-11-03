@@ -108,6 +108,8 @@ class SteamDealsTests(unittest.TestCase):
         }
         with patch.dict("os.environ", {
             "DISCORD_WEBHOOK_URL": "https://discord.com/api/webhooks/123/secret",
+            "DISCORD_BOT_TOKEN": "fake_token_for_tests",
+            "DISCORD_CHANNEL_ID": "42",
             "RUN_MODE": "cleanup",
             "SCHEDULED_RUN": "0",
         }), patch("steam_deals.load_state", return_value=previous), \
@@ -135,12 +137,14 @@ class SteamDealsTests(unittest.TestCase):
         today = datetime(2026, 11, 3, 8, 33, tzinfo=ZoneInfo("Europe/Kyiv"))
         with patch.dict("os.environ", {
             "DISCORD_WEBHOOK_URL": "https://discord.com/api/webhooks/123/secret",
+            "DISCORD_BOT_TOKEN": "fake_token_for_tests",
+            "DISCORD_CHANNEL_ID": "42",
             "RUN_MODE": "cleanup", "SCHEDULED_RUN": "1", "FORCE_SEND": "0",
         }), patch("steam_deals.datetime", wraps=datetime) as clock, \
              patch("steam_deals.load_state", return_value=old_state), \
              patch("steam_deals.query_steam_sales", return_value=[game]), \
              patch("steam_deals.checked_spore", return_value=self.spore), \
-             patch("steam_deals.send_discord", return_value="101") as send, \
+             patch("steam_deals.bot_send", return_value="101") as send, \
              patch("steam_deals.delete_discord") as delete, \
              patch("steam_deals.save_state") as save:
             clock.now.return_value = today
@@ -184,6 +188,8 @@ class SteamDealsTests(unittest.TestCase):
         state = {"report": report, "deals": {}, "spore": self.spore}
         with patch.dict("os.environ", {
             "DISCORD_WEBHOOK_URL": "https://discord.com/api/webhooks/123/secret",
+            "DISCORD_BOT_TOKEN": "fake_token_for_tests",
+            "DISCORD_CHANNEL_ID": "42",
             "RUN_MODE": "cleanup",
         }), patch("steam_deals.load_state", return_value=state), \
              patch("steam_deals.query_steam_sales", return_value=[game, irrelevant]), \
@@ -209,15 +215,18 @@ class SteamDealsTests(unittest.TestCase):
         state = {"report": {"message_id": "99999"}, "deals": {}, "spore": self.spore}
         with patch.dict("os.environ", {
             "DISCORD_WEBHOOK_URL": "https://discord.com/api/webhooks/123/secret",
+            "DISCORD_BOT_TOKEN": "fake_token_for_tests",
+            "DISCORD_CHANNEL_ID": "42",
             "RUN_MODE": "daily", "FORCE_SEND": "1",
         }), patch("steam_deals.load_state", return_value=state), \
              patch("steam_deals.query_steam_sales", return_value=games), \
              patch("steam_deals.checked_spore", return_value=self.spore), \
-             patch("steam_deals.send_discord", side_effect=["101", "102", "103", "104"]) as send, \
+             patch("steam_deals.bot_send", side_effect=["101", "102", "103", "104"]) as send, \
              patch("steam_deals.delete_discord") as delete, \
              patch("steam_deals.save_state") as save:
             main()
             self.assertEqual(send.call_count, 4)
+            self.assertEqual(save.call_args.args[0]["report"]["transport"], "bot")
             self.assertEqual(save.call_args.args[0]["report"]["message_ids"], ["101", "102", "103", "104"])
             delete.assert_called_once_with(
                 "https://discord.com/api/webhooks/123/secret", "99999", ignore_missing=True
