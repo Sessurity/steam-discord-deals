@@ -6,6 +6,11 @@ on:
       timezone: 'Europe/Kyiv'
     - cron: '17 * * * *'
       timezone: 'Europe/Kyiv'
+    # Резервні спроби після 08:00 — без дублікатів завдяки last_post_date.
+    - cron: '23,43 8 * * *'
+      timezone: 'Europe/Kyiv'
+    - cron: '13 9 * * *'
+      timezone: 'Europe/Kyiv'
   workflow_dispatch:
     inputs:
       run_mode:
@@ -51,6 +56,7 @@ jobs:
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
           FORCE_SEND: ${{ inputs.force_send && '1' || '0' }}
+          SCHEDULED_RUN: ${{ github.event_name == 'schedule' && '1' || '0' }}
           RUN_MODE: ${{ github.event_name == 'workflow_dispatch' && inputs.run_mode == 'cleanup' && 'cleanup' || github.event_name == 'schedule' && github.event.schedule == '17 * * * *' && 'cleanup' || 'daily' }}
         run: python steam_deals.py
       - name: Зберегти стан для порівняння з попереднім днем
