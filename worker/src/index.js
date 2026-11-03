@@ -7,7 +7,7 @@ const COVER="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/
 // Workers Free: 50 external subrequests per invocation. Reserve at least 8 for
 // the visible-page RU price, Discord PATCH response and potential redirects.
 export const MAX_STEAM_SEARCH_REQUESTS=42;
-const SCAN_BUDGET_MS=17000; // waitUntil has approximately 30 seconds total.
+const SCAN_BUDGET_MS=13000; // waitUntil has approximately 30 seconds total.
 const SEARCH_BATCH_SIZE=4;
 export const COMMANDS=[
  {type:1,name:"deals",description:"Усі знижки Steam від 70% зі сторінками",options:[
@@ -65,7 +65,7 @@ async function salesPage(start,threshold){
   context:{language:"english",country_code:"UA",steam_realm:1},
   data_request:{include_basic_info:true,include_reviews:true,include_all_purchase_options:true}};
  const u=new URL(STEAM_QUERY);u.searchParams.set("input_json",JSON.stringify(input));
- const res=(await getJson(u.toString())).response||{};
+ const res=(await getJson(u.toString(),5000)).response||{};
  if(!Number.isInteger(res.metadata?.total_matching_records))throw Error("Steam response changed");
  return {total:res.metadata.total_matching_records,items:res.store_items||[]};
 }
@@ -161,7 +161,7 @@ async function ruPrices(ids){
   const pages=await Promise.all(batches.map(async batch=>{
    const url=new URL(APP_DETAILS);url.searchParams.set("appids",batch.join(","));
    url.searchParams.set("cc","ru");url.searchParams.set("filters","price_overview");
-   try{return await getJson(url.toString());}catch{return {};}
+   try{return await getJson(url.toString(),4500);}catch{return {};}
   }));
   for(const page of pages)for(const [id,item] of Object.entries(page)){
    const p=item?.data?.price_overview;
@@ -279,7 +279,7 @@ export function parsePageButton(customId){
 async function send(app,token,path,method,payload){
  const r=await fetch(DISCORD+"/webhooks/"+app+"/"+token+path,{
   method,headers:{"content-type":"application/json"},body:JSON.stringify(payload),
-  signal:AbortSignal.timeout(10000)});
+  signal:AbortSignal.timeout(7000)});
  if(!r.ok)throw Error("Discord HTTP "+r.status);
 }
 async function complete(p,button=null){
