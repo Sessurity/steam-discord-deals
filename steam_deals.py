@@ -62,6 +62,32 @@ def fmt_money(value, formatted=None):
     return "ціна недоступна"
 
 
+RUB_RATE_URL = "https://open.er-api.com/v6/latest/UAH"
+
+
+def get_rub_rate():
+    """Орієнтовний ринковий курс RUB за 1 UAH; не ціна регіону RU в Steam."""
+    try:
+        payload = get_json(RUB_RATE_URL, retries=1)
+        rate = (payload.get("rates") or {}).get("RUB")
+        if payload.get("result") == "success" and isinstance(rate, (int, float)) and math.isfinite(rate) and rate > 0:
+            return float(rate)
+    except (RuntimeError, ValueError, TypeError, AttributeError) as exc:
+        print(f"Курс RUB тимчасово недоступний: {type(exc).__name__}")
+    return None
+
+
+def rub_price(cents, rate):
+    if rate is None or not isinstance(cents, int) or cents < 0:
+        return None
+    return f"≈ {cents / 100 * rate:,.2f} ₽".replace(",", " ").replace(".", ",")
+
+
+def rub_line(cents, rate):
+    converted = rub_price(cents, rate)
+    return f"\n💱 {converted} (за курсом UAH/RUB)" if converted else ""
+
+
 def parse_game(item):
     if not isinstance(item, dict) or item.get("type") != 0 or item.get("visible") is False:
         return None
@@ -267,7 +293,7 @@ def discord_safe(text):
     return re.sub(r"([\\`*_[\]~|])", r"\\\1", str(text)).replace("@", "＠")
 
 
-def deal_line(deal, previous, forced_flag=None):
+def deal_line(deal, previous, forced_flag=None, rub_rate=None):
     flag = deal_flag(deal, previous) if forced_flag is None else forced_flag
     name = discord_safe(deal["name"])[:70]
     url = f"https://store.steampowered.com/app/{deal['appid']}/?cc=ua"
@@ -277,7 +303,7 @@ def deal_line(deal, previous, forced_flag=None):
         end = f" · до {day}"
     return (
         f"{flag}**[{name}]({url})** — **−{deal['discount']}%** · "
-        f"{deal['price']} (було {deal['old_price']}){end}"
+        f"{deal['price']} (було {deal['old_price']}){end}" + rub_line(deal["final"], rub_rate)
     )
 
 
@@ -317,7 +343,7 @@ def heading_embed(now, report_date, active_count, initial_count):
     }
 
 
-def spore_embed(spore, is_new):
+def spore_embed(spore, is_new, rub_rate=None):
     if spore.get("available"):
         pct = spore["discount"]
         if pct:
@@ -330,6 +356,8 @@ def spore_embed(spore, is_new):
             desc = f"⏳ Очікування знижки · **{spore['price']}**"
     else:
         desc = "⚠️ Ціну SPORE в гривнях зараз перевірити не вдалося."
+    if spore.get("available"):
+        desc += rub_line(spore.get("final"), rub_rate)
     return {
         "title": "★ PRIORITY TARGET  /  SPORE",
         "url": "https://store.steampowered.com/app/17390/Spore/",
@@ -339,11 +367,12 @@ def spore_embed(spore, is_new):
     }
 
 
-def game_embed(deal, position, flag=""):
+def game_embed(deal, position, flag="", rub_rate=None):
     appid = deal["appid"]
     link = f"https://store.steampowered.com/app/{appid}/?cc=ua"
     name = discord_safe(deal["name"])[:180]
     text = f"🟩 **−{deal['discount']}%**   ~~{deal['old_price']}~~  →  **{deal['price']}**"
+    text += rub_line(deal["final"], rub_rate)
     if deal.get("ends"):
         text += "\n⏳ Акція до " + datetime.fromtimestamp(deal["ends"], KYIV).strftime("%d.%m.%Y %H:%M")
     return {
@@ -356,7 +385,7 @@ def game_embed(deal, position, flag=""):
 
 
 def make_payload_pages(groups, deals, spore, previous_state, now, flags=None,
-                       spore_alert=None, report_date=None, initial_count=None):
+                       spore_alert=None, report_date=None, initial_count=None, rub_rate=None):
     """Одна повідомлення на групу; індекси груп зберігаються між перевірками."""
     if not groups:
         groups = [[]]
@@ -375,13 +404,13 @@ def make_payload_pages(groups, deals, spore, previous_state, now, flags=None,
         if group_index == 0:
             embeds.extend([
                 heading_embed(now, report_date, active_count, initial_count),
-                spore_embed(spore, spore_alert),
+                spore_embed(spore, spore_alert, rub_rate),
             ])
         for appid in group:
             if appid not in lookup:
                 continue
             position += 1
-            embeds.append(game_embed(lookup[appid], position, flags.get(str(appid), "")))
+            embeds.append(game_embed(lookup[appid], position, flags.get(str(appid), ""), rub_rate))
         if group_index > 0 and not embeds:
             # Порожнє додаткове повідомлення повністю видаляється при cleanup.
             pages.append(None)
@@ -579,6 +608,7 @@ def main():
     if not token or not channel.isdigit():
         raise RuntimeError("Потрібні DISCORD_BOT_TOKEN та DISCORD_CHANNEL_ID у GitHub Secrets")
     now = datetime.now(KYIV)
+    rub_rate = get_rub_rate()
     state = load_state()
     if clear_pending(state, token, channel, webhook):
         save_state(state)
@@ -613,6 +643,7 @@ def main():
             spore_alert=report.get("spore_alert", False),
             report_date=report.get("date"),
             initial_count=report.get("initial_count", len(tracked)),
+            rub_rate=rub_rate,
         )
         if unchanged:
             # Steam перевірено — оновлюємо лише шапку, не чіпаючи ігрові картки.
@@ -658,6 +689,7 @@ def main():
     pages = make_payload_pages(
         groups, chosen, spore, state, now,
         flags=flags, spore_alert=spore_alert, initial_count=len(chosen),
+        rub_rate=rub_rate,
     )
 
     new_ids = []
