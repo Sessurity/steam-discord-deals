@@ -281,7 +281,7 @@ def heading_embed(now, report_date, active_count, initial_count):
         f"🇺🇦 Україна · {report_date} · UAH\n\n"
         f"🔎 **Від −{MIN_DISCOUNT}%**   ·   🎮 **{active_count}/{initial_count} активних**\n"
         "🕗 Новий звіт: **08:00**   ·   🔄 Перевірка: **щогодини о :17**\n"
-        f"🟢 Останнє оновлення: **{now.strftime('%H:%M')}** (Київ)"
+        f"🟢 Перевірено: **{now.strftime('%d.%m.%Y %H:%M')}** (Київ)"
     )
     if not active_count:
         desc += "\n\nУсі акції з поточної добірки завершилися."
@@ -437,13 +437,28 @@ def report_message_ids(report):
     return [str(old)] if old and str(old).isdigit() else []
 
 
+def resolve_run_mode(requested_mode, state, now, scheduled=False):
+    """Відновити пропущений денний звіт під час будь-якого наступного schedule."""
+    if (requested_mode == "cleanup" and scheduled
+            and now.hour >= 8
+            and state.get("last_post_date") != now.strftime("%Y-%m-%d")):
+        return "daily"
+    return requested_mode
+
+
 def main():
     webhook = os.environ.get("DISCORD_WEBHOOK_URL", "").strip()
     if not webhook:
         raise RuntimeError("Додай репозиторний секрет DISCORD_WEBHOOK_URL у GitHub Actions")
     now = datetime.now(KYIV)
     state = load_state()
-    mode = os.environ.get("RUN_MODE", "daily").strip()
+    requested_mode = os.environ.get("RUN_MODE", "daily").strip()
+    mode = resolve_run_mode(
+        requested_mode, state, now,
+        scheduled=os.environ.get("SCHEDULED_RUN") == "1",
+    )
+    if requested_mode == "cleanup" and mode == "daily":
+        print("Ранковий звіт пропущено — створюю його під час резервного запуску.")
 
     if mode == "cleanup":
         report = state.get("report") or {}
@@ -460,9 +475,7 @@ def main():
         active = [lookup[appid] for group in active_groups for appid in group]
         spore = checked_spore()
         snapshot = report_snapshot(active, spore)
-        if snapshot == report.get("snapshot"):
-            print("Жодних змін у знижках; повідомлення не оновлюються")
-            return
+        unchanged = snapshot == report.get("snapshot")
 
         pages = make_payload_pages(
             active_groups, active, spore, state, now,
@@ -471,6 +484,15 @@ def main():
             report_date=report.get("date"),
             initial_count=report.get("initial_count", len(tracked)),
         )
+        if unchanged:
+            # Steam перевірено — оновлюємо лише шапку, не чіпаючи ігрові картки.
+            edit_discord(webhook, ids[0], pages[0])
+            report["last_checked_at"] = now.isoformat()
+            state["report"] = report
+            save_state(state)
+            print(f"Steam перевірено о {now.strftime('%H:%M')} (Київ): змін немає")
+            return
+
         # Спочатку редагуємо картки, потім видаляємо порожні повідомлення.
         for message_id, page in zip(ids, pages):
             if page is not None:
@@ -482,6 +504,7 @@ def main():
         report["groups"] = [group for page, group in zip(pages, active_groups) if page is not None]
         report["message_ids"] = [message_id for message_id, page in zip(ids, pages) if page is not None]
         report["snapshot"] = snapshot
+        report["last_checked_at"] = now.isoformat()
         report.pop("message_id", None)
         state["report"] = report
         save_state(state)
@@ -529,6 +552,7 @@ def main():
             "message_ids": new_ids,
             "groups": groups,
             "date": now.strftime("%d.%m.%Y"),
+            "last_checked_at": now.isoformat(),
             "initial_count": len(chosen),
             "flags": flags,
             "spore_alert": spore_alert,
