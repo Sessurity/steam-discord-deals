@@ -172,11 +172,16 @@ export function pageView(games,ru=new Map(),title="ZHAXO / STEAM DEALS",page=0,t
  };
  if(maxPage>1){
   const id=p=>"zh:d:"+threshold+":"+p+":"+owner;
-  response.components=[{type:1,components:[
-   {type:2,style:2,label:"◀ Назад",custom_id:id(current-1),disabled:current===0},
+  const row=[
+   {type:2,style:2,label:"◀ Назад",custom_id:id(Math.max(0,current-1)),disabled:current===0},
    {type:2,style:2,label:(current+1)+" / "+maxPage,custom_id:"zh:page-indicator",disabled:true},
-   {type:2,style:1,label:"Далі ▶",custom_id:id(current+1),disabled:current===maxPage-1}
-  ]}];
+   {type:2,style:1,label:"Далі ▶",custom_id:id(Math.min(maxPage-1,current+1)),disabled:current===maxPage-1}
+  ];
+  if(maxPage>10)row.push(
+   {type:2,style:2,label:"−10 стор.",custom_id:id(Math.max(0,current-10)),disabled:current===0},
+   {type:2,style:2,label:"+10 стор.",custom_id:id(Math.min(maxPage-1,current+10)),disabled:current===maxPage-1}
+  );
+  response.components=[{type:1,components:row}];
  }
  return response;
 }
