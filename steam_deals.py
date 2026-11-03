@@ -21,6 +21,7 @@ from zoneinfo import ZoneInfo
 COUNTRY = "UA"
 MIN_DISCOUNT = 70
 MAX_DEALS = 30
+PREFERRED_MIN_REVIEWS = 5000  # Популярні ігри — пріоритет, решта заповнює вільні місця.
 SPORE_APP_ID = 17390
 STEAM_QUERY_URL = "https://api.steampowered.com/IStoreQueryService/Query/v1/"
 STEAM_DETAILS_URL = "https://store.steampowered.com/api/appdetails"
@@ -177,9 +178,32 @@ def deal_sort_key(deal):
     return (-deal["discount"], -score(deal), deal["name"].casefold(), deal["appid"])
 
 
+def select_popular_deals(deals, limit=MAX_DEALS):
+    """Спершу відбір відомих ігор, потім сортування готової добірки за знижкою.
+
+    Кількість Steam-відгуків — лише індикатор популярності, а не ознака AAA.
+    Якщо достатньо ігор із >=5000 відгуків, маловідомі не витіснять їх через −99%.
+    Якщо таких ігор недостатньо, заповнюємо решту місць іншими пропозиціями.
+    """
+    if limit <= 0:
+        return []
+    # Команди можуть передавати generator; матеріалізуємо один раз,
+    # інакше другий прохід втратить усі менш відомі ігри.
+    deals = list(deals)
+    popular = [d for d in deals if d.get("reviews", 0) >= PREFERRED_MIN_REVIEWS]
+    less_known = [d for d in deals if d.get("reviews", 0) < PREFERRED_MIN_REVIEWS]
+
+    def popularity_order(deal):
+        return (-score(deal), -deal.get("reviews", 0),
+                -deal["discount"], deal["name"].casefold(), deal["appid"])
+
+    ranked = sorted(popular, key=popularity_order) + sorted(less_known, key=popularity_order)
+    return sorted(ranked[:limit], key=deal_sort_key)
+
+
 def select_report_games(deals, previous):
-    """Щодня обираємо до 30 найбільших знижок без резервування місць."""
-    return sorted(deals, key=deal_sort_key)[:MAX_DEALS]
+    """Щоденна добірка — 30 популярніших ігор; відображення за розміром знижки."""
+    return select_popular_deals(deals, MAX_DEALS)
 
 
 def deal_flag(deal, previous):

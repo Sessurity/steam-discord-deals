@@ -51,6 +51,20 @@ class CommandTests(unittest.TestCase):
         self.assertEqual([c["url"].split("/app/")[1].split("/")[0] for c in cards],
                          ["2", "4", "3", "1"])
 
+    def test_deals_prioritize_popularity_but_preserve_percent_order(self):
+        popular = [dict(self.game, appid=i + 1000, name=f"Popular {i}",
+                        reviews=20000+i*1000, discount=75+i % 5)
+                   for i in range(30)]
+        obscure = [dict(self.game, appid=i + 2000, name=f"Unknown {i}",
+                        reviews=5, discount=99) for i in range(35)]
+        pages = build_replies(("deals", 70), discounted=obscure + popular)
+        cards = [card for page in pages for card in page["embeds"]]
+        self.assertEqual(len(cards), 30)
+        self.assertTrue(all("Popular" in card["title"] for card in cards))
+        percentages = [int(c["description"].split("−", 1)[1].split("%")[0])
+                       for c in cards]
+        self.assertEqual(percentages, sorted(percentages, reverse=True))
+
     def test_filtered_deals_90(self):
         games = [dict(self.game, appid=i + 2000, name=f"Game {i}",
                       discount=95 if i < 12 else 80) for i in range(35)]
