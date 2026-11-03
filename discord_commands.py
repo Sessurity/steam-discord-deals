@@ -8,7 +8,7 @@ from urllib.error import HTTPError, URLError
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 
-from steam_deals import KYIV, STEAM_HEADER, deal_sort_key, discord_safe, get_spore_price, query_steam_sales
+from steam_deals import KYIV, STEAM_HEADER, deal_sort_key, select_popular_deals, discord_safe, get_spore_price, query_steam_sales
 
 API = "https://discord.com/api/v10"
 STATE = Path(__file__).resolve().parent / "data" / "command_state.json"
@@ -71,7 +71,7 @@ def build_reply(command, discounted=None):
                 "thumbnail": {"url": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/17390/header.jpg"}}
     sales = discounted if discounted is not None else query_steam_sales()
     if kind == "deals":
-        items = sorted((g for g in sales if g["discount"] >= arg), key=deal_sort_key)[:DEALS_PER_MESSAGE]
+        items = select_popular_deals((g for g in sales if g["discount"] >= arg), DEALS_PER_MESSAGE)
         desc = (f"🇺🇦 Україна · знижки від −{arg}%\n\n" +
                 "\n\n".join(map(game_line, items))) if items else "Зараз таких акцій не знайдено."
         return embed("⬡ ZHAXO · Steam Deals", desc)
@@ -109,10 +109,10 @@ def build_replies(command, discounted=None):
         return [{"embeds": [build_reply(command, discounted)]}]
     sales = discounted if discounted is not None else query_steam_sales()
     if kind == "deals":
-        matches = sorted(
+        matches = select_popular_deals(
             (game for game in sales if game["discount"] >= arg),
-            key=deal_sort_key
-        )[:MAX_DEALS_REPLY]
+            MAX_DEALS_REPLY
+        )
         headline = f"🇺🇦 **ZHAXO // Steam Deals** · знижки від **−{arg}%**"
     else:
         matches = sorted(
