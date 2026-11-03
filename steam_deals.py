@@ -387,7 +387,7 @@ def chunk_game_ids(chosen):
 def heading_embed(now, report_date, active_count, initial_count):
     desc = (
         "**Щоденний огляд знижок**\n"
-        f"🇺🇦 Україна · {report_date} · UAH\n\n"
+        f"🇺🇦 Україна / 🇷🇺 Steam RU · {report_date}\n\n"
         f"🔎 **Від −{MIN_DISCOUNT}%**   ·   🎮 **{active_count}/{initial_count} активних**\n"
         "🕗 Новий звіт: **08:00**   ·   🔄 Перевірка: **щогодини о :17**\n"
         f"🟢 Перевірено: **{now.strftime('%d.%m.%Y %H:%M')}** (Київ)"
@@ -407,12 +407,12 @@ def spore_embed(spore, is_new, ru_price=None):
         pct = spore["discount"]
         if pct:
             desc = (
-                f"🟩 **−{pct}%**   ~~{spore['old_price']}~~  →  **{spore['price']}**"
+                f"🇺🇦 **−{pct}%**   ~~{spore['old_price']}~~  →  **{spore['price']}**"
             )
             if is_new:
                 desc = "🔔 **Нова або покращена знижка!**\n" + desc
         else:
-            desc = f"⏳ Очікування знижки · **{spore['price']}**"
+            desc = f"🇺🇦 ⏳ Очікування знижки · **{spore['price']}**"
     else:
         desc = "⚠️ Ціну SPORE в гривнях зараз перевірити не вдалося."
     return {
@@ -428,7 +428,7 @@ def game_embed(deal, position, flag="", ru_price=None):
     appid = deal["appid"]
     link = f"https://store.steampowered.com/app/{appid}/?cc=ua"
     name = discord_safe(deal["name"])[:180]
-    text = f"🟩 **−{deal['discount']}%**   ~~{deal['old_price']}~~  →  **{deal['price']}**"
+    text = f"🇺🇦 **−{deal['discount']}%**   ~~{deal['old_price']}~~  →  **{deal['price']}**"
     if deal.get("ends"):
         text += "\n⏳ Акція до " + datetime.fromtimestamp(deal["ends"], KYIV).strftime("%d.%m.%Y %H:%M")
     return {
