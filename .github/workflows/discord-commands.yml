@@ -1,16 +1,8 @@
 name: Discord Steam Commands
 
+# Старий !-обробник збережено лише як ручний резервний інструмент.
+# Автоматичні schedule/push вимкнено: робочі команди /... обробляє Cloudflare Worker.
 on:
-  # Резервний запуск на зміни репозиторію: cron може пропускати години.
-  # Не запускаємося від власних комітів стану, щоб не створити цикл.
-  push:
-    branches: [main]
-    paths-ignore:
-      - 'data/state.json'
-      - 'data/command_state.json'
-  schedule:
-    - cron: '3/5 * * * *'
-      timezone: 'Europe/Kyiv'
   workflow_dispatch:
 
 permissions:
