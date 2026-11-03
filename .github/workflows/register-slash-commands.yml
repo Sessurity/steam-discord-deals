@@ -1,6 +1,15 @@
 name: Register ZHAXO slash commands
 on:
   workflow_dispatch:
+    inputs:
+      app_id:
+        description: 'Discord Application ID (General Information)'
+        required: true
+        type: string
+      guild_id:
+        description: 'Discord Server ID (Copy Server ID)'
+        required: true
+        type: string
 permissions:
   contents: read
 jobs:
@@ -14,6 +23,6 @@ jobs:
       - name: Register guild commands
         env:
           DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
-          DISCORD_APP_ID: ${{ secrets.DISCORD_APP_ID }}
-          DISCORD_GUILD_ID: ${{ secrets.DISCORD_GUILD_ID }}
+          DISCORD_APP_ID: ${{ inputs.app_id }}
+          DISCORD_GUILD_ID: ${{ inputs.guild_id }}
         run: cd worker && node register-commands.mjs
