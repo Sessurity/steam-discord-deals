@@ -21,6 +21,9 @@ class FakeResponse(io.BytesIO):
 
 class UnifiedBotTests(unittest.TestCase):
     def setUp(self):
+        self.ru_price_mock = patch("steam_deals.fetch_ru_prices", return_value={})
+        self.ru_price_mock.start()
+        self.addCleanup(self.ru_price_mock.stop)
         self.raw_game = {
             "type": 0, "id": 123, "name": "Test Game",
             "best_purchase_option": {
