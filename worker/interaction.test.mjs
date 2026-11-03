@@ -35,9 +35,15 @@ test("/deals uses one deferred ephemeral reply; pagination edits, no new followu
  const interact=await fixtures();
  const original=globalThis.fetch,requests=[],promises=[];
  globalThis.fetch=async(url,options={})=>{
-  requests.push({url:String(url),method:options.method||"GET"});
+  requests.push({url:String(url),method:options.method||"GET",body:options.body||null});
   if(String(url).includes("IStoreQueryService"))return new Response(JSON.stringify({
-   response:{metadata:{total_matching_records:0},store_items:[]}}),{status:200});
+   response:{metadata:{total_matching_records:42},store_items:Array.from({length:42},(_,i)=>({
+    type:0,appid:i+1,name:"Game "+(i+1),
+    best_purchase_option:{discount_pct:70+(i%20),final_price_in_cents:100,
+     original_price_in_cents:1000},
+    reviews:{summary_filtered:{review_count:10000,percent_positive:90}}
+   }))}}),{status:200});
+  if(String(url).includes("store.steampowered.com/api/appdetails"))return new Response("{}",{status:200});
   if(String(url).includes("/webhooks/"))return new Response("{}",{status:200});
   throw Error("Unexpected request "+url);
  };
@@ -51,6 +57,9 @@ test("/deals uses one deferred ephemeral reply; pagination edits, no new followu
   assert.equal(data.data.flags,64);
   await Promise.all(promises.splice(0));
   assert.equal(requests.filter(x=>x.method==="PATCH").length,1);
+  const firstReply=JSON.parse(requests.find(x=>x.method==="PATCH").body);
+  assert(firstReply.content.includes("із 42"));
+  assert.equal(firstReply.embeds.length,6);
   assert.equal(requests.filter(x=>x.method==="POST").length,0);
 
   const [status2,data2]=await interact({type:3,data:{custom_id:"zh:d:70:1:"+user},...base},
