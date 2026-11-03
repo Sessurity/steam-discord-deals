@@ -1,3 +1,11 @@
 name = "zhaxo-steam-commands"
 main = "src/index.js"
 compatibility_date = "2026-10-20"
+
+# Preserve runtime dashboard variables on every Cloudflare Git deploy.
+# In particular, DISCORD_CHANNEL_ID must not disappear during code updates.
+keep_vars = true
+
+# Never ship a broken Worker when its Discord signature verification key is missing.
+[secrets]
+required = ["DISCORD_PUBLIC_KEY"]
