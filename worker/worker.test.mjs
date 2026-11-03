@@ -1,7 +1,7 @@
 import {test} from "node:test";
 import assert from "node:assert/strict";
 import {webcrypto} from "node:crypto";
-import {COMMANDS,verifySignature,parseItem,choose,pageView,parsePageButton} from "./src/index.js";
+import {COMMANDS,verifySignature,parseItem,choose,pageView,parsePageButton,sales,MAX_STEAM_SEARCH_REQUESTS} from "./src/index.js";
 test("valid Discord Ed25519 signature",async()=>{
  const pair=await webcrypto.subtle.generateKey("Ed25519",true,["sign","verify"]);
  const pub=Buffer.from(await webcrypto.subtle.exportKey("raw",pair.publicKey)).toString("hex");
@@ -51,3 +51,48 @@ test("unlimited on-demand discounts retain descending discount and popularity ti
  assert.equal(parsePageButton("zh:d:70:4000:123456789012345678"),null);
 });
 test("all desired slash commands",()=>assert.deepEqual(COMMANDS.map(x=>x.name),["deals","spore","find","help"]));
+
+test("Steam scan respects external-request budget and reports partial coverage",async()=>{
+ const original=globalThis.fetch;
+ let calls=0;
+ globalThis.fetch=async()=>{
+  calls++;
+  return new Response(JSON.stringify({response:{metadata:{total_matching_records:50000},store_items:[{
+   type:0,appid:calls,name:"Game "+calls,best_purchase_option:{
+    discount_pct:85,final_price_in_cents:100,original_price_in_cents:1000
+   },reviews:{summary_filtered:{review_count:15000,percent_positive:90}}
+  }]}}),{status:200});
+ };
+ try{
+  const result=await sales(70);
+  assert.equal(MAX_STEAM_SEARCH_REQUESTS,42);
+  assert(calls<=MAX_STEAM_SEARCH_REQUESTS);
+  assert.equal(result.scannedPages,42);
+  assert.equal(result.totalPages,100);
+  assert.equal(result.complete,false);
+  const sorted=result.games.sort((a,b)=>b.discount-a.discount);
+  const view=pageView(sorted,new Map(),"ZHAXO",0,70,"123456789012345678",result);
+  assert(view.embeds[0].description.includes("Неповний скан Steam"));
+ }finally{globalThis.fetch=original;}
+});
+
+test("failed Steam query pages keep already-found discounts instead of an error",async()=>{
+ const original=globalThis.fetch;
+ let calls=0;
+ globalThis.fetch=async()=>{
+  calls++;
+  if(calls>1)return new Response("unavailable",{status:503});
+  return new Response(JSON.stringify({response:{metadata:{total_matching_records:1000},store_items:[{
+   type:0,appid:12345,name:"Discount Game",best_purchase_option:{
+    discount_pct:90,final_price_in_cents:100,original_price_in_cents:1000
+   },reviews:{summary_filtered:{review_count:20000,percent_positive:95}}
+  }]}}),{status:200});
+ };
+ try{
+  const result=await sales(70);
+  assert.equal(result.games.length,1);
+  assert.equal(result.complete,false);
+  assert.equal(result.failedPages,1);
+  assert.equal(result.scannedPages,1);
+ }finally{globalThis.fetch=original;}
+});
