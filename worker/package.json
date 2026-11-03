@@ -1,0 +1,9 @@
+{
+  "name": "zhaxo-worker",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "register": "node register-commands.mjs"
+  }
+}
