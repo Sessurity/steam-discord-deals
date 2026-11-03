@@ -6,6 +6,9 @@ from discord_commands import parse_command, build_reply, build_replies, process_
 
 class CommandTests(unittest.TestCase):
     def setUp(self):
+        self.ru_price_mock = patch("discord_commands.fetch_ru_prices", return_value={})
+        self.ru_price_mock.start()
+        self.addCleanup(self.ru_price_mock.stop)
         self.game = {"appid": 123, "name": "Dying Light", "discount": 80,
                      "price": "50 грн", "old_price": "250 грн",
                      "reviews": 500, "positive": 95}
@@ -90,6 +93,22 @@ class CommandTests(unittest.TestCase):
         self.assertEqual(len(sent), 3)
         self.assertTrue(all(mid == "200" for mid, _ in sent))
         self.assertTrue(all(len(answer["embeds"]) == 10 for _, answer in sent))
+
+    def test_ua_and_regional_ru_are_both_shown(self):
+        from unittest.mock import patch as mock_patch
+        with mock_patch("discord_commands.fetch_ru_prices", return_value={
+            "123": {"discount": 60, "price": "399 ₽", "old_price": "999 ₽",
+                    "final": 39900, "original": 99900},
+            "17390": {"discount": 0, "price": "899 ₽", "old_price": "899 ₽",
+                      "final": 89900, "original": 89900},
+        }):
+            page = build_replies(("deals", 70), discounted=[self.game])[0]
+            card = page["embeds"][0]["description"]
+            self.assertIn("50 грн", card)
+            self.assertIn("🇷🇺 **−60%**", card)
+            self.assertIn("399 ₽", card)
+            spore = build_replies(("spore", None))[0]["embeds"][0]
+            self.assertIn("899 ₽", spore["description"])
 
     def test_spore(self):
         with patch("discord_commands.get_spore_price", return_value={
