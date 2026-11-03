@@ -52,8 +52,11 @@ jobs:
           TZ=Europe/Kyiv date '+Kyiv: %Y-%m-%d %H:%M'
       - name: Запустити модульні тести
         run: python -m unittest discover -s test -v
-      - name: Перевірити знижки та надіслати Discord-повідомлення
+      - name: ZHAXO — публікація, очищення та міграція старого Webhook
         env:
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+          DISCORD_CHANNEL_ID: ${{ secrets.DISCORD_CHANNEL_ID }}
+          # Тимчасово використовується виключно для видалення старих Webhook-повідомлень.
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
           FORCE_SEND: ${{ inputs.force_send && '1' || '0' }}
           SCHEDULED_RUN: ${{ github.event_name == 'schedule' && '1' || '0' }}
