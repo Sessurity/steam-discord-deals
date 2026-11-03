@@ -11,6 +11,7 @@ from steam_deals import (
     parse_game,
     report_snapshot,
     select_report_games,
+    resolve_run_mode,
 )
 
 
@@ -83,6 +84,72 @@ class SteamDealsTests(unittest.TestCase):
         ]
         picked = select_report_games(games, {})
         self.assertEqual([g["appid"] for g in picked], [102, 103, 104, 101])
+
+    def test_scheduled_cleanup_catches_up_missed_morning_report(self):
+        new_day = datetime(2026, 11, 3, 8, 33, tzinfo=ZoneInfo("Europe/Kyiv"))
+        old_state = {"last_post_date": "2026-11-02"}
+        self.assertEqual(resolve_run_mode("cleanup", old_state, new_day, True), "daily")
+        self.assertEqual(resolve_run_mode("cleanup", old_state, new_day, False), "cleanup")
+        self.assertEqual(resolve_run_mode("cleanup",
+                                          {"last_post_date": "2026-11-03"}, new_day, True), "cleanup")
+        before_eight = datetime(2026, 11, 3, 7, 59, tzinfo=ZoneInfo("Europe/Kyiv"))
+        self.assertEqual(resolve_run_mode("cleanup", old_state, before_eight, True), "cleanup")
+
+    def test_unchanged_discount_still_refreshes_last_checked(self):
+        game = parse_game(self.game)
+        snapshot = report_snapshot([game], self.spore)
+        previous = {
+            "report": {
+                "message_ids": ["1001"], "groups": [[123]],
+                "date": "02.11.2026", "initial_count": 1,
+                "snapshot": snapshot,
+            },
+            "last_post_date": "2026-11-02",
+        }
+        with patch.dict("os.environ", {
+            "DISCORD_WEBHOOK_URL": "https://discord.com/api/webhooks/123/secret",
+            "RUN_MODE": "cleanup",
+            "SCHEDULED_RUN": "0",
+        }), patch("steam_deals.load_state", return_value=previous), \
+             patch("steam_deals.query_steam_sales", return_value=[game]), \
+             patch("steam_deals.checked_spore", return_value=self.spore), \
+             patch("steam_deals.edit_discord") as edit, \
+             patch("steam_deals.delete_discord") as delete, \
+             patch("steam_deals.save_state") as save:
+            main()
+            edit.assert_called_once()
+            self.assertEqual(edit.call_args.args[1], "1001")
+            self.assertIn("Перевірено:", edit.call_args.args[2]["embeds"][0]["description"])
+            delete.assert_not_called()
+            stored = save.call_args.args[0]
+            self.assertIn("last_checked_at", stored["report"])
+            self.assertEqual(stored["report"]["message_ids"], ["1001"])
+
+    def test_scheduled_catchup_publishes_new_report_once(self):
+        game = parse_game(self.game)
+        old_state = {
+            "last_post_date": "2026-11-02",
+            "report": {"message_ids": ["999"], "groups": [[123]]},
+            "deals": {}, "spore": self.spore,
+        }
+        today = datetime(2026, 11, 3, 8, 33, tzinfo=ZoneInfo("Europe/Kyiv"))
+        with patch.dict("os.environ", {
+            "DISCORD_WEBHOOK_URL": "https://discord.com/api/webhooks/123/secret",
+            "RUN_MODE": "cleanup", "SCHEDULED_RUN": "1", "FORCE_SEND": "0",
+        }), patch("steam_deals.datetime", wraps=datetime) as clock, \
+             patch("steam_deals.load_state", return_value=old_state), \
+             patch("steam_deals.query_steam_sales", return_value=[game]), \
+             patch("steam_deals.checked_spore", return_value=self.spore), \
+             patch("steam_deals.send_discord", return_value="101") as send, \
+             patch("steam_deals.delete_discord") as delete, \
+             patch("steam_deals.save_state") as save:
+            clock.now.return_value = today
+            main()
+            send.assert_called_once()
+            self.assertEqual(save.call_args.args[0]["last_post_date"], "2026-11-03")
+            delete.assert_called_once_with(
+                "https://discord.com/api/webhooks/123/secret", "999", ignore_missing=True
+            )
 
     def test_expired_game_removed_from_its_original_page(self):
         deal = parse_game(self.game)
