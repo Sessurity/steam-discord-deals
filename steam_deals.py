@@ -365,7 +365,6 @@ def make_payload_pages(groups, deals, spore, previous_state, now, flags=None,
         if len(embeds) > DISCORD_EMBEDS_LIMIT:
             raise RuntimeError("Забагато Discord embeds в одному повідомленні")
         pages.append({
-            "username": "ZHAXO • Steam Deals",
             "allowed_mentions": {"parse": []},
             "embeds": embeds,
         })
@@ -428,6 +427,107 @@ def delete_discord(webhook, message_id, ignore_missing=False):
         raise
 
 
+# ZHAXO — єдиний автор нових звітів і відповідей на команди.
+# Старий Webhook потрібен виключно для очищення історичних повідомлень.
+DISCORD_BOT_API = "https://discord.com/api/v10"
+
+
+def bot_request(token, channel, method, payload=None, message_id=None):
+    if not token or not str(channel).isdigit():
+        raise RuntimeError("Налаштуй DISCORD_BOT_TOKEN та DISCORD_CHANNEL_ID")
+    url = f"{DISCORD_BOT_API}/channels/{channel}/messages"
+    if message_id is not None:
+        if not str(message_id).isdigit():
+            raise RuntimeError("Некоректний ID повідомлення Discord")
+        url += "/" + str(message_id)
+    headers = {"Authorization": "Bot " + token, "User-Agent": "ZHAXO-Steam/2.0",
+               "Accept": "application/json"}
+    data = None
+    if payload is not None:
+        clean = {k: v for k, v in payload.items() if k not in ("username", "avatar_url")}
+        clean["allowed_mentions"] = {"parse": []}
+        data = json.dumps(clean, ensure_ascii=False).encode("utf-8")
+        headers["Content-Type"] = "application/json"
+    try:
+        with urlopen(Request(url, data=data, headers=headers, method=method), timeout=25) as res:
+            if res.status == 204:
+                return None
+            if res.status not in (200, 201):
+                raise RuntimeError(f"Discord Bot API HTTP {res.status}")
+            return json.load(res)
+    except HTTPError as exc:
+        raise RuntimeError(f"Discord Bot API HTTP {exc.code}") from None
+    except URLError:
+        raise RuntimeError("Не вдалося підключитися до Discord Bot API") from None
+
+
+def bot_send(token, channel, payload):
+    result = bot_request(token, channel, "POST", payload)
+    message_id = (result or {}).get("id")
+    if not message_id or not str(message_id).isdigit():
+        raise RuntimeError("ZHAXO не повернув ID повідомлення")
+    return str(message_id)
+
+
+def bot_edit(token, channel, message_id, payload):
+    bot_request(token, channel, "PATCH", payload, message_id)
+
+
+def bot_delete(token, channel, message_id, ignore_missing=False):
+    try:
+        bot_request(token, channel, "DELETE", message_id=message_id)
+    except RuntimeError as exc:
+        if ignore_missing and str(exc) == "Discord Bot API HTTP 404":
+            return
+        raise
+
+
+def report_transport(report):
+    # Старі звіти не містять transport, отже належать Webhook.
+    return "bot" if report.get("transport") == "bot" else "webhook"
+
+
+def edit_report(report, message_id, payload, token, channel, webhook):
+    if report_transport(report) == "bot":
+        bot_edit(token, channel, message_id, payload)
+    elif webhook:
+        edit_discord(webhook, message_id, payload)
+    else:
+        raise RuntimeError("Старий звіт Webhook потребує DISCORD_WEBHOOK_URL")
+
+
+def delete_report(transport, message_id, token, channel, webhook):
+    if transport == "bot":
+        bot_delete(token, channel, message_id, ignore_missing=True)
+    elif webhook:
+        delete_discord(webhook, message_id, ignore_missing=True)
+    else:
+        raise RuntimeError("Старі Webhook-картки неможливо видалити без Webhook URL")
+
+
+def clear_pending(state, token, channel, webhook):
+    """Якщо старі повідомлення не вдалося прибрати — повторимо пізніше."""
+    pending = state.get("pending_message_batches") or []
+    if not pending:
+        return False
+    keep = []
+    for batch in pending:
+        remaining = []
+        for mid in batch.get("ids") or []:
+            try:
+                delete_report(batch.get("transport", "webhook"), mid, token, channel, webhook)
+            except RuntimeError:
+                remaining.append(str(mid))
+                print(f"Попередження: старе повідомлення {mid} не вдалося видалити")
+        if remaining:
+            keep.append({"transport": batch.get("transport", "webhook"), "ids": remaining})
+    if keep:
+        state["pending_message_batches"] = keep
+    else:
+        state.pop("pending_message_batches", None)
+    return keep != pending
+
+
 def report_message_ids(report):
     """Міграція попередньої версії з одним Discord-повідомленням."""
     ids = report.get("message_ids")
@@ -439,26 +539,32 @@ def report_message_ids(report):
 
 def resolve_run_mode(requested_mode, state, now, scheduled=False):
     """Відновити пропущений денний звіт під час будь-якого наступного schedule."""
-    if (requested_mode == "cleanup" and scheduled
-            and now.hour >= 8
-            and state.get("last_post_date") != now.strftime("%Y-%m-%d")):
-        return "daily"
+    if requested_mode == "cleanup" and scheduled and now.hour >= 8:
+        old = state.get("report") or {}
+        if state.get("last_post_date") != now.strftime("%Y-%m-%d"):
+            return "daily"
+        if report_message_ids(old) and report_transport(old) == "webhook":
+            return "daily"
     return requested_mode
 
 
 def main():
+    token = os.environ.get("DISCORD_BOT_TOKEN", "").strip()
+    channel = os.environ.get("DISCORD_CHANNEL_ID", "").strip()
     webhook = os.environ.get("DISCORD_WEBHOOK_URL", "").strip()
-    if not webhook:
-        raise RuntimeError("Додай репозиторний секрет DISCORD_WEBHOOK_URL у GitHub Actions")
+    if not token or not channel.isdigit():
+        raise RuntimeError("Потрібні DISCORD_BOT_TOKEN та DISCORD_CHANNEL_ID у GitHub Secrets")
     now = datetime.now(KYIV)
     state = load_state()
+    if clear_pending(state, token, channel, webhook):
+        save_state(state)
     requested_mode = os.environ.get("RUN_MODE", "daily").strip()
     mode = resolve_run_mode(
         requested_mode, state, now,
         scheduled=os.environ.get("SCHEDULED_RUN") == "1",
     )
     if requested_mode == "cleanup" and mode == "daily":
-        print("Ранковий звіт пропущено — створюю його під час резервного запуску.")
+        print("Потрібен новий звіт або перехід із Webhook — публікує ZHAXO.")
 
     if mode == "cleanup":
         report = state.get("report") or {}
@@ -486,7 +592,7 @@ def main():
         )
         if unchanged:
             # Steam перевірено — оновлюємо лише шапку, не чіпаючи ігрові картки.
-            edit_discord(webhook, ids[0], pages[0])
+            edit_report(report, ids[0], pages[0], token, channel, webhook)
             report["last_checked_at"] = now.isoformat()
             state["report"] = report
             save_state(state)
@@ -496,10 +602,10 @@ def main():
         # Спочатку редагуємо картки, потім видаляємо порожні повідомлення.
         for message_id, page in zip(ids, pages):
             if page is not None:
-                edit_discord(webhook, message_id, page)
+                edit_report(report, message_id, page, token, channel, webhook)
         for message_id, page in zip(ids, pages):
             if page is None:
-                delete_discord(webhook, message_id, ignore_missing=True)
+                delete_report(report_transport(report), message_id, token, channel, webhook)
 
         report["groups"] = [group for page, group in zip(pages, active_groups) if page is not None]
         report["message_ids"] = [message_id for message_id, page in zip(ids, pages) if page is not None]
@@ -534,21 +640,28 @@ def main():
     try:
         for page in pages:
             if page is not None:
-                new_ids.append(send_discord(webhook, page))
+                new_ids.append(bot_send(token, channel, page))
     except Exception:
-        # Якщо друга або третя картка не надіслалась, прибираємо вже створені.
+        # Невдалий випуск: прибираємо частково надіслані власні повідомлення.
         for message_id in new_ids:
             try:
-                delete_discord(webhook, message_id, ignore_missing=True)
+                bot_delete(token, channel, message_id, ignore_missing=True)
             except RuntimeError:
                 pass
         raise
+
+    old_report = state.get("report") or {}
+    previous_ids = report_message_ids(old_report)
+    pending = list(state.get("pending_message_batches") or [])
+    if previous_ids:
+        pending.append({"transport": report_transport(old_report), "ids": previous_ids})
 
     new_state = {
         "last_post_date": now.strftime("%Y-%m-%d"),
         "spore": spore,
         "deals": {str(d["appid"]): {"discount": d["discount"], "final": d["final"]} for d in deals},
         "report": {
+            "transport": "bot",
             "message_ids": new_ids,
             "groups": groups,
             "date": now.strftime("%d.%m.%Y"),
@@ -559,17 +672,14 @@ def main():
             "snapshot": report_snapshot(chosen, spore),
         },
     }
+    if pending:
+        new_state["pending_message_batches"] = pending
     save_state(new_state)
 
-    # Після збереження нових IDs можна безпечно прибрати старі повідомлення.
-    old_ids = report_message_ids(state.get("report") or {})
-    for message_id in old_ids:
-        if message_id not in new_ids:
-            try:
-                delete_discord(webhook, message_id, ignore_missing=True)
-            except RuntimeError:
-                print("Попередження: не вдалося видалити попередню Discord-картку")
-    print(f"Надіслано до Discord: {len(chosen)} ігор, {len(new_ids)} повідомлень + SPORE")
+    # Видаляємо старі картки вже після збереження нових ID.
+    if clear_pending(new_state, token, channel, webhook):
+        save_state(new_state)
+    print(f"ZHAXO: {len(chosen)} ігор, {len(new_ids)} повідомлень + SPORE")
 
 
 if __name__ == "__main__":
