@@ -187,6 +187,9 @@ def select_popular_deals(deals, limit=MAX_DEALS):
     """
     if limit <= 0:
         return []
+    # Команди можуть передавати generator; матеріалізуємо один раз,
+    # інакше другий прохід втратить усі менш відомі ігри.
+    deals = list(deals)
     popular = [d for d in deals if d.get("reviews", 0) >= PREFERRED_MIN_REVIEWS]
     less_known = [d for d in deals if d.get("reviews", 0) < PREFERRED_MIN_REVIEWS]
 
