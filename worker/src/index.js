@@ -5,7 +5,7 @@ const APP_DETAILS="https://store.steampowered.com/api/appdetails";
 const DISCORD="https://discord.com/api/v10";
 const COVER="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/";
 export const COMMANDS=[
- {type:1,name:"deals",description:"До 30 популярних знижок Steam",options:[
+ {type:1,name:"deals",description:"Усі знижки Steam від 70% зі сторінками",options:[
   {type:4,name:"discount",description:"Мінімальна знижка 70–100%",required:false,min_value:70,max_value:100}]},
  {type:1,name:"spore",description:"Ціна SPORE у Steam UA та RU"},
  {type:1,name:"find",description:"Пошук гри зі знижкою від 70%",options:[
@@ -42,6 +42,8 @@ const score=g=>Math.log1p(g.reviews||0)*20+(g.positive||0)*0.2+g.discount*0.5;
 export function choose(deals,limit=30,threshold=70){
  const all=[...deals].filter(g=>g&&g.discount>=threshold);
  const rank=(a,b)=>score(b)-score(a)||b.reviews-a.reviews||b.discount-a.discount||a.appid-b.appid;
+ // Без обмеження 30: спочатку найбільша знижка, при рівності — популярність.
+ if(limit===Infinity)return all.sort((a,b)=>b.discount-a.discount||rank(a,b));
  const popular=all.filter(g=>g.reviews>=5000).sort(rank);
  const others=all.filter(g=>g.reviews<5000).sort(rank);
  return popular.concat(others).slice(0,limit).sort((a,b)=>b.discount-a.discount||rank(a,b));
@@ -76,6 +78,42 @@ async function sales(threshold){
  const games=new Map();
  for(const item of items){const g=parseItem(item);if(g)games.set(g.appid,g);}
  return [...games.values()];
+}
+// Кеш повного каталогу на 10 хвилин: щоб кнопки не завантажували
+// тисячі ігор повторно та не перевищували ліміти Cloudflare Workers Free.
+const CATALOG_TTL_MS=10*60*1000;
+const catalogMemory=new Map();
+const catalogPending=new Map();
+async function dealsCatalog(threshold){
+ const saved=catalogMemory.get(threshold);
+ if(saved&&saved.expires>Date.now())return saved.games;
+ if(catalogPending.has(threshold))return catalogPending.get(threshold);
+ const pending=(async()=>{
+  const key=new Request("https://zhaxo-steam-commands.ikiruganoi.workers.dev/.zhaxo/cache/deals?discount="+threshold);
+  const cfCache=typeof caches!=="undefined"?caches.default:null;
+  if(cfCache){
+   try{
+    const hit=await cfCache.match(key);
+    if(hit?.ok){
+     const games=await hit.json();
+     if(Array.isArray(games)){
+      catalogMemory.set(threshold,{games,expires:Date.now()+CATALOG_TTL_MS});
+      return games;
+     }
+    }
+   }catch(e){console.log("Steam catalog cache read unavailable",String(e));}
+  }
+  const games=choose(await sales(threshold),Infinity,threshold);
+  catalogMemory.set(threshold,{games,expires:Date.now()+CATALOG_TTL_MS});
+  if(cfCache){
+   try{await cfCache.put(key,new Response(JSON.stringify(games),{
+    headers:{"content-type":"application/json","cache-control":"public, max-age=600"}
+   }));}catch(e){console.log("Steam catalog cache write unavailable",String(e));}
+  }
+  return games;
+ })();
+ catalogPending.set(threshold,pending);
+ try{return await pending;}finally{catalogPending.delete(threshold);}
 }
 async function ruPrices(ids){
  const results=new Map(),unique=[...new Set(ids)];
@@ -119,7 +157,7 @@ export function pageView(games,ru=new Map(),title="ZHAXO / STEAM DEALS",page=0,t
   title:"⬡ ZHAXO  //  STEAM DEALS",
   color:0x39CFC6,
   description: total
-   ? "**Добірка популярних ігор**\n🇺🇦 Steam UA · 🇷🇺 Steam RU\n"
+   ? "**Усі знайдені знижки Steam**\n🇺🇦 Steam UA · 🇷🇺 Steam RU\n"
      +"🔎 Від **−"+threshold+"%** · 🎮 **"+total+" ігор**\n"
      +"🔽 Від найбільшої знижки · сторінка **"+(current+1)+"/"+maxPage+"**"
    : "Наразі таких знижок не знайдено.",
@@ -157,7 +195,7 @@ async function spore(){
    "\n🇷🇺 Steam RU: **"+(ru.get(17390)||"ціна недоступна")+"**"}]}];
 }
 async function dealPage(threshold,page,owner){
- const games=choose(await sales(threshold),30,threshold);
+ const games=await dealsCatalog(threshold);
  const index=Math.min(Math.max(0,page),Math.max(0,Math.ceil(games.length/PAGE_SIZE)-1));
  const shown=games.slice(index*PAGE_SIZE,(index+1)*PAGE_SIZE);
  const ru=await ruPrices(shown.map(g=>g.appid));
@@ -177,7 +215,7 @@ async function commandPage(p){
  if(name==="find"){
   const term=String(get("game","")).trim().toLocaleLowerCase();
   if(term.length<2||term.length>80)throw Error("Invalid game");
-  const games=choose((await sales(70)).filter(g=>g.name.toLocaleLowerCase().includes(term)),5);
+  const games=choose((await dealsCatalog(70)).filter(g=>g.name.toLocaleLowerCase().includes(term)),5);
   const ru=await ruPrices(games.map(g=>g.appid));
   return pageView(games,ru,"ZHAXO / ПОШУК",0,70,"0");
  }
@@ -186,10 +224,10 @@ async function commandPage(p){
 
 // Кнопки не створюють нових відповідей — змінюють поточну ephemeral-картку.
 export function parsePageButton(customId){
- const m=/^zh:d:(\d{2,3}):(\d{1,2}):(\d{15,25})$/.exec(customId||"");
+ const m=/^zh:d:(\d{2,3}):(\d{1,5}):(\d{15,25})$/.exec(customId||"");
  if(!m)return null;
  const discount=Number(m[1]),page=Number(m[2]);
- return discount>=70&&discount<=100&&page>=0&&page<=5
+ return discount>=70&&discount<=100&&page>=0&&page<4000
   ?{discount,page,owner:m[3]}:null;
 }
 
@@ -248,7 +286,7 @@ export default {
   }
   if(p.data?.name==="help")return asJson({type:4,data:{flags:64,embeds:[{
    title:"⬡ ZHAXO · Команди",color:0x39CFC6,
-   description:"**/deals** — 30 знижок від 70%\n**/deals discount:90** — від 90%\n**/spore** — ціна SPORE\n**/find game:назва** — пошук гри"}]}});
+   description:"**/deals** — усі знижки від 70%, по 5 ігор на сторінці\n**/deals discount:90** — від 90%\n**/spore** — ціна SPORE\n**/find game:назва** — пошук гри"}]}});
   ctx.waitUntil(complete(p));
   return asJson({type:5,data:{flags:64}}); // ephemeral: видно тільки автору
  }
