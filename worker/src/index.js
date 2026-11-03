@@ -4,6 +4,11 @@ const STEAM_QUERY="https://api.steampowered.com/IStoreQueryService/Query/v1/";
 const APP_DETAILS="https://store.steampowered.com/api/appdetails";
 const DISCORD="https://discord.com/api/v10";
 const COVER="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/";
+// Workers Free: 50 external subrequests per invocation. Reserve at least 8 for
+// the visible-page RU price, Discord PATCH response and potential redirects.
+export const MAX_STEAM_SEARCH_REQUESTS=42;
+const SCAN_BUDGET_MS=17000; // waitUntil has approximately 30 seconds total.
+const SEARCH_BATCH_SIZE=4;
 export const COMMANDS=[
  {type:1,name:"deals",description:"Усі знижки Steam від 70% зі сторінками",options:[
   {type:4,name:"discount",description:"Мінімальна знижка 70–100%",required:false,min_value:70,max_value:100}]},
@@ -48,8 +53,8 @@ export function choose(deals,limit=30,threshold=70){
  const others=all.filter(g=>g.reviews<5000).sort(rank);
  return popular.concat(others).slice(0,limit).sort((a,b)=>b.discount-a.discount||rank(a,b));
 }
-async function getJson(url){
- const r=await fetch(url,{headers:{accept:"application/json"},signal:AbortSignal.timeout(8000)});
+async function getJson(url,timeoutMs=8000){
+ const r=await fetch(url,{headers:{accept:"application/json"},signal:AbortSignal.timeout(timeoutMs)});
  if(!r.ok)throw Error("Steam HTTP "+r.status);
  return r.json();
 }
@@ -64,20 +69,41 @@ async function salesPage(start,threshold){
  if(!Number.isInteger(res.metadata?.total_matching_records))throw Error("Steam response changed");
  return {total:res.metadata.total_matching_records,items:res.store_items||[]};
 }
-async function sales(threshold){
+// Bound the Steam scan both by HTTP request count and elapsed wall time.
+// When Steam is slow or an individual page fails, serve the deals already found
+// and explicitly indicate that the scan is incomplete.
+export async function sales(threshold){
+ const begun=Date.now();
  const first=await salesPage(0,threshold);
  if(first.total>0&&!first.items.length)throw Error("Steam returned no games");
- const items=first.items.slice(),starts=[];
- if(first.total>20000)throw Error("Steam list too large");
- for(let pos=500;pos<first.total;pos+=500)starts.push(pos);
- // Workers Free supports up to six simultaneous outgoing connections.
- for(let i=0;i<starts.length;i+=4){
-  const pages=await Promise.all(starts.slice(i,i+4).map(x=>salesPage(x,threshold)));
-  for(const page of pages)items.push(...page.items);
+ const totalPages=Math.ceil(first.total/500);
+ const allowedPages=Math.min(totalPages,MAX_STEAM_SEARCH_REQUESTS);
+ const items=first.items.slice();
+ let scannedPages=1,failedPages=0;
+ const starts=[];
+ for(let page=1;page<allowedPages;page++)starts.push(page*500);
+ for(let i=0;i<starts.length;i+=SEARCH_BATCH_SIZE){
+  if(Date.now()-begun>=SCAN_BUDGET_MS)break;
+  const batch=starts.slice(i,i+SEARCH_BATCH_SIZE);
+  const results=await Promise.allSettled(batch.map(pos=>salesPage(pos,threshold)));
+  for(const result of results){
+   if(result.status==="fulfilled"){
+    scannedPages++;
+    items.push(...result.value.items);
+   }else{
+    failedPages++;
+    console.warn("ZHAXO Steam query page failed",String(result.reason));
+   }
+  }
  }
  const games=new Map();
- for(const item of items){const g=parseItem(item);if(g)games.set(g.appid,g);}
- return [...games.values()];
+ for(const item of items){const game=parseItem(item);if(game)games.set(game.appid,game);}
+ const complete=totalPages===scannedPages&&failedPages===0;
+ console.log("ZHAXO Steam scan",JSON.stringify({
+  threshold,totalPages,scannedPages,failedPages,matched:games.size,complete,
+  durationMs:Date.now()-begun
+ }));
+ return {games:[...games.values()],complete,totalPages,scannedPages,failedPages};
 }
 // Кеш повного каталогу на 10 хвилин: щоб кнопки не завантажували
 // тисячі ігор повторно та не перевищували ліміти Cloudflare Workers Free.
@@ -86,7 +112,7 @@ const catalogMemory=new Map();
 const catalogPending=new Map();
 async function dealsCatalog(threshold){
  const saved=catalogMemory.get(threshold);
- if(saved&&saved.expires>Date.now())return saved.games;
+ if(saved&&saved.expires>Date.now())return saved.snapshot;
  if(catalogPending.has(threshold))return catalogPending.get(threshold);
  const pending=(async()=>{
   const key=new Request("https://zhaxo-steam-commands.ikiruganoi.workers.dev/.zhaxo/cache/deals?discount="+threshold);
@@ -95,22 +121,34 @@ async function dealsCatalog(threshold){
    try{
     const hit=await cfCache.match(key);
     if(hit?.ok){
-     const games=await hit.json();
-     if(Array.isArray(games)){
-      catalogMemory.set(threshold,{games,expires:Date.now()+CATALOG_TTL_MS});
-      return games;
+     const snapshot=await hit.json();
+     if(Array.isArray(snapshot?.games)){
+      const ttl=snapshot.complete?CATALOG_TTL_MS:120000;
+      catalogMemory.set(threshold,{snapshot,expires:Date.now()+ttl});
+      return snapshot;
      }
     }
    }catch(e){console.log("Steam catalog cache read unavailable",String(e));}
   }
-  const games=choose(await sales(threshold),Infinity,threshold);
-  catalogMemory.set(threshold,{games,expires:Date.now()+CATALOG_TTL_MS});
+  let snapshot;
+  try{
+   const scan=await sales(threshold);
+   snapshot={...scan,games:choose(scan.games,Infinity,threshold)};
+  }catch(err){
+   if(saved?.snapshot?.games?.length){
+    console.warn("Steam query failed; serving previous catalog",String(err));
+    return {...saved.snapshot,complete:false};
+   }
+   throw err;
+  }
+  const ttl=snapshot.complete?CATALOG_TTL_MS:120000;
+  catalogMemory.set(threshold,{snapshot,expires:Date.now()+ttl});
   if(cfCache){
-   try{await cfCache.put(key,new Response(JSON.stringify(games),{
-    headers:{"content-type":"application/json","cache-control":"public, max-age=600"}
+   try{await cfCache.put(key,new Response(JSON.stringify(snapshot),{
+    headers:{"content-type":"application/json","cache-control":"public, max-age="+Math.floor(ttl/1000)}
    }));}catch(e){console.log("Steam catalog cache write unavailable",String(e));}
   }
-  return games;
+  return snapshot;
  })();
  catalogPending.set(threshold,pending);
  try{return await pending;}finally{catalogPending.delete(threshold);}
@@ -146,7 +184,7 @@ export const PAGE_SIZE=5;
 
 // Один Discord-відгук на одну slash-команду; кнопки змінюють саме його.
 // Усі command responses — ephemeral: вони не засмічують публічний #deals.
-export function pageView(games,ru=new Map(),title="ZHAXO / STEAM DEALS",page=0,threshold=70,owner="0"){
+export function pageView(games,ru=new Map(),title="ZHAXO / STEAM DEALS",page=0,threshold=70,owner="0",snapshot=null){
  const total=games.length;
  const maxPage=Math.max(1,Math.ceil(total/PAGE_SIZE));
  const current=Math.min(Math.max(0,page),maxPage-1);
@@ -160,6 +198,7 @@ export function pageView(games,ru=new Map(),title="ZHAXO / STEAM DEALS",page=0,t
    ? "**Усі знайдені знижки Steam**\n🇺🇦 Steam UA · 🇷🇺 Steam RU\n"
      +"🔎 Від **−"+threshold+"%** · 🎮 **"+total+" ігор**\n"
      +"🔽 Від найбільшої знижки · сторінка **"+(current+1)+"/"+maxPage+"**"
+     +(snapshot&&!snapshot.complete?"\n⚠️ **Неповний скан Steam:** перевірено "+snapshot.scannedPages+" із "+snapshot.totalPages+" сторінок. Показано всі знайдені наразі акції.":"")
    : "Наразі таких знижок не знайдено.",
   footer:{text:"ZHAXO • Steam Market Scanner · ціни підтверджує Steam"}
  };
@@ -200,11 +239,12 @@ async function spore(){
    "\n🇷🇺 Steam RU: **"+(ru.get(17390)||"ціна недоступна")+"**"}]}];
 }
 async function dealPage(threshold,page,owner){
- const games=await dealsCatalog(threshold);
+ const snapshot=await dealsCatalog(threshold);
+ const games=snapshot.games;
  const index=Math.min(Math.max(0,page),Math.max(0,Math.ceil(games.length/PAGE_SIZE)-1));
  const shown=games.slice(index*PAGE_SIZE,(index+1)*PAGE_SIZE);
  const ru=await ruPrices(shown.map(g=>g.appid));
- return pageView(games,ru,"ZHAXO / ЗНИЖКИ ВІД −"+threshold+"%",index,threshold,owner);
+ return pageView(games,ru,"ZHAXO / ЗНИЖКИ ВІД −"+threshold+"%",index,threshold,owner,snapshot);
 }
 
 async function commandPage(p){
@@ -220,7 +260,7 @@ async function commandPage(p){
  if(name==="find"){
   const term=String(get("game","")).trim().toLocaleLowerCase();
   if(term.length<2||term.length>80)throw Error("Invalid game");
-  const games=choose((await dealsCatalog(70)).filter(g=>g.name.toLocaleLowerCase().includes(term)),5);
+  const games=choose((await dealsCatalog(70)).games.filter(g=>g.name.toLocaleLowerCase().includes(term)),5);
   const ru=await ruPrices(games.map(g=>g.appid));
   return pageView(games,ru,"ZHAXO / ПОШУК",0,70,"0");
  }
