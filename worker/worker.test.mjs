@@ -1,7 +1,7 @@
 import {test} from "node:test";
 import assert from "node:assert/strict";
 import {webcrypto} from "node:crypto";
-import {COMMANDS,verifySignature,parseItem,choose,pages} from "./src/index.js";
+import {COMMANDS,verifySignature,parseItem,choose,pageView} from "./src/index.js";
 test("valid Discord Ed25519 signature",async()=>{
  const pair=await webcrypto.subtle.generateKey("Ed25519",true,["sign","verify"]);
  const pub=Buffer.from(await webcrypto.subtle.exportKey("raw",pair.publicKey)).toString("hex");
@@ -24,11 +24,15 @@ test("popular selection then descending discount",()=>{
  assert(selected.every(g=>g.appid<1000));
  assert.deepEqual(selected.map(g=>g.discount),selected.map(g=>g.discount).sort((a,b)=>b-a));
 });
-test("30 games fit 3 Discord messages, regional RUB never guessed",()=>{
- const games=Array.from({length:30},(_,i)=>({appid:i+1,name:"Test",discount:90,price:"50 ₴",old_price:"500 ₴"}));
- const out=pages(games,new Map([[1,"400,00 ₽"]]));
- assert.deepEqual(out.map(x=>x.embeds.length),[10,10,10]);
- assert(out[0].embeds[0].description.includes("400,00 ₽"));
- assert(out[0].embeds[1].description.includes("ціна недоступна"));
+test("single message with five cards, header, and buttons",()=>{
+ const games=Array.from({length:30},(_,i)=>({appid:i+1,name:"Game",discount:90,price:"50 ₴",old_price:"500 ₴"}));
+ const first=pageView(games,new Map([[1,"400,00 ₽"]]),"ZHAXO",0,90,"123456789012345678");
+ assert.equal(first.embeds.length,6);
+ assert.equal(first.components.length,1);
+ assert.equal(first.components[0].components[0].disabled,true);
+ assert(first.embeds[1].description.includes("400,00 ₽"));
+ const last=pageView(games,new Map(),"ZHAXO",5,90,"123456789012345678");
+ assert(last.embeds[1].title.startsWith("26"));
+ assert.equal(last.components[0].components[2].disabled,true);
 });
 test("all desired slash commands",()=>assert.deepEqual(COMMANDS.map(x=>x.name),["deals","spore","find","help"]));
