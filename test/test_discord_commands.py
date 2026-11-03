@@ -96,7 +96,9 @@ class CommandTests(unittest.TestCase):
 
     def test_ua_and_regional_ru_are_both_shown(self):
         from unittest.mock import patch as mock_patch
-        with mock_patch("discord_commands.fetch_ru_prices", return_value={
+        with mock_patch("discord_commands.get_spore_price", return_value={
+            "available": True, "discount": 0, "price": "699 грн"
+        }), mock_patch("discord_commands.fetch_ru_prices", return_value={
             "123": {"discount": 60, "price": "399 ₽", "old_price": "999 ₽",
                     "final": 39900, "original": 99900},
             "17390": {"discount": 0, "price": "899 ₽", "old_price": "899 ₽",
