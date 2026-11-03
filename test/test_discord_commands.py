@@ -17,6 +17,11 @@ class CommandTests(unittest.TestCase):
         self.assertIsNone(parse_command("hello"))
         self.assertEqual(parse_command("!deals 60")[0], "error")
 
+    def test_rub_prices_in_commands(self):
+        game = dict(self.game, final=5000)
+        pages = build_replies(("deals", 70), discounted=[game], rub_rate=2.5)
+        self.assertIn("≈ 125,00 ₽", pages[0]["embeds"][0]["description"])
+
     def test_results(self):
         answer = build_reply(("deals", 80), [self.game])
         self.assertIn("Dying Light", answer["description"])
@@ -83,7 +88,7 @@ class CommandTests(unittest.TestCase):
         games = [dict(self.game, appid=i + 1000, name=f"Game {i}") for i in range(30)]
         sent = []
         messages = [{"id": "200", "content": "!deals", "author": {"id": "42"}}]
-        with patch("discord_commands.query_steam_sales", return_value=games):
+        with patch("discord_commands.query_steam_sales", return_value=games), patch("discord_commands.get_rub_rate", return_value=2.5):
             cursor, count = process_messages(messages, "199", "token", "77",
                                              send=lambda mid, answer: sent.append((mid, answer)))
         self.assertEqual((cursor, count), ("200", 1))
