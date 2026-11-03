@@ -104,17 +104,45 @@ export function card(g,number,ru){
  return {title:String(number).padStart(2,"0")+" / "+safe(g.name).slice(0,160),
   url,description:desc,color:0x39CFC6,image:{url:COVER+g.appid+"/header.jpg"}};
 }
-export function pages(games,ru=new Map(),title="ZHAXO / STEAM DEALS"){
- if(!games.length)return [{embeds:[{title:"⬡ ZHAXO",description:"Таких знижок зараз не знайдено.",color:0x39CFC6}]}];
- const out=[];
- for(let n=0;n<games.length;n+=10){
-  const part=games.slice(n,n+10),embeds=part.map((g,i)=>card(g,n+i+1,ru.get(g.appid)));
-  if(embeds.reduce((sum,e)=>sum+e.title.length+e.description.length,0)>6000)throw Error("Too many Discord chars");
-  out.push({content:"⬡ **"+title+"** · "+(n+1)+"–"+(n+part.length)+" із "+games.length,
-   embeds,allowed_mentions:{parse:[]}});
+export const PAGE_SIZE=5;
+
+// Один Discord-відгук на одну slash-команду; кнопки змінюють саме його.
+// Усі command responses — ephemeral: вони не засмічують публічний #deals.
+export function pageView(games,ru=new Map(),title="ZHAXO / STEAM DEALS",page=0,threshold=70,owner="0"){
+ const total=games.length;
+ const maxPage=Math.max(1,Math.ceil(total/PAGE_SIZE));
+ const current=Math.min(Math.max(0,page),maxPage-1);
+ const begin=current*PAGE_SIZE;
+ const visible=games.slice(begin,begin+PAGE_SIZE);
+ const first=begin+1,last=begin+visible.length;
+ const header={
+  title:"⬡ ZHAXO  //  STEAM DEALS",
+  color:0x39CFC6,
+  description: total
+   ? "**Добірка популярних ігор**\n🇺🇦 Steam UA · 🇷🇺 Steam RU\n"
+     +"🔎 Від **−"+threshold+"%** · 🎮 **"+total+" ігор**\n"
+     +"🔽 Від найбільшої знижки · сторінка **"+(current+1)+"/"+maxPage+"**"
+   : "Наразі таких знижок не знайдено.",
+  footer:{text:"ZHAXO • Steam Market Scanner · ціни підтверджує Steam"}
+ };
+ const embeds=[header,...visible.map((g,i)=>card(g,begin+i+1,ru.get(g.appid)))];
+ if(embeds.reduce((sum,e)=>sum+e.title.length+e.description.length,0)>6000)
+  throw Error("Too many Discord chars");
+ const response={
+  content:total?"⬡ **"+title+"** · **"+first+"–"+last+" із "+total+"**":null,
+  embeds,allowed_mentions:{parse:[]},components:[]
+ };
+ if(maxPage>1){
+  const id=p=>"zh:d:"+threshold+":"+p+":"+owner;
+  response.components=[{type:1,components:[
+   {type:2,style:2,label:"◀ Назад",custom_id:id(current-1),disabled:current===0},
+   {type:2,style:2,label:(current+1)+" / "+maxPage,custom_id:"zh:page-indicator",disabled:true},
+   {type:2,style:1,label:"Далі ▶",custom_id:id(current+1),disabled:current===maxPage-1}
+  ]}];
  }
- return out;
+ return response;
 }
+
 async function spore(){
  const url=new URL(APP_DETAILS);url.searchParams.set("appids","17390");
  url.searchParams.set("cc","ua");url.searchParams.set("filters","price_overview");
@@ -128,43 +156,67 @@ async function spore(){
   description:"🇺🇦 Steam UA: **"+price+"**"+(valid&&info.discount_percent?" · −"+info.discount_percent+"%":"")+
    "\n🇷🇺 Steam RU: **"+(ru.get(17390)||"ціна недоступна")+"**"}]}];
 }
-async function commandPages(p){
+async function dealPage(threshold,page,owner){
+ const games=choose(await sales(threshold),30,threshold);
+ const index=Math.min(Math.max(0,page),Math.max(0,Math.ceil(games.length/PAGE_SIZE)-1));
+ const shown=games.slice(index*PAGE_SIZE,(index+1)*PAGE_SIZE);
+ const ru=await ruPrices(shown.map(g=>g.appid));
+ return pageView(games,ru,"ZHAXO / ЗНИЖКИ ВІД −"+threshold+"%",index,threshold,owner);
+}
+
+async function commandPage(p){
  const name=p.data?.name,options=p.data?.options||[];
  const get=(id,fallback)=>options.find(o=>o.name===id)?.value??fallback;
- if(name==="spore")return spore();
+ if(name==="spore")return (await spore())[0];
  if(name==="deals"){
   const pct=Number(get("discount",70));
   if(!Number.isInteger(pct)||pct<70||pct>100)throw Error("Invalid discount");
-  const games=choose(await sales(pct),30,pct);
-  return pages(games,await ruPrices(games.map(g=>g.appid)),"ZHAXO / ЗНИЖКИ ВІД −"+pct+"%");
+  const owner=p.member?.user?.id||p.user?.id||"0";
+  return dealPage(pct,0,owner);
  }
  if(name==="find"){
   const term=String(get("game","")).trim().toLocaleLowerCase();
   if(term.length<2||term.length>80)throw Error("Invalid game");
   const games=choose((await sales(70)).filter(g=>g.name.toLocaleLowerCase().includes(term)),5);
-  return pages(games,await ruPrices(games.map(g=>g.appid)),"ZHAXO / ПОШУК");
+  const ru=await ruPrices(games.map(g=>g.appid));
+  return pageView(games,ru,"ZHAXO / ПОШУК",0,70,"0");
  }
  throw Error("Unknown command");
 }
+
+// Кнопки не створюють нових відповідей — змінюють поточну ephemeral-картку.
+export function parsePageButton(customId){
+ const m=/^zh:d:(\d{2,3}):(\d{1,2}):(\d{15,25})$/.exec(customId||"");
+ if(!m)return null;
+ const discount=Number(m[1]),page=Number(m[2]);
+ return discount>=70&&discount<=100&&page>=0&&page<=5
+  ?{discount,page,owner:m[3]}:null;
+}
+
 async function send(app,token,path,method,payload){
  const r=await fetch(DISCORD+"/webhooks/"+app+"/"+token+path,{
   method,headers:{"content-type":"application/json"},body:JSON.stringify(payload),
   signal:AbortSignal.timeout(10000)});
  if(!r.ok)throw Error("Discord HTTP "+r.status);
 }
-async function complete(p){
+async function complete(p,button=null){
  try{
-  const result=await commandPages(p);
-  await send(p.application_id,p.token,"/messages/@original","PATCH",result[0]);
-  for(const next of result.slice(1))await send(p.application_id,p.token,"","POST",next);
+  const result=button
+   ?await dealPage(button.discount,button.page,button.owner)
+   :await commandPage(p);
+  // Deferred interaction / button: редагуємо @original, без follow-up повідомлень.
+  await send(p.application_id,p.token,"/messages/@original","PATCH",result);
  }catch(err){
   console.error("ZHAXO error",String(err));
   try{await send(p.application_id,p.token,"/messages/@original","PATCH",
-   {embeds:[{title:"⚠️ Не вдалося перевірити Steam",
-    description:"Спробуй пізніше — Steam або його API зараз недоступні.",color:0xD6AF61}]});}
+   {content:null,components:[],embeds:[{
+    title:"⚠️ Не вдалося перевірити Steam",
+    description:"Спробуй пізніше — Steam або його API зараз недоступні.",
+    color:0xD6AF61}]});}
   catch(e){console.error("Discord reply error",String(e));}
  }
 }
+
 export default {
  async fetch(req,env,ctx){
   if(new URL(req.url).pathname!=="/discord")return new Response("Not found",{status:404});
@@ -176,20 +228,28 @@ export default {
    return new Response("Invalid Discord signature",{status:401});
   let p;try{p=JSON.parse(raw);}catch{return new Response("Bad JSON",{status:400});}
   if(p.type===1)return asJson({type:1});
-  if(p.type!==2)return asJson({type:4,data:{content:"Непідтримувана команда."}});
+  if(p.type!==2&&p.type!==3)
+   return asJson({type:4,data:{content:"Непідтримувана команда.",flags:64}});
   if(env.DISCORD_CHANNEL_ID&&p.channel_id!==env.DISCORD_CHANNEL_ID)
    return asJson({type:4,data:{content:"Скористайся каналом #deals.",flags:64}});
   if(env.DISCORD_GUILD_ID&&p.guild_id!==env.DISCORD_GUILD_ID)
    return asJson({type:4,data:{content:"Сервер не налаштований.",flags:64}});
+  const uid=p.member?.user?.id||p.user?.id;
   if(env.DISCORD_ALLOWED_USER_IDS){
-   const uid=p.member?.user?.id||p.user?.id;
    if(!env.DISCORD_ALLOWED_USER_IDS.split(",").map(x=>x.trim()).includes(uid))
     return asJson({type:4,data:{content:"Команди недоступні цьому користувачу.",flags:64}});
   }
-  if(p.data?.name==="help")return asJson({type:4,data:{embeds:[{
+  if(p.type===3){
+   const button=parsePageButton(p.data?.custom_id);
+   if(!button||button.owner!==uid)
+    return asJson({type:4,data:{content:"Ця сторінка недоступна.",flags:64}});
+   ctx.waitUntil(complete(p,button));
+   return asJson({type:6}); // deferred UPDATE_MESSAGE, не створює нове повідомлення
+  }
+  if(p.data?.name==="help")return asJson({type:4,data:{flags:64,embeds:[{
    title:"⬡ ZHAXO · Команди",color:0x39CFC6,
    description:"**/deals** — 30 знижок від 70%\n**/deals discount:90** — від 90%\n**/spore** — ціна SPORE\n**/find game:назва** — пошук гри"}]}});
   ctx.waitUntil(complete(p));
-  return asJson({type:5});
+  return asJson({type:5,data:{flags:64}}); // ephemeral: видно тільки автору
  }
 };
