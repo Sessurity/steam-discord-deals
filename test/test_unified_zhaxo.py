@@ -81,7 +81,7 @@ class UnifiedBotTests(unittest.TestCase):
         }}
         env = dict(self.env, RUN_MODE="cleanup")
         with patch.dict("os.environ", env, clear=True), \
-             patch("steam_deals.get_rub_rate", return_value=2.5), patch("steam_deals.load_state", return_value=state), \
+             patch("steam_deals.get_ru_prices", return_value={}), patch("steam_deals.load_state", return_value=state), \
              patch("steam_deals.query_steam_sales", return_value=[self.game]), \
              patch("steam_deals.checked_spore", return_value=self.spore), \
              patch("steam_deals.bot_edit") as bot_edit, \
@@ -104,7 +104,7 @@ class UnifiedBotTests(unittest.TestCase):
         state = {"report": report, "last_post_date": "2026-11-03"}
         env = dict(self.env, RUN_MODE="cleanup")
         with patch.dict("os.environ", env, clear=True), \
-             patch("steam_deals.get_rub_rate", return_value=2.5), patch("steam_deals.load_state", return_value=state), \
+             patch("steam_deals.get_ru_prices", return_value={}), patch("steam_deals.load_state", return_value=state), \
              patch("steam_deals.query_steam_sales", return_value=[self.game]), \
              patch("steam_deals.checked_spore", return_value=self.spore), \
              patch("steam_deals.bot_edit") as bot_edit, \
@@ -157,7 +157,7 @@ class UnifiedBotTests(unittest.TestCase):
             "transport": "bot", "message_ids": ["777"], "groups": [[123]],
         }}
         with patch.dict("os.environ", self.env, clear=True), \
-             patch("steam_deals.get_rub_rate", return_value=2.5), patch("steam_deals.load_state", return_value=old_state), \
+             patch("steam_deals.get_ru_prices", return_value={}), patch("steam_deals.load_state", return_value=old_state), \
              patch("steam_deals.query_steam_sales", return_value=[self.game]), \
              patch("steam_deals.checked_spore", return_value=self.spore), \
              patch("steam_deals.bot_send", return_value="888") as send, \
@@ -175,7 +175,7 @@ class UnifiedBotTests(unittest.TestCase):
         games = [dict(self.game, appid=1000 + i) for i in range(11)]
         state = {"report": {}, "deals": {}, "spore": self.spore}
         with patch.dict("os.environ", self.env, clear=True), \
-             patch("steam_deals.get_rub_rate", return_value=2.5), patch("steam_deals.load_state", return_value=state), \
+             patch("steam_deals.get_ru_prices", return_value={}), patch("steam_deals.load_state", return_value=state), \
              patch("steam_deals.query_steam_sales", return_value=games), \
              patch("steam_deals.checked_spore", return_value=self.spore), \
              patch("steam_deals.bot_send",

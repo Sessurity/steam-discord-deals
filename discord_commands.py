@@ -8,7 +8,7 @@ from urllib.error import HTTPError, URLError
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 
-from steam_deals import KYIV, STEAM_HEADER, deal_sort_key, select_popular_deals, discord_safe, get_spore_price, get_rub_rate, rub_line, query_steam_sales
+from steam_deals import KYIV, STEAM_HEADER, deal_sort_key, select_popular_deals, discord_safe, get_spore_price, get_ru_prices, rub_line, query_steam_sales
 
 API = "https://discord.com/api/v10"
 STATE = Path(__file__).resolve().parent / "data" / "command_state.json"
@@ -38,15 +38,15 @@ def parse_command(content):
         return ("find", arg)
     return None
 
-def game_line(game, rub_rate=None):
+def game_line(game, ru_prices=None):
     link = f"https://store.steampowered.com/app/{game['appid']}/?cc=ua"
     name = discord_safe(game["name"])[:80]
-    return f"**[{name}]({link})** · **−{game['discount']}%**\n{game['price']} · було {game['old_price']}" + rub_line(game.get("final"), rub_rate)
+    return f"**[{name}]({link})** · **−{game['discount']}%**\n{game['price']} · було {game['old_price']}" + rub_line(game["appid"], ru_prices)
 
 def embed(title, description, color=0x39CFC6):
     return {"title": title, "description": description[:3800], "color": color}
 
-def build_reply(command, discounted=None, rub_rate=None):
+def build_reply(command, discounted=None, ru_prices=None):
     kind, arg = command
     if kind == "help":
         return embed("⬡ ZHAXO · Steam Commands",
@@ -65,7 +65,7 @@ def build_reply(command, discounted=None, rub_rate=None):
             text = f"−{s['discount']}% · **{s['price']}** (було {s['old_price']})"
         else:
             text = f"Без знижки · **{s['price']}**"
-        text += rub_line(s.get("final"), rub_rate) if s.get("available") else ""
+        text += rub_line(17390, ru_prices)
         return {**embed("★ SPORE · пріоритет",
                         text + "\n[Відкрити Steam](https://store.steampowered.com/app/17390/Spore/)",
                         0xD6AF61),
@@ -74,7 +74,7 @@ def build_reply(command, discounted=None, rub_rate=None):
     if kind == "deals":
         items = select_popular_deals((g for g in sales if g["discount"] >= arg), DEALS_PER_MESSAGE)
         desc = (f"🇺🇦 Україна · знижки від −{arg}%\n\n" +
-                "\n\n".join(game_line(g, rub_rate) for g in items)) if items else "Зараз таких акцій не знайдено."
+                "\n\n".join(game_line(g, ru_prices) for g in items)) if items else "Зараз таких акцій не знайдено."
         return embed("⬡ ZHAXO · Steam Deals", desc)
     if kind == "find":
         items = sorted((g for g in sales if arg.casefold() in g["name"].casefold()), key=deal_sort_key)[:5]
@@ -83,7 +83,7 @@ def build_reply(command, discounted=None, rub_rate=None):
         return embed("🔎 Пошук знижок", desc)
     raise ValueError("Unknown command")
 
-def game_card(game, number, rub_rate=None):
+def game_card(game, number, ru_prices=None):
     """Варіант A: окрема Discord-картка зі збільшеною обкладинкою Steam."""
     appid = game["appid"]
     url = f"https://store.steampowered.com/app/{appid}/?cc=ua"
@@ -91,7 +91,7 @@ def game_card(game, number, rub_rate=None):
     description = (
         f"**−{game['discount']}%**  ·  ~~{game['old_price']}~~  →  **{game['price']}**"
     )
-    description += rub_line(game.get("final"), rub_rate)
+    description += rub_line(game["appid"], ru_prices)
     if game.get("ends"):
         description += "\n⏳ До " + datetime.fromtimestamp(game["ends"], KYIV).strftime("%d.%m.%Y %H:%M")
     description += f"\n[Відкрити у Steam]({url})"
@@ -104,11 +104,13 @@ def game_card(game, number, rub_rate=None):
     }
 
 
-def build_replies(command, discounted=None, rub_rate=None):
+def build_replies(command, discounted=None, ru_prices=None, fetch_regional=False):
     """Повертає Discord payloads: максимум 10 великих карток у повідомленні."""
     kind, arg = command
     if kind not in ("deals", "find"):
-        return [{"embeds": [build_reply(command, discounted, rub_rate)]}]
+        if fetch_regional and kind == "spore":
+            ru_prices = get_ru_prices([17390])
+        return [{"embeds": [build_reply(command, discounted, ru_prices)]}]
     sales = discounted if discounted is not None else query_steam_sales()
     if kind == "deals":
         matches = select_popular_deals(
@@ -126,11 +128,13 @@ def build_replies(command, discounted=None, rub_rate=None):
         message = ("Зараз таких знижок не знайдено." if kind == "deals"
                    else "Не знайдено серед активних знижок від 70%.")
         return [{"embeds": [embed("⬡ ZHAXO · Steam", headline + "\n" + message)]}]
+    if fetch_regional:
+        ru_prices = get_ru_prices([game["appid"] for game in matches])
     pages = []
     total = len(matches)
     for offset in range(0, total, DEALS_PER_MESSAGE):
         part = matches[offset:offset + DEALS_PER_MESSAGE]
-        cards = [game_card(game, offset + i + 1, rub_rate) for i, game in enumerate(part)]
+        cards = [game_card(game, offset + i + 1, ru_prices) for i, game in enumerate(part)]
         if len(cards) > 10 or sum(len(c["title"]) + len(c["description"]) for c in cards) > 6000:
             raise RuntimeError("Перевищено ліміт Discord для карток")
         summary = f"{headline} · **{offset + 1}–{offset + len(part)} із {total}**\n🔽 Від найбільшої знижки до найменшої"
@@ -187,7 +191,6 @@ def process_messages(messages, cursor, token, channel, allowed=None, now=None, s
     seen = str(cursor) if cursor else None
     replies = 0
     cache = None
-    rub_rate = None
     for message in messages:
         msg_id = str(message["id"])
         if seen is not None and int(msg_id) <= int(seen):
@@ -198,9 +201,7 @@ def process_messages(messages, cursor, token, channel, allowed=None, now=None, s
                 try:
                     if command[0] in ("deals", "find") and cache is None:
                         cache = query_steam_sales()
-                    if rub_rate is None:
-                        rub_rate = get_rub_rate()
-                    answers = build_replies(command, discounted=cache, rub_rate=rub_rate)
+                    answers = build_replies(command, discounted=cache, fetch_regional=True)
                 except (RuntimeError, ValueError, TypeError, KeyError) as exc:
                     print(f"Command error: {type(exc).__name__}")
                     answers = [embed("⚠️ Steam тимчасово недоступний", "Спробуй пізніше.")]

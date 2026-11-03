@@ -11,7 +11,8 @@ from steam_deals import (
     parse_game,
     report_snapshot,
     select_report_games,
-    rub_price,
+    fmt_rub,
+    get_ru_prices,
     select_popular_deals,
     resolve_run_mode,
 )
@@ -45,13 +46,33 @@ class SteamDealsTests(unittest.TestCase):
         self.game["best_purchase_option"]["discount_pct"] = 69
         self.assertIsNone(parse_game(self.game))
 
-    def test_rub_conversion_is_approximate(self):
-        self.assertEqual(rub_price(2500, 2.5), "≈ 62,50 ₽")
-        self.assertIsNone(rub_price(2500, None))
+    def test_real_ru_store_prices_are_not_ua_conversions(self):
+        self.assertEqual(fmt_rub(39900), "399,00 ₽")
+        self.assertIsNone(fmt_rub(None))
+        response = {
+            "123": {"success": True, "data": {"price_overview": {
+                "currency": "RUB", "final": 39900, "discount_percent": 55}}},
+            "17390": {"success": True, "data": {"price_overview": {
+                "currency": "RUB", "final": 79900}}},
+            "999": {"success": True, "data": {"price_overview": {
+                "currency": "UAH", "final": 10000}}},
+        }
+        with patch("steam_deals.get_json", return_value=response) as get_json:
+            ru = get_ru_prices([123, 17390, 999])
+        self.assertEqual(ru, {123: "399,00 ₽", 17390: "799,00 ₽"})
+        self.assertEqual(get_json.call_args.args[0],
+                         "https://store.steampowered.com/api/appdetails")
+        self.assertEqual(get_json.call_args.args[1]["cc"], "ru")
         deal = parse_game(self.game)
-        pages = make_payload_pages([[123]], [deal], self.spore, {}, self.now, rub_rate=2.5)
-        self.assertIn("≈ 62,50 ₽", pages[0]["embeds"][2]["description"])
-        self.assertIn("≈ 1 747,50 ₽", pages[0]["embeds"][1]["description"])
+        pages = make_payload_pages([[123]], [deal], self.spore, {}, self.now, ru_prices=ru)
+        self.assertIn("399,00 ₽", pages[0]["embeds"][2]["description"])
+        self.assertIn("799,00 ₽", pages[0]["embeds"][1]["description"])
+        self.assertNotIn("≈", pages[0]["embeds"][2]["description"])
+
+    def test_unavailable_ru_price_does_not_invent_conversion(self):
+        deal = parse_game(self.game)
+        pages = make_payload_pages([[123]], [deal], self.spore, {}, self.now, ru_prices={})
+        self.assertIn("ціна недоступна", pages[0]["embeds"][2]["description"])
 
     def test_price_ua(self):
         self.assertEqual(fmt_money(2500, "25 ₴"), "25 ₴")
@@ -160,7 +181,7 @@ class SteamDealsTests(unittest.TestCase):
             "DISCORD_CHANNEL_ID": "42",
             "RUN_MODE": "cleanup",
             "SCHEDULED_RUN": "0",
-        }), patch("steam_deals.get_rub_rate", return_value=2.5), patch("steam_deals.load_state", return_value=previous), \
+        }), patch("steam_deals.get_ru_prices", return_value={123:"399,00 ₽",17390:"799,00 ₽"}), patch("steam_deals.load_state", return_value=previous), \
              patch("steam_deals.query_steam_sales", return_value=[game]), \
              patch("steam_deals.checked_spore", return_value=self.spore), \
              patch("steam_deals.edit_discord") as edit, \
@@ -189,7 +210,7 @@ class SteamDealsTests(unittest.TestCase):
             "DISCORD_CHANNEL_ID": "42",
             "RUN_MODE": "cleanup", "SCHEDULED_RUN": "1", "FORCE_SEND": "0",
         }), patch("steam_deals.datetime", wraps=datetime) as clock, \
-             patch("steam_deals.get_rub_rate", return_value=2.5), patch("steam_deals.load_state", return_value=old_state), \
+             patch("steam_deals.get_ru_prices", return_value={123:"399,00 ₽",17390:"799,00 ₽"}), patch("steam_deals.load_state", return_value=old_state), \
              patch("steam_deals.query_steam_sales", return_value=[game]), \
              patch("steam_deals.checked_spore", return_value=self.spore), \
              patch("steam_deals.bot_send", return_value="101") as send, \
@@ -239,7 +260,7 @@ class SteamDealsTests(unittest.TestCase):
             "DISCORD_BOT_TOKEN": "fake_token_for_tests",
             "DISCORD_CHANNEL_ID": "42",
             "RUN_MODE": "cleanup",
-        }), patch("steam_deals.get_rub_rate", return_value=2.5), patch("steam_deals.load_state", return_value=state), \
+        }), patch("steam_deals.get_ru_prices", return_value={123:"399,00 ₽",17390:"799,00 ₽"}), patch("steam_deals.load_state", return_value=state), \
              patch("steam_deals.query_steam_sales", return_value=[game, irrelevant]), \
              patch("steam_deals.checked_spore", return_value=self.spore), \
              patch("steam_deals.edit_discord") as edit, \
@@ -266,7 +287,7 @@ class SteamDealsTests(unittest.TestCase):
             "DISCORD_BOT_TOKEN": "fake_token_for_tests",
             "DISCORD_CHANNEL_ID": "42",
             "RUN_MODE": "daily", "FORCE_SEND": "1",
-        }), patch("steam_deals.get_rub_rate", return_value=2.5), patch("steam_deals.load_state", return_value=state), \
+        }), patch("steam_deals.get_ru_prices", return_value={123:"399,00 ₽",17390:"799,00 ₽"}), patch("steam_deals.load_state", return_value=state), \
              patch("steam_deals.query_steam_sales", return_value=games), \
              patch("steam_deals.checked_spore", return_value=self.spore), \
              patch("steam_deals.bot_send", side_effect=["101", "102", "103", "104"]) as send, \
