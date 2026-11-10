@@ -4,14 +4,6 @@
       "discount": 75,
       "final": 10000
     },
-    "1000080": {
-      "discount": 90,
-      "final": 2700
-    },
-    "1000500": {
-      "discount": 90,
-      "final": 2800
-    },
     "1001800": {
       "discount": 80,
       "final": 7200
@@ -20,17 +12,13 @@
       "discount": 75,
       "final": 1500
     },
-    "1003890": {
-      "discount": 85,
-      "final": 7400
+    "1003120": {
+      "discount": 80,
+      "final": 4300
     },
     "1004150": {
       "discount": 70,
       "final": 12600
-    },
-    "1004370": {
-      "discount": 90,
-      "final": 2700
     },
     "1004750": {
       "discount": 90,
@@ -43,6 +31,10 @@
     "1006880": {
       "discount": 72,
       "final": 1400
+    },
+    "1007490": {
+      "discount": 85,
+      "final": 2500
     },
     "1008390": {
       "discount": 83,
@@ -64,13 +56,17 @@
       "discount": 75,
       "final": 10300
     },
-    "1016860": {
-      "discount": 70,
-      "final": 5900
+    "1017160": {
+      "discount": 75,
+      "final": 8200
     },
     "1018130": {
       "discount": 81,
       "final": 2400
+    },
+    "1018160": {
+      "discount": 90,
+      "final": 7900
     },
     "1018900": {
       "discount": 76,
@@ -84,21 +80,17 @@
       "discount": 91,
       "final": 2500
     },
+    "1019590": {
+      "discount": 80,
+      "final": 4500
+    },
     "1020790": {
       "discount": 70,
       "final": 76400
     },
-    "1021070": {
-      "discount": 85,
-      "final": 6200
-    },
     "1021260": {
       "discount": 72,
       "final": 1400
-    },
-    "1021670": {
-      "discount": 91,
-      "final": 1600
     },
     "1023390": {
       "discount": 80,
@@ -112,13 +104,9 @@
       "discount": 75,
       "final": 13600
     },
-    "1024490": {
+    "1024650": {
       "discount": 85,
-      "final": 3000
-    },
-    "1025460": {
-      "discount": 76,
-      "final": 2400
+      "final": 9900
     },
     "102600": {
       "discount": 75,
@@ -152,9 +140,17 @@
       "discount": 75,
       "final": 3700
     },
-    "1033780": {
-      "discount": 76,
-      "final": 2400
+    "1034380": {
+      "discount": 90,
+      "final": 3200
+    },
+    "1035320": {
+      "discount": 70,
+      "final": 18000
+    },
+    "1037190": {
+      "discount": 80,
+      "final": 4600
     },
     "1037940": {
       "discount": 75,
@@ -168,37 +164,25 @@
       "discount": 85,
       "final": 1900
     },
-    "1039890": {
-      "discount": 84,
-      "final": 11100
-    },
-    "1040310": {
-      "discount": 81,
-      "final": 1900
-    },
     "1040630": {
       "discount": 75,
       "final": 6900
+    },
+    "1040910": {
+      "discount": 85,
+      "final": 2500
     },
     "1044520": {
       "discount": 80,
       "final": 4300
     },
-    "1045120": {
-      "discount": 92,
-      "final": 2100
+    "1045610": {
+      "discount": 80,
+      "final": 6500
     },
     "1045620": {
       "discount": 75,
       "final": 17400
-    },
-    "1048350": {
-      "discount": 80,
-      "final": 5500
-    },
-    "1050130": {
-      "discount": 85,
-      "final": 2900
     },
     "1054050": {
       "discount": 75,
@@ -216,25 +200,21 @@
       "discount": 90,
       "final": 3700
     },
-    "1056690": {
-      "discount": 91,
-      "final": 2000
-    },
     "1058140": {
       "discount": 75,
       "final": 30000
     },
-    "1058230": {
-      "discount": 81,
-      "final": 2400
-    },
-    "1058320": {
-      "discount": 90,
-      "final": 2700
-    },
     "1058450": {
       "discount": 88,
       "final": 14300
+    },
+    "1059460": {
+      "discount": 76,
+      "final": 1800
+    },
+    "1061180": {
+      "discount": 70,
+      "final": 6800
     },
     "1062830": {
       "discount": 90,
@@ -244,14 +224,6 @@
       "discount": 75,
       "final": 8100
     },
-    "1064130": {
-      "discount": 85,
-      "final": 2500
-    },
-    "1064840": {
-      "discount": 70,
-      "final": 17900
-    },
     "1066780": {
       "discount": 80,
       "final": 14800
@@ -260,53 +232,53 @@
       "discount": 90,
       "final": 2700
     },
+    "1068600": {
+      "discount": 80,
+      "final": 8300
+    },
     "1069530": {
       "discount": 80,
       "final": 8300
+    },
+    "1071290": {
+      "discount": 75,
+      "final": 5700
+    },
+    "1071510": {
+      "discount": 80,
+      "final": 4500
+    },
+    "1072620": {
+      "discount": 75,
+      "final": 6900
     },
     "1073910": {
       "discount": 75,
       "final": 7400
     },
-    "1074070": {
-      "discount": 80,
-      "final": 4200
-    },
-    "1078490": {
-      "discount": 88,
-      "final": 1900
-    },
-    "1078670": {
-      "discount": 70,
-      "final": 11100
+    "1076120": {
+      "discount": 85,
+      "final": 6200
     },
     "1078760": {
       "discount": 90,
       "final": 4100
     },
-    "1078920": {
-      "discount": 80,
-      "final": 5900
-    },
     "1079330": {
       "discount": 90,
       "final": 2200
     },
-    "1084160": {
-      "discount": 75,
-      "final": 20800
-    },
-    "1085510": {
-      "discount": 90,
-      "final": 2900
+    "1079510": {
+      "discount": 70,
+      "final": 10800
     },
     "1085640": {
       "discount": 90,
       "final": 1300
     },
-    "1087760": {
-      "discount": 88,
-      "final": 3000
+    "1087050": {
+      "discount": 90,
+      "final": 2200
     },
     "1088770": {
       "discount": 90,
@@ -316,37 +288,9 @@
       "discount": 90,
       "final": 1300
     },
-    "1092050": {
-      "discount": 90,
-      "final": 3200
-    },
-    "1092140": {
-      "discount": 90,
-      "final": 2200
-    },
-    "1094530": {
-      "discount": 70,
-      "final": 11300
-    },
-    "1094930": {
-      "discount": 80,
-      "final": 6800
-    },
-    "1095120": {
-      "discount": 94,
-      "final": 2400
-    },
-    "1095360": {
-      "discount": 71,
-      "final": 1700
-    },
     "1096750": {
       "discount": 81,
       "final": 1900
-    },
-    "1098220": {
-      "discount": 75,
-      "final": 5700
     },
     "1098270": {
       "discount": 76,
@@ -355,10 +299,6 @@
     "1101000": {
       "discount": 75,
       "final": 4900
-    },
-    "1101360": {
-      "discount": 70,
-      "final": 6800
     },
     "1102880": {
       "discount": 76,
@@ -380,14 +320,6 @@
       "discount": 77,
       "final": 7400
     },
-    "1108000": {
-      "discount": 75,
-      "final": 9900
-    },
-    "1109820": {
-      "discount": 80,
-      "final": 7500
-    },
     "1111620": {
       "discount": 89,
       "final": 1700
@@ -396,21 +328,9 @@
       "discount": 76,
       "final": 1800
     },
-    "1113750": {
-      "discount": 90,
-      "final": 3200
-    },
-    "1114220": {
-      "discount": 90,
-      "final": 3200
-    },
     "1114290": {
       "discount": 75,
       "final": 10300
-    },
-    "1114900": {
-      "discount": 80,
-      "final": 5500
     },
     "1115610": {
       "discount": 75,
@@ -420,13 +340,9 @@
       "discount": 80,
       "final": 5500
     },
-    "1115780": {
-      "discount": 80,
-      "final": 3300
-    },
-    "1116580": {
-      "discount": 85,
-      "final": 4400
+    "1116600": {
+      "discount": 90,
+      "final": 2100
     },
     "1116910": {
       "discount": 85,
@@ -436,37 +352,17 @@
       "discount": 75,
       "final": 3100
     },
-    "1121530": {
-      "discount": 75,
-      "final": 4600
-    },
     "1122340": {
       "discount": 85,
       "final": 11100
-    },
-    "1123770": {
-      "discount": 80,
-      "final": 7900
     },
     "1123830": {
       "discount": 80,
       "final": 8300
     },
-    "1123870": {
-      "discount": 75,
-      "final": 8100
-    },
     "1125110": {
       "discount": 93,
       "final": 1900
-    },
-    "1127840": {
-      "discount": 80,
-      "final": 8300
-    },
-    "1127970": {
-      "discount": 80,
-      "final": 7200
     },
     "1128920": {
       "discount": 80,
@@ -476,9 +372,9 @@
       "discount": 90,
       "final": 2000
     },
-    "1131900": {
-      "discount": 70,
-      "final": 6800
+    "1132030": {
+      "discount": 80,
+      "final": 8300
     },
     "1132970": {
       "discount": 92,
@@ -492,49 +388,21 @@
       "discount": 75,
       "final": 13400
     },
-    "1141760": {
+    "1142810": {
       "discount": 70,
-      "final": 3700
+      "final": 6700
+    },
+    "1143810": {
+      "discount": 75,
+      "final": 10300
     },
     "1143900": {
       "discount": 90,
       "final": 1300
     },
-    "1145970": {
-      "discount": 91,
-      "final": 1600
-    },
-    "1146310": {
-      "discount": 80,
-      "final": 8500
-    },
-    "1146510": {
-      "discount": 75,
-      "final": 3100
-    },
-    "1148080": {
-      "discount": 90,
-      "final": 3200
-    },
-    "1148360": {
-      "discount": 80,
-      "final": 5700
-    },
-    "1150440": {
-      "discount": 70,
-      "final": 31400
-    },
     "1151050": {
       "discount": 80,
       "final": 3900
-    },
-    "1152000": {
-      "discount": 92,
-      "final": 1800
-    },
-    "1154640": {
-      "discount": 76,
-      "final": 1800
     },
     "1154810": {
       "discount": 80,
@@ -548,25 +416,21 @@
       "discount": 75,
       "final": 4400
     },
-    "1157640": {
-      "discount": 85,
-      "final": 2500
-    },
     "115800": {
       "discount": 90,
       "final": 3900
-    },
-    "1158890": {
-      "discount": 90,
-      "final": 2700
     },
     "1159420": {
       "discount": 87,
       "final": 7800
     },
-    "1161650": {
+    "1161490": {
       "discount": 85,
-      "final": 2500
+      "final": 9700
+    },
+    "1161590": {
+      "discount": 75,
+      "final": 10300
     },
     "1161930": {
       "discount": 70,
@@ -580,21 +444,17 @@
       "discount": 80,
       "final": 3900
     },
-    "1163600": {
-      "discount": 82,
-      "final": 12500
+    "1164060": {
+      "discount": 75,
+      "final": 5600
     },
-    "1164690": {
-      "discount": 80,
-      "final": 7900
+    "1164310": {
+      "discount": 90,
+      "final": 3200
     },
     "1164940": {
       "discount": 75,
-      "final": 21200
-    },
-    "1165420": {
-      "discount": 90,
-      "final": 3200
+      "final": 18900
     },
     "1165470": {
       "discount": 90,
@@ -608,21 +468,9 @@
       "discount": 90,
       "final": 2000
     },
-    "1168060": {
+    "1168070": {
       "discount": 90,
-      "final": 3200
-    },
-    "1168360": {
-      "discount": 90,
-      "final": 3200
-    },
-    "1171350": {
-      "discount": 90,
-      "final": 3200
-    },
-    "1171690": {
-      "discount": 90,
-      "final": 5100
+      "final": 3300
     },
     "1171870": {
       "discount": 86,
@@ -632,14 +480,6 @@
       "discount": 72,
       "final": 1400
     },
-    "1173740": {
-      "discount": 93,
-      "final": 2000
-    },
-    "1175190": {
-      "discount": 90,
-      "final": 2700
-    },
     "1176710": {
       "discount": 85,
       "final": 5900
@@ -647,6 +487,10 @@
     "1177020": {
       "discount": 70,
       "final": 9800
+    },
+    "1179210": {
+      "discount": 80,
+      "final": 5700
     },
     "1180540": {
       "discount": 70,
@@ -664,17 +508,13 @@
       "discount": 81,
       "final": 3100
     },
-    "1182860": {
-      "discount": 75,
-      "final": 10700
-    },
-    "1182900": {
+    "1183260": {
       "discount": 70,
-      "final": 38900
+      "final": 11300
     },
-    "1184370": {
-      "discount": 80,
-      "final": 5900
+    "1184560": {
+      "discount": 90,
+      "final": 4100
     },
     "1185000": {
       "discount": 90,
@@ -688,25 +528,21 @@
       "discount": 71,
       "final": 2900
     },
+    "1189730": {
+      "discount": 75,
+      "final": 4200
+    },
     "1190000": {
       "discount": 89,
       "final": 5600
     },
-    "1191900": {
-      "discount": 90,
-      "final": 2200
-    },
-    "1199370": {
-      "discount": 80,
-      "final": 5500
-    },
-    "1202310": {
-      "discount": 85,
-      "final": 2500
-    },
     "1202810": {
       "discount": 90,
       "final": 2600
+    },
+    "1203710": {
+      "discount": 80,
+      "final": 5700
     },
     "1205170": {
       "discount": 80,
@@ -715,6 +551,14 @@
     "1206110": {
       "discount": 75,
       "final": 4600
+    },
+    "1206380": {
+      "discount": 80,
+      "final": 7500
+    },
+    "1206600": {
+      "discount": 80,
+      "final": 7100
     },
     "1206610": {
       "discount": 75,
@@ -728,10 +572,6 @@
       "discount": 80,
       "final": 6500
     },
-    "1209330": {
-      "discount": 85,
-      "final": 2500
-    },
     "1209360": {
       "discount": 90,
       "final": 6100
@@ -740,17 +580,21 @@
       "discount": 80,
       "final": 9400
     },
+    "1211640": {
+      "discount": 85,
+      "final": 2200
+    },
     "1212440": {
       "discount": 71,
       "final": 1700
     },
-    "1215200": {
-      "discount": 80,
-      "final": 6500
+    "1220140": {
+      "discount": 75,
+      "final": 15000
     },
-    "1218320": {
-      "discount": 95,
-      "final": 2100
+    "1220170": {
+      "discount": 70,
+      "final": 9700
     },
     "12210": {
       "discount": 70,
@@ -760,17 +604,13 @@
       "discount": 91,
       "final": 2500
     },
+    "1222340": {
+      "discount": 80,
+      "final": 6500
+    },
     "1225220": {
       "discount": 90,
       "final": 2300
-    },
-    "1225640": {
-      "discount": 75,
-      "final": 1300
-    },
-    "1226510": {
-      "discount": 80,
-      "final": 5500
     },
     "1227570": {
       "discount": 80,
@@ -788,14 +628,6 @@
       "discount": 76,
       "final": 1800
     },
-    "1231130": {
-      "discount": 90,
-      "final": 4100
-    },
-    "1232460": {
-      "discount": 75,
-      "final": 17400
-    },
     "12330": {
       "discount": 80,
       "final": 4100
@@ -804,17 +636,21 @@
       "discount": 80,
       "final": 4500
     },
+    "1237730": {
+      "discount": 75,
+      "final": 8100
+    },
     "12390": {
       "discount": 90,
       "final": 2800
     },
-    "1240050": {
-      "discount": 80,
-      "final": 4900
+    "1239260": {
+      "discount": 90,
+      "final": 1300
     },
-    "1240480": {
-      "discount": 75,
-      "final": 4900
+    "1240230": {
+      "discount": 70,
+      "final": 6900
     },
     "12440": {
       "discount": 80,
@@ -823,10 +659,6 @@
     "12450": {
       "discount": 80,
       "final": 6200
-    },
-    "1245370": {
-      "discount": 70,
-      "final": 6700
     },
     "12460": {
       "discount": 81,
@@ -844,10 +676,6 @@
       "discount": 70,
       "final": 5000
     },
-    "1250220": {
-      "discount": 75,
-      "final": 1300
-    },
     "1254440": {
       "discount": 76,
       "final": 1900
@@ -860,21 +688,9 @@
       "discount": 70,
       "final": 8500
     },
-    "1261430": {
-      "discount": 70,
-      "final": 8300
-    },
-    "1261520": {
-      "discount": 80,
-      "final": 7900
-    },
-    "1265780": {
-      "discount": 75,
-      "final": 29900
-    },
-    "1266370": {
-      "discount": 70,
-      "final": 8500
+    "1263540": {
+      "discount": 90,
+      "final": 3200
     },
     "1267260": {
       "discount": 75,
@@ -884,9 +700,9 @@
       "discount": 75,
       "final": 3100
     },
-    "1268200": {
+    "1268960": {
       "discount": 70,
-      "final": 6100
+      "final": 4600
     },
     "1271710": {
       "discount": 81,
@@ -904,21 +720,25 @@
       "discount": 85,
       "final": 4000
     },
+    "1278190": {
+      "discount": 80,
+      "final": 2800
+    },
     "1279270": {
       "discount": 70,
       "final": 8300
+    },
+    "1279620": {
+      "discount": 75,
+      "final": 3200
     },
     "1281190": {
       "discount": 80,
       "final": 3300
     },
-    "1282100": {
-      "discount": 75,
-      "final": 32400
-    },
-    "1282150": {
-      "discount": 75,
-      "final": 18500
+    "1282390": {
+      "discount": 85,
+      "final": 4200
     },
     "1283400": {
       "discount": 90,
@@ -952,10 +772,6 @@
       "discount": 90,
       "final": 2000
     },
-    "1289440": {
-      "discount": 90,
-      "final": 1800
-    },
     "1290170": {
       "discount": 81,
       "final": 2400
@@ -964,49 +780,21 @@
       "discount": 93,
       "final": 1900
     },
-    "1292980": {
-      "discount": 81,
-      "final": 1900
-    },
-    "1293460": {
-      "discount": 80,
-      "final": 10300
-    },
-    "1294340": {
-      "discount": 80,
-      "final": 4500
-    },
-    "1294970": {
-      "discount": 70,
-      "final": 18000
-    },
     "1295390": {
       "discount": 87,
       "final": 1900
-    },
-    "1295500": {
-      "discount": 70,
-      "final": 22200
-    },
-    "1295730": {
-      "discount": 90,
-      "final": 4100
     },
     "1295860": {
       "discount": 75,
       "final": 5200
     },
-    "1296260": {
-      "discount": 85,
-      "final": 2500
+    "1296770": {
+      "discount": 70,
+      "final": 6700
     },
     "1299510": {
       "discount": 90,
       "final": 6100
-    },
-    "1299840": {
-      "discount": 86,
-      "final": 1500
     },
     "1301230": {
       "discount": 70,
@@ -1019,18 +807,6 @@
     "1311070": {
       "discount": 80,
       "final": 8000
-    },
-    "1314770": {
-      "discount": 75,
-      "final": 5200
-    },
-    "1315610": {
-      "discount": 85,
-      "final": 4100
-    },
-    "1316760": {
-      "discount": 91,
-      "final": 2000
     },
     "1316800": {
       "discount": 87,
@@ -1048,6 +824,10 @@
       "discount": 92,
       "final": 3300
     },
+    "1321680": {
+      "discount": 75,
+      "final": 18500
+    },
     "1323900": {
       "discount": 90,
       "final": 2100
@@ -1055,10 +835,6 @@
     "1324350": {
       "discount": 80,
       "final": 4500
-    },
-    "1326000": {
-      "discount": 85,
-      "final": 2500
     },
     "1328350": {
       "discount": 70,
@@ -1068,13 +844,9 @@
       "discount": 81,
       "final": 2900
     },
-    "1331070": {
-      "discount": 71,
-      "final": 1700
-    },
-    "1332620": {
-      "discount": 90,
-      "final": 2600
+    "1332370": {
+      "discount": 75,
+      "final": 4200
     },
     "1332720": {
       "discount": 81,
@@ -1084,22 +856,6 @@
       "discount": 80,
       "final": 3300
     },
-    "1333050": {
-      "discount": 70,
-      "final": 1500
-    },
-    "1333910": {
-      "discount": 89,
-      "final": 1600
-    },
-    "1335230": {
-      "discount": 87,
-      "final": 2000
-    },
-    "1335790": {
-      "discount": 75,
-      "final": 10300
-    },
     "1341210": {
       "discount": 75,
       "final": 3900
@@ -1107,10 +863,6 @@
     "1341400": {
       "discount": 80,
       "final": 3300
-    },
-    "1342130": {
-      "discount": 76,
-      "final": 1800
     },
     "1342260": {
       "discount": 81,
@@ -1123,10 +875,6 @@
     "1343240": {
       "discount": 75,
       "final": 12500
-    },
-    "1345400": {
-      "discount": 85,
-      "final": 1900
     },
     "1345760": {
       "discount": 70,
@@ -1144,21 +892,9 @@
       "discount": 80,
       "final": 6300
     },
-    "1348990": {
-      "discount": 80,
-      "final": 2500
-    },
     "1349290": {
       "discount": 72,
       "final": 1400
-    },
-    "1351210": {
-      "discount": 80,
-      "final": 14900
-    },
-    "1351370": {
-      "discount": 85,
-      "final": 2500
     },
     "1353270": {
       "discount": 70,
@@ -1168,29 +904,21 @@
       "discount": 85,
       "final": 3300
     },
-    "1356240": {
-      "discount": 90,
-      "final": 3700
-    },
-    "1356810": {
-      "discount": 90,
-      "final": 4100
-    },
     "1358840": {
       "discount": 70,
       "final": 9700
     },
-    "1360720": {
-      "discount": 82,
-      "final": 6400
+    "1359730": {
+      "discount": 90,
+      "final": 3200
     },
     "1362340": {
       "discount": 83,
       "final": 1700
     },
-    "1362560": {
-      "discount": 78,
-      "final": 5000
+    "1363900": {
+      "discount": 75,
+      "final": 8100
     },
     "1364100": {
       "discount": 90,
@@ -1228,21 +956,25 @@
       "discount": 75,
       "final": 4900
     },
+    "1376290": {
+      "discount": 80,
+      "final": 3200
+    },
+    "1378800": {
+      "discount": 75,
+      "final": 6900
+    },
     "1378890": {
       "discount": 80,
       "final": 7900
     },
-    "1379370": {
-      "discount": 76,
-      "final": 1900
-    },
-    "1382070": {
-      "discount": 70,
-      "final": 15400
-    },
     "1382190": {
       "discount": 80,
       "final": 3200
+    },
+    "1383250": {
+      "discount": 80,
+      "final": 3300
     },
     "1387500": {
       "discount": 87,
@@ -1264,49 +996,41 @@
       "discount": 90,
       "final": 4100
     },
+    "1390700": {
+      "discount": 80,
+      "final": 5300
+    },
     "1393750": {
       "discount": 80,
       "final": 7000
+    },
+    "1393810": {
+      "discount": 80,
+      "final": 4100
+    },
+    "1393820": {
+      "discount": 91,
+      "final": 2000
     },
     "1395030": {
       "discount": 75,
       "final": 8100
     },
-    "1395450": {
-      "discount": 75,
-      "final": 5600
-    },
     "1395710": {
       "discount": 70,
       "final": 3700
-    },
-    "1397130": {
-      "discount": 72,
-      "final": 7400
-    },
-    "1398740": {
-      "discount": 75,
-      "final": 5300
-    },
-    "1399170": {
-      "discount": 86,
-      "final": 4500
     },
     "1399930": {
       "discount": 71,
       "final": 4800
     },
+    "1403440": {
+      "discount": 75,
+      "final": 17500
+    },
     "1403740": {
       "discount": 82,
       "final": 3500
-    },
-    "1406020": {
-      "discount": 85,
-      "final": 2500
-    },
-    "1410640": {
-      "discount": 80,
-      "final": 16000
     },
     "1411740": {
       "discount": 85,
@@ -1316,6 +1040,10 @@
       "discount": 80,
       "final": 3900
     },
+    "1414020": {
+      "discount": 75,
+      "final": 4200
+    },
     "1418610": {
       "discount": 89,
       "final": 1700
@@ -1324,17 +1052,17 @@
       "discount": 77,
       "final": 2300
     },
-    "1425370": {
-      "discount": 85,
-      "final": 1900
-    },
-    "1427970": {
+    "1427900": {
       "discount": 90,
       "final": 3200
     },
-    "1432200": {
-      "discount": 70,
-      "final": 6700
+    "1427930": {
+      "discount": 90,
+      "final": 3200
+    },
+    "1432100": {
+      "discount": 75,
+      "final": 8100
     },
     "1433420": {
       "discount": 70,
@@ -1356,21 +1084,9 @@
       "discount": 71,
       "final": 1500
     },
-    "1449320": {
-      "discount": 90,
-      "final": 3900
-    },
     "1449500": {
       "discount": 80,
       "final": 8300
-    },
-    "1449550": {
-      "discount": 80,
-      "final": 7200
-    },
-    "1451160": {
-      "discount": 80,
-      "final": 11500
     },
     "1451880": {
       "discount": 75,
@@ -1388,14 +1104,6 @@
       "discount": 76,
       "final": 2400
     },
-    "1453790": {
-      "discount": 80,
-      "final": 8000
-    },
-    "1455120": {
-      "discount": 70,
-      "final": 3900
-    },
     "1457710": {
       "discount": 81,
       "final": 2900
@@ -1412,30 +1120,6 @@
       "discount": 83,
       "final": 7000
     },
-    "1465510": {
-      "discount": 75,
-      "final": 4000
-    },
-    "1466230": {
-      "discount": 80,
-      "final": 8300
-    },
-    "1466640": {
-      "discount": 75,
-      "final": 13300
-    },
-    "1466680": {
-      "discount": 85,
-      "final": 2500
-    },
-    "1466690": {
-      "discount": 85,
-      "final": 2500
-    },
-    "1469960": {
-      "discount": 76,
-      "final": 2400
-    },
     "1472560": {
       "discount": 80,
       "final": 5500
@@ -1444,13 +1128,9 @@
       "discount": 80,
       "final": 3500
     },
-    "1474740": {
+    "1475840": {
       "discount": 80,
-      "final": 12000
-    },
-    "1474990": {
-      "discount": 71,
-      "final": 2900
+      "final": 6500
     },
     "1477060": {
       "discount": 85,
@@ -1460,21 +1140,13 @@
       "discount": 75,
       "final": 4500
     },
-    "1477700": {
-      "discount": 70,
-      "final": 19000
-    },
     "1477920": {
       "discount": 83,
       "final": 5500
     },
-    "1479360": {
+    "1479810": {
       "discount": 90,
-      "final": 1700
-    },
-    "1479610": {
-      "discount": 76,
-      "final": 1900
+      "final": 3200
     },
     "1479890": {
       "discount": 80,
@@ -1488,41 +1160,29 @@
       "discount": 87,
       "final": 4200
     },
-    "1492320": {
-      "discount": 90,
-      "final": 5100
-    },
-    "1493640": {
+    "1491340": {
       "discount": 70,
-      "final": 38900
+      "final": 9800
     },
-    "1494090": {
-      "discount": 80,
-      "final": 3300
+    "1495050": {
+      "discount": 90,
+      "final": 3200
+    },
+    "1495080": {
+      "discount": 90,
+      "final": 3200
     },
     "1496590": {
       "discount": 90,
       "final": 6600
     },
-    "1497950": {
+    "1500": {
       "discount": 70,
-      "final": 20500
-    },
-    "1501210": {
-      "discount": 75,
-      "final": 1300
+      "final": 7900
     },
     "1502190": {
       "discount": 80,
       "final": 5900
-    },
-    "1502560": {
-      "discount": 90,
-      "final": 3900
-    },
-    "1502600": {
-      "discount": 75,
-      "final": 1300
     },
     "1506440": {
       "discount": 80,
@@ -1532,13 +1192,13 @@
       "discount": 80,
       "final": 8300
     },
-    "1507400": {
+    "1508670": {
       "discount": 75,
-      "final": 1300
+      "final": 4000
     },
-    "1509510": {
-      "discount": 75,
-      "final": 11500
+    "1510": {
+      "discount": 70,
+      "final": 18000
     },
     "15100": {
       "discount": 75,
@@ -1548,13 +1208,13 @@
       "discount": 75,
       "final": 5600
     },
-    "1516330": {
-      "discount": 85,
-      "final": 2600
-    },
     "1519090": {
       "discount": 90,
       "final": 6000
+    },
+    "1520": {
+      "discount": 70,
+      "final": 18000
     },
     "1520510": {
       "discount": 80,
@@ -1568,65 +1228,37 @@
       "discount": 75,
       "final": 9400
     },
-    "1524650": {
-      "discount": 85,
-      "final": 2500
-    },
-    "1532690": {
-      "discount": 80,
-      "final": 11900
+    "1530": {
+      "discount": 70,
+      "final": 10800
     },
     "1532770": {
       "discount": 71,
       "final": 4800
     },
-    "1534770": {
-      "discount": 75,
-      "final": 1300
-    },
     "1538400": {
       "discount": 80,
       "final": 4500
     },
-    "1539800": {
-      "discount": 75,
-      "final": 5600
+    "1538900": {
+      "discount": 80,
+      "final": 6900
     },
-    "1541240": {
-      "discount": 75,
-      "final": 1300
-    },
-    "1544580": {
-      "discount": 75,
-      "final": 4200
-    },
-    "1545350": {
-      "discount": 90,
-      "final": 3200
-    },
-    "1547930": {
-      "discount": 71,
-      "final": 4800
-    },
-    "1548540": {
-      "discount": 75,
-      "final": 1300
-    },
-    "1549160": {
+    "1542110": {
       "discount": 70,
-      "final": 12400
+      "final": 11900
+    },
+    "1542790": {
+      "discount": 70,
+      "final": 12900
     },
     "1549690": {
       "discount": 75,
       "final": 8100
     },
-    "1549970": {
-      "discount": 80,
-      "final": 15900
-    },
-    "1550270": {
-      "discount": 88,
-      "final": 3000
+    "1552600": {
+      "discount": 70,
+      "final": 9700
     },
     "1553000": {
       "discount": 95,
@@ -1652,77 +1284,37 @@
       "discount": 81,
       "final": 1900
     },
-    "1557190": {
-      "discount": 85,
-      "final": 5600
-    },
     "1558750": {
       "discount": 70,
       "final": 4400
     },
-    "1559190": {
-      "discount": 81,
-      "final": 2400
-    },
-    "1559500": {
-      "discount": 75,
-      "final": 1300
-    },
-    "1559760": {
-      "discount": 70,
-      "final": 10800
-    },
-    "1562240": {
-      "discount": 75,
-      "final": 1300
-    },
-    "1565880": {
-      "discount": 85,
-      "final": 3900
+    "1566820": {
+      "discount": 90,
+      "final": 3200
     },
     "1566880": {
       "discount": 75,
       "final": 34900
     },
+    "1570510": {
+      "discount": 70,
+      "final": 20900
+    },
     "1571140": {
       "discount": 70,
       "final": 5000
-    },
-    "1571380": {
-      "discount": 90,
-      "final": 2200
-    },
-    "1572040": {
-      "discount": 81,
-      "final": 2400
     },
     "1573280": {
       "discount": 76,
       "final": 9900
     },
-    "1573720": {
-      "discount": 90,
-      "final": 3900
-    },
     "1575510": {
       "discount": 75,
       "final": 5600
     },
-    "1577260": {
-      "discount": 70,
-      "final": 3700
-    },
-    "1578160": {
-      "discount": 90,
-      "final": 2800
-    },
-    "1578280": {
-      "discount": 76,
-      "final": 2400
-    },
-    "1579020": {
-      "discount": 90,
-      "final": 3700
+    "1581040": {
+      "discount": 75,
+      "final": 8900
     },
     "1581150": {
       "discount": 81,
@@ -1732,49 +1324,45 @@
       "discount": 80,
       "final": 4100
     },
-    "1582680": {
-      "discount": 90,
-      "final": 2400
-    },
     "1583000": {
       "discount": 71,
       "final": 1700
+    },
+    "1583190": {
+      "discount": 85,
+      "final": 2500
+    },
+    "1583950": {
+      "discount": 76,
+      "final": 2100
     },
     "1584940": {
       "discount": 75,
       "final": 14600
     },
-    "1586050": {
-      "discount": 81,
-      "final": 1500
-    },
     "1588090": {
       "discount": 75,
       "final": 9300
-    },
-    "1589460": {
-      "discount": 81,
-      "final": 1900
     },
     "1589920": {
       "discount": 70,
       "final": 3700
     },
+    "1590160": {
+      "discount": 75,
+      "final": 9200
+    },
     "1590670": {
       "discount": 76,
       "final": 1800
     },
-    "1592640": {
-      "discount": 85,
-      "final": 2500
-    },
-    "1595600": {
-      "discount": 95,
-      "final": 2100
-    },
-    "1596440": {
+    "1591220": {
       "discount": 75,
-      "final": 4200
+      "final": 8100
+    },
+    "1594290": {
+      "discount": 83,
+      "final": 2000
     },
     "1596940": {
       "discount": 85,
@@ -1788,17 +1376,25 @@
       "discount": 71,
       "final": 2900
     },
+    "1599020": {
+      "discount": 80,
+      "final": 10300
+    },
     "1600": {
       "discount": 80,
       "final": 4500
     },
+    "1600230": {
+      "discount": 90,
+      "final": 3200
+    },
+    "1600240": {
+      "discount": 90,
+      "final": 3200
+    },
     "1600370": {
       "discount": 85,
       "final": 4100
-    },
-    "1602560": {
-      "discount": 70,
-      "final": 4800
     },
     "1602990": {
       "discount": 72,
@@ -1808,17 +1404,9 @@
       "discount": 76,
       "final": 1800
     },
-    "1606610": {
-      "discount": 95,
-      "final": 2100
-    },
-    "1608230": {
-      "discount": 85,
-      "final": 6200
-    },
-    "1608550": {
+    "1608040": {
       "discount": 90,
-      "final": 2500
+      "final": 2200
     },
     "1609220": {
       "discount": 90,
@@ -1832,6 +1420,14 @@
       "discount": 75,
       "final": 7100
     },
+    "1610460": {
+      "discount": 90,
+      "final": 11900
+    },
+    "1611420": {
+      "discount": 80,
+      "final": 5500
+    },
     "1611890": {
       "discount": 91,
       "final": 2000
@@ -1840,13 +1436,13 @@
       "discount": 75,
       "final": 13200
     },
-    "1612770": {
-      "discount": 80,
-      "final": 13900
-    },
     "1613580": {
       "discount": 81,
       "final": 2900
+    },
+    "1617030": {
+      "discount": 70,
+      "final": 7100
     },
     "1617920": {
       "discount": 90,
@@ -1859,10 +1455,6 @@
     "1620040": {
       "discount": 70,
       "final": 17300
-    },
-    "1620410": {
-      "discount": 70,
-      "final": 5000
     },
     "1621760": {
       "discount": 80,
@@ -1880,21 +1472,21 @@
       "discount": 90,
       "final": 1800
     },
-    "1624960": {
+    "1624860": {
+      "discount": 90,
+      "final": 3200
+    },
+    "1624900": {
+      "discount": 90,
+      "final": 3200
+    },
+    "1624940": {
       "discount": 90,
       "final": 3300
     },
     "1628130": {
       "discount": 80,
       "final": 6500
-    },
-    "1630490": {
-      "discount": 85,
-      "final": 2500
-    },
-    "1630500": {
-      "discount": 75,
-      "final": 4200
     },
     "1630910": {
       "discount": 85,
@@ -1907,10 +1499,6 @@
     "1632500": {
       "discount": 91,
       "final": 2000
-    },
-    "1640000": {
-      "discount": 76,
-      "final": 2400
     },
     "1641700": {
       "discount": 75,
@@ -1940,17 +1528,9 @@
       "discount": 81,
       "final": 1900
     },
-    "1652250": {
-      "discount": 90,
-      "final": 3700
-    },
     "1652940": {
       "discount": 81,
       "final": 1900
-    },
-    "1653050": {
-      "discount": 70,
-      "final": 8300
     },
     "1655970": {
       "discount": 70,
@@ -1964,21 +1544,9 @@
       "discount": 75,
       "final": 4200
     },
-    "1661360": {
-      "discount": 75,
-      "final": 8200
-    },
-    "1662480": {
-      "discount": 75,
-      "final": 5600
-    },
-    "1662990": {
-      "discount": 95,
-      "final": 2100
-    },
     "1663040": {
       "discount": 75,
-      "final": 18700
+      "final": 22400
     },
     "1663370": {
       "discount": 70,
@@ -1988,25 +1556,13 @@
       "discount": 70,
       "final": 2200
     },
-    "1665000": {
-      "discount": 90,
-      "final": 3200
-    },
-    "1665210": {
-      "discount": 85,
-      "final": 2500
-    },
-    "1666250": {
-      "discount": 75,
-      "final": 7400
-    },
-    "1668950": {
-      "discount": 81,
-      "final": 1900
-    },
     "1670": {
       "discount": 81,
       "final": 2900
+    },
+    "1673940": {
+      "discount": 70,
+      "final": 5000
     },
     "1674530": {
       "discount": 80,
@@ -2024,6 +1580,10 @@
       "discount": 75,
       "final": 3200
     },
+    "1676840": {
+      "discount": 70,
+      "final": 17900
+    },
     "1676870": {
       "discount": 91,
       "final": 2000
@@ -2031,6 +1591,10 @@
     "1678790": {
       "discount": 70,
       "final": 2200
+    },
+    "1680500": {
+      "discount": 85,
+      "final": 1900
     },
     "16810": {
       "discount": 80,
@@ -2048,11 +1612,11 @@
       "discount": 70,
       "final": 21000
     },
-    "1688350": {
-      "discount": 75,
-      "final": 5600
+    "1685730": {
+      "discount": 70,
+      "final": 9300
     },
-    "1689010": {
+    "1688350": {
       "discount": 75,
       "final": 5600
     },
@@ -2071,6 +1635,10 @@
     "1690190": {
       "discount": 75,
       "final": 3100
+    },
+    "1690270": {
+      "discount": 81,
+      "final": 2900
     },
     "1692550": {
       "discount": 75,
@@ -2092,22 +1660,6 @@
       "discount": 70,
       "final": 2200
     },
-    "1702370": {
-      "discount": 95,
-      "final": 2100
-    },
-    "1703640": {
-      "discount": 95,
-      "final": 2100
-    },
-    "1704080": {
-      "discount": 90,
-      "final": 2700
-    },
-    "1709210": {
-      "discount": 75,
-      "final": 7100
-    },
     "1709700": {
       "discount": 75,
       "final": 5200
@@ -2124,45 +1676,25 @@
       "discount": 75,
       "final": 4900
     },
-    "1715280": {
-      "discount": 75,
-      "final": 17500
-    },
-    "1716180": {
-      "discount": 90,
-      "final": 3200
-    },
-    "1717020": {
-      "discount": 80,
-      "final": 12000
-    },
-    "1717270": {
-      "discount": 90,
-      "final": 2900
-    },
     "1722660": {
       "discount": 70,
       "final": 9700
+    },
+    "1723570": {
+      "discount": 71,
+      "final": 1700
     },
     "1724050": {
       "discount": 70,
       "final": 6700
     },
-    "1726120": {
-      "discount": 90,
-      "final": 2700
-    },
-    "1726760": {
+    "1725910": {
       "discount": 80,
-      "final": 4500
+      "final": 3000
     },
-    "1727810": {
+    "1731070": {
       "discount": 75,
-      "final": 4600
-    },
-    "1730080": {
-      "discount": 90,
-      "final": 3700
+      "final": 11400
     },
     "1732340": {
       "discount": 90,
@@ -2176,16 +1708,20 @@
       "discount": 80,
       "final": 8300
     },
-    "1743230": {
-      "discount": 75,
-      "final": 1300
-    },
     "1743830": {
       "discount": 75,
       "final": 12800
     },
+    "1747190": {
+      "discount": 75,
+      "final": 9800
+    },
     "1747340": {
       "discount": 70,
+      "final": 2200
+    },
+    "1749170": {
+      "discount": 85,
       "final": 2200
     },
     "1750200": {
@@ -2196,21 +1732,17 @@
       "discount": 70,
       "final": 2200
     },
-    "1755180": {
-      "discount": 81,
-      "final": 7100
-    },
     "1761320": {
       "discount": 72,
       "final": 1400
     },
-    "1761420": {
-      "discount": 75,
-      "final": 1300
-    },
     "1761620": {
       "discount": 80,
       "final": 12400
+    },
+    "1764970": {
+      "discount": 85,
+      "final": 1900
     },
     "1770380": {
       "discount": 88,
@@ -2219,10 +1751,6 @@
     "1770550": {
       "discount": 88,
       "final": 1600
-    },
-    "1771360": {
-      "discount": 80,
-      "final": 7000
     },
     "1771440": {
       "discount": 75,
@@ -2240,14 +1768,6 @@
       "discount": 76,
       "final": 1800
     },
-    "1784570": {
-      "discount": 80,
-      "final": 14800
-    },
-    "1785320": {
-      "discount": 85,
-      "final": 1900
-    },
     "1786010": {
       "discount": 75,
       "final": 12800
@@ -2256,29 +1776,25 @@
       "discount": 76,
       "final": 1800
     },
-    "1787650": {
-      "discount": 75,
-      "final": 1300
+    "1786830": {
+      "discount": 85,
+      "final": 4400
     },
-    "1790370": {
-      "discount": 80,
-      "final": 2600
+    "1788890": {
+      "discount": 90,
+      "final": 3200
     },
     "1793840": {
       "discount": 88,
       "final": 1600
     },
-    "1795430": {
-      "discount": 85,
-      "final": 2500
+    "1802520": {
+      "discount": 70,
+      "final": 18000
     },
     "1803640": {
       "discount": 90,
       "final": 2400
-    },
-    "1804270": {
-      "discount": 85,
-      "final": 6200
     },
     "1805250": {
       "discount": 80,
@@ -2300,10 +1816,6 @@
       "discount": 81,
       "final": 1900
     },
-    "1810810": {
-      "discount": 75,
-      "final": 1300
-    },
     "1811040": {
       "discount": 75,
       "final": 5200
@@ -2312,9 +1824,9 @@
       "discount": 88,
       "final": 1600
     },
-    "1815570": {
-      "discount": 90,
-      "final": 4100
+    "1818230": {
+      "discount": 75,
+      "final": 8100
     },
     "1819280": {
       "discount": 85,
@@ -2324,9 +1836,9 @@
       "discount": 70,
       "final": 3600
     },
-    "1823930": {
-      "discount": 87,
-      "final": 7300
+    "1823170": {
+      "discount": 85,
+      "final": 1800
     },
     "1824260": {
       "discount": 88,
@@ -2336,29 +1848,13 @@
       "discount": 90,
       "final": 2200
     },
-    "1830980": {
-      "discount": 75,
-      "final": 4200
-    },
     "1832040": {
       "discount": 75,
       "final": 21200
     },
-    "1832070": {
-      "discount": 70,
-      "final": 5900
-    },
-    "1835970": {
-      "discount": 70,
-      "final": 5600
-    },
     "1836500": {
       "discount": 76,
       "final": 1800
-    },
-    "1837340": {
-      "discount": 85,
-      "final": 5100
     },
     "1837550": {
       "discount": 70,
@@ -2400,17 +1896,9 @@
       "discount": 90,
       "final": 2000
     },
-    "1850790": {
-      "discount": 75,
-      "final": 4200
-    },
     "1850840": {
       "discount": 88,
       "final": 1600
-    },
-    "1852090": {
-      "discount": 81,
-      "final": 2300
     },
     "1852520": {
       "discount": 76,
@@ -2420,9 +1908,25 @@
       "discount": 76,
       "final": 1800
     },
+    "1854280": {
+      "discount": 75,
+      "final": 7300
+    },
+    "1856190": {
+      "discount": 75,
+      "final": 8100
+    },
     "1856750": {
       "discount": 72,
       "final": 16200
+    },
+    "1859090": {
+      "discount": 90,
+      "final": 3200
+    },
+    "1859100": {
+      "discount": 90,
+      "final": 3200
     },
     "1860110": {
       "discount": 81,
@@ -2440,25 +1944,13 @@
       "discount": 80,
       "final": 5500
     },
-    "1868540": {
-      "discount": 75,
-      "final": 10300
-    },
     "1869370": {
       "discount": 80,
       "final": 2600
     },
-    "1872040": {
-      "discount": 71,
-      "final": 3500
-    },
     "1872500": {
       "discount": 75,
       "final": 5700
-    },
-    "1872680": {
-      "discount": 75,
-      "final": 10000
     },
     "1873000": {
       "discount": 80,
@@ -2467,10 +1959,6 @@
     "1877020": {
       "discount": 75,
       "final": 59900
-    },
-    "1877360": {
-      "discount": 95,
-      "final": 2100
     },
     "1877650": {
       "discount": 70,
@@ -2496,29 +1984,25 @@
       "discount": 70,
       "final": 12400
     },
+    "1895560": {
+      "discount": 90,
+      "final": 3200
+    },
     "1895820": {
       "discount": 70,
       "final": 14100
     },
-    "1897410": {
-      "discount": 95,
-      "final": 2100
-    },
-    "1897430": {
-      "discount": 95,
-      "final": 2100
-    },
-    "1898290": {
-      "discount": 85,
-      "final": 5600
-    },
-    "1898560": {
-      "discount": 75,
-      "final": 5100
-    },
     "1900160": {
       "discount": 75,
       "final": 3900
+    },
+    "1900680": {
+      "discount": 90,
+      "final": 3300
+    },
+    "1900690": {
+      "discount": 90,
+      "final": 3300
     },
     "1903400": {
       "discount": 83,
@@ -2532,9 +2016,9 @@
       "discount": 76,
       "final": 1800
     },
-    "1904790": {
+    "1905220": {
       "discount": 80,
-      "final": 14800
+      "final": 6500
     },
     "1907620": {
       "discount": 81,
@@ -2544,57 +2028,33 @@
       "discount": 72,
       "final": 1400
     },
-    "1911420": {
-      "discount": 81,
-      "final": 2900
-    },
     "1912380": {
       "discount": 90,
       "final": 2700
-    },
-    "1913210": {
-      "discount": 75,
-      "final": 18500
     },
     "1914980": {
       "discount": 75,
       "final": 5600
     },
-    "1915160": {
-      "discount": 71,
-      "final": 2900
-    },
     "1915380": {
       "discount": 70,
       "final": 21000
-    },
-    "1916270": {
-      "discount": 80,
-      "final": 5700
     },
     "1916970": {
       "discount": 75,
       "final": 4600
     },
-    "1921880": {
-      "discount": 80,
-      "final": 1600
-    },
     "1921980": {
       "discount": 80,
       "final": 6800
     },
-    "1922030": {
-      "discount": 80,
-      "final": 3300
-    },
-    "1922530": {
-      "discount": 75,
-      "final": 3100
-    },
     "1924170": {
       "discount": 95,
       "final": 5800
+    },
+    "1924360": {
+      "discount": 80,
+      "final": 8300
     },
     "1924480": {
       "discount": 80,
@@ -2608,25 +2068,9 @@
       "discount": 75,
       "final": 18100
     },
-    "1930040": {
-      "discount": 95,
-      "final": 2100
-    },
     "1932180": {
       "discount": 75,
       "final": 10300
-    },
-    "1932490": {
-      "discount": 95,
-      "final": 2100
-    },
-    "1938400": {
-      "discount": 70,
-      "final": 3700
-    },
-    "1943440": {
-      "discount": 90,
-      "final": 3200
     },
     "1943760": {
       "discount": 88,
@@ -2640,29 +2084,13 @@
       "discount": 76,
       "final": 1900
     },
-    "1950630": {
+    "1950640": {
       "discount": 90,
       "final": 3200
     },
-    "1950650": {
+    "1951610": {
       "discount": 90,
-      "final": 2200
-    },
-    "1950680": {
-      "discount": 90,
-      "final": 3200
-    },
-    "1951540": {
-      "discount": 80,
-      "final": 3300
-    },
-    "1951780": {
-      "discount": 75,
-      "final": 7700
-    },
-    "1952400": {
-      "discount": 85,
-      "final": 2200
+      "final": 1700
     },
     "1953540": {
       "discount": 70,
@@ -2672,14 +2100,6 @@
       "discount": 75,
       "final": 1900
     },
-    "1957240": {
-      "discount": 95,
-      "final": 2100
-    },
-    "1957560": {
-      "discount": 95,
-      "final": 2100
-    },
     "1958600": {
       "discount": 90,
       "final": 1300
@@ -2687,14 +2107,6 @@
     "1958890": {
       "discount": 70,
       "final": 2200
-    },
-    "1960930": {
-      "discount": 80,
-      "final": 4500
-    },
-    "1961390": {
-      "discount": 85,
-      "final": 2500
     },
     "1962590": {
       "discount": 70,
@@ -2704,10 +2116,6 @@
       "discount": 76,
       "final": 2400
     },
-    "1966420": {
-      "discount": 80,
-      "final": 8700
-    },
     "1966690": {
       "discount": 80,
       "final": 5500
@@ -2716,21 +2124,17 @@
       "discount": 80,
       "final": 4100
     },
+    "1966970": {
+      "discount": 90,
+      "final": 2200
+    },
     "1969060": {
       "discount": 70,
       "final": 12600
     },
-    "1969440": {
-      "discount": 80,
-      "final": 8800
-    },
     "1970710": {
       "discount": 80,
       "final": 2600
-    },
-    "1972820": {
-      "discount": 90,
-      "final": 2100
     },
     "1976000": {
       "discount": 80,
@@ -2756,13 +2160,9 @@
       "discount": 70,
       "final": 2200
     },
-    "1984230": {
-      "discount": 70,
-      "final": 5000
-    },
-    "1990280": {
-      "discount": 95,
-      "final": 2100
+    "1989320": {
+      "discount": 80,
+      "final": 10300
     },
     "1990830": {
       "discount": 70,
@@ -2776,25 +2176,13 @@
       "discount": 75,
       "final": 7100
     },
-    "1993190": {
-      "discount": 90,
-      "final": 2500
-    },
-    "1993600": {
-      "discount": 70,
-      "final": 2200
-    },
     "1996450": {
       "discount": 80,
       "final": 8000
     },
-    "1997190": {
-      "discount": 71,
-      "final": 1500
-    },
-    "1997830": {
+    "1999500": {
       "discount": 70,
-      "final": 3700
+      "final": 14300
     },
     "2003050": {
       "discount": 90,
@@ -2812,17 +2200,9 @@
       "discount": 80,
       "final": 5500
     },
-    "2012530": {
-      "discount": 71,
-      "final": 1500
-    },
-    "2012540": {
-      "discount": 71,
-      "final": 1500
-    },
-    "2014420": {
-      "discount": 85,
-      "final": 1900
+    "2008560": {
+      "discount": 75,
+      "final": 3200
     },
     "2014550": {
       "discount": 75,
@@ -2836,13 +2216,13 @@
       "discount": 80,
       "final": 8300
     },
+    "2016980": {
+      "discount": 85,
+      "final": 2500
+    },
     "2017080": {
       "discount": 90,
       "final": 9200
-    },
-    "2017640": {
-      "discount": 85,
-      "final": 2500
     },
     "201790": {
       "discount": 75,
@@ -2852,14 +2232,6 @@
       "discount": 70,
       "final": 6700
     },
-    "2021690": {
-      "discount": 85,
-      "final": 2500
-    },
-    "2021710": {
-      "discount": 85,
-      "final": 3300
-    },
     "2022930": {
       "discount": 75,
       "final": 8400
@@ -2868,13 +2240,9 @@
       "discount": 70,
       "final": 2200
     },
-    "2026280": {
-      "discount": 95,
-      "final": 2100
-    },
-    "2026290": {
-      "discount": 95,
-      "final": 2100
+    "203140": {
+      "discount": 90,
+      "final": 2700
     },
     "2051870": {
       "discount": 80,
@@ -2884,33 +2252,25 @@
       "discount": 80,
       "final": 7700
     },
-    "2057790": {
-      "discount": 81,
-      "final": 2400
-    },
-    "205810": {
-      "discount": 75,
-      "final": 5700
-    },
-    "2059760": {
-      "discount": 90,
-      "final": 3100
+    "205610": {
+      "discount": 80,
+      "final": 6900
     },
     "2063240": {
       "discount": 72,
       "final": 1400
     },
+    "2063450": {
+      "discount": 70,
+      "final": 6100
+    },
     "2063480": {
       "discount": 70,
       "final": 6400
     },
-    "2067030": {
-      "discount": 95,
-      "final": 2100
-    },
-    "2069110": {
-      "discount": 70,
-      "final": 1500
+    "2067350": {
+      "discount": 75,
+      "final": 12800
     },
     "2069550": {
       "discount": 81,
@@ -2927,6 +2287,10 @@
     "2071040": {
       "discount": 80,
       "final": 3300
+    },
+    "207140": {
+      "discount": 80,
+      "final": 6500
     },
     "207190": {
       "discount": 80,
@@ -2952,14 +2316,6 @@
       "discount": 75,
       "final": 5700
     },
-    "2080240": {
-      "discount": 80,
-      "final": 3300
-    },
-    "2082290": {
-      "discount": 81,
-      "final": 1900
-    },
     "2082510": {
       "discount": 70,
       "final": 5600
@@ -2968,9 +2324,17 @@
       "discount": 75,
       "final": 5200
     },
+    "208520": {
+      "discount": 80,
+      "final": 6900
+    },
     "2085370": {
       "discount": 80,
       "final": 17900
+    },
+    "2086180": {
+      "discount": 70,
+      "final": 1500
     },
     "2087910": {
       "discount": 70,
@@ -2980,9 +2344,9 @@
       "discount": 86,
       "final": 2300
     },
-    "2089750": {
+    "2088420": {
       "discount": 90,
-      "final": 5300
+      "final": 3200
     },
     "2091160": {
       "discount": 88,
@@ -2999,10 +2363,6 @@
     "2094380": {
       "discount": 80,
       "final": 4500
-    },
-    "2095340": {
-      "discount": 75,
-      "final": 8600
     },
     "2098210": {
       "discount": 72,
@@ -3024,25 +2384,13 @@
       "discount": 75,
       "final": 12400
     },
-    "210770": {
-      "discount": 80,
+    "210970": {
+      "discount": 75,
+      "final": 11900
+    },
+    "211340": {
+      "discount": 75,
       "final": 8100
-    },
-    "2109380": {
-      "discount": 71,
-      "final": 1500
-    },
-    "2109400": {
-      "discount": 71,
-      "final": 1500
-    },
-    "2110520": {
-      "discount": 74,
-      "final": 1900
-    },
-    "2111090": {
-      "discount": 70,
-      "final": 12400
     },
     "2115470": {
       "discount": 72,
@@ -3055,10 +2403,6 @@
     "212030": {
       "discount": 91,
       "final": 1600
-    },
-    "2125090": {
-      "discount": 80,
-      "final": 15900
     },
     "2133590": {
       "discount": 85,
@@ -3080,10 +2424,6 @@
       "discount": 70,
       "final": 46200
     },
-    "2143110": {
-      "discount": 76,
-      "final": 2400
-    },
     "2144180": {
       "discount": 81,
       "final": 2500
@@ -3096,21 +2436,9 @@
       "discount": 75,
       "final": 8300
     },
-    "2148720": {
-      "discount": 75,
-      "final": 1300
-    },
-    "2148730": {
-      "discount": 75,
-      "final": 1300
-    },
-    "2148750": {
-      "discount": 71,
-      "final": 1500
-    },
-    "2149120": {
-      "discount": 80,
-      "final": 10000
+    "2147900": {
+      "discount": 76,
+      "final": 2400
     },
     "2150910": {
       "discount": 75,
@@ -3120,29 +2448,17 @@
       "discount": 76,
       "final": 1800
     },
+    "2153970": {
+      "discount": 80,
+      "final": 6500
+    },
+    "2154030": {
+      "discount": 90,
+      "final": 3300
+    },
     "2155750": {
       "discount": 75,
       "final": 8100
-    },
-    "2156270": {
-      "discount": 75,
-      "final": 1300
-    },
-    "2156280": {
-      "discount": 75,
-      "final": 1300
-    },
-    "215690": {
-      "discount": 70,
-      "final": 6800
-    },
-    "2157410": {
-      "discount": 75,
-      "final": 1300
-    },
-    "2157450": {
-      "discount": 75,
-      "final": 1300
     },
     "2157860": {
       "discount": 85,
@@ -3151,10 +2467,6 @@
     "2161110": {
       "discount": 75,
       "final": 4200
-    },
-    "2161590": {
-      "discount": 75,
-      "final": 1300
     },
     "216210": {
       "discount": 80,
@@ -3168,17 +2480,13 @@
       "discount": 89,
       "final": 1600
     },
-    "2166370": {
-      "discount": 71,
-      "final": 1500
-    },
-    "2166920": {
+    "2166450": {
       "discount": 75,
-      "final": 5700
+      "final": 4000
     },
-    "216890": {
-      "discount": 90,
-      "final": 3300
+    "2170520": {
+      "discount": 70,
+      "final": 27700
     },
     "2171420": {
       "discount": 80,
@@ -3192,18 +2500,6 @@
       "discount": 72,
       "final": 1400
     },
-    "2173700": {
-      "discount": 71,
-      "final": 1500
-    },
-    "2173880": {
-      "discount": 70,
-      "final": 1500
-    },
-    "2173890": {
-      "discount": 70,
-      "final": 1500
-    },
     "2174930": {
       "discount": 80,
       "final": 4500
@@ -3216,14 +2512,6 @@
       "discount": 88,
       "final": 1600
     },
-    "2180580": {
-      "discount": 90,
-      "final": 3300
-    },
-    "2180680": {
-      "discount": 71,
-      "final": 1500
-    },
     "2186580": {
       "discount": 75,
       "final": 8100
@@ -3232,10 +2520,6 @@
       "discount": 70,
       "final": 2200
     },
-    "2189910": {
-      "discount": 70,
-      "final": 3700
-    },
     "2190280": {
       "discount": 72,
       "final": 1400
@@ -3243,10 +2527,6 @@
     "2192060": {
       "discount": 70,
       "final": 27700
-    },
-    "2192520": {
-      "discount": 76,
-      "final": 1800
     },
     "2192900": {
       "discount": 88,
@@ -3276,10 +2556,6 @@
       "discount": 88,
       "final": 1600
     },
-    "2195010": {
-      "discount": 76,
-      "final": 1800
-    },
     "2197680": {
       "discount": 70,
       "final": 68900
@@ -3288,17 +2564,17 @@
       "discount": 81,
       "final": 2400
     },
-    "2201680": {
-      "discount": 75,
-      "final": 4600
-    },
-    "2206230": {
-      "discount": 80,
-      "final": 3200
+    "2202240": {
+      "discount": 85,
+      "final": 3300
     },
     "2206270": {
       "discount": 70,
       "final": 9700
+    },
+    "2207490": {
+      "discount": 75,
+      "final": 3100
     },
     "2209500": {
       "discount": 88,
@@ -3312,37 +2588,17 @@
       "discount": 72,
       "final": 1400
     },
-    "2210020": {
-      "discount": 75,
-      "final": 10400
-    },
     "2210130": {
       "discount": 75,
       "final": 8100
-    },
-    "2215270": {
-      "discount": 90,
-      "final": 3200
-    },
-    "2216700": {
-      "discount": 95,
-      "final": 2100
     },
     "2217030": {
       "discount": 82,
       "final": 1800
     },
-    "22200": {
+    "2218210": {
       "discount": 70,
-      "final": 5000
-    },
-    "2221080": {
-      "discount": 75,
-      "final": 1300
-    },
-    "2221090": {
-      "discount": 75,
-      "final": 1300
+      "final": 8500
     },
     "2221490": {
       "discount": 75,
@@ -3351,10 +2607,6 @@
     "2221840": {
       "discount": 70,
       "final": 6700
-    },
-    "22230": {
-      "discount": 70,
-      "final": 5000
     },
     "2223440": {
       "discount": 75,
@@ -3368,10 +2620,6 @@
       "discount": 85,
       "final": 3400
     },
-    "222660": {
-      "discount": 75,
-      "final": 4200
-    },
     "2232810": {
       "discount": 80,
       "final": 2600
@@ -3380,29 +2628,13 @@
       "discount": 87,
       "final": 2900
     },
-    "2233850": {
-      "discount": 71,
-      "final": 1500
-    },
-    "2233870": {
-      "discount": 75,
-      "final": 1300
-    },
-    "2234200": {
-      "discount": 72,
-      "final": 7400
-    },
     "2238260": {
       "discount": 80,
       "final": 14800
     },
-    "2241510": {
+    "2244470": {
       "discount": 75,
-      "final": 9300
-    },
-    "2244530": {
-      "discount": 74,
-      "final": 1300
+      "final": 10300
     },
     "2244930": {
       "discount": 80,
@@ -3420,17 +2652,21 @@
       "discount": 87,
       "final": 2100
     },
-    "2246550": {
-      "discount": 90,
-      "final": 4100
+    "2247570": {
+      "discount": 85,
+      "final": 4400
     },
-    "2251280": {
+    "2248570": {
       "discount": 70,
       "final": 2200
     },
-    "2251620": {
-      "discount": 80,
-      "final": 12000
+    "2248920": {
+      "discount": 85,
+      "final": 3300
+    },
+    "2250340": {
+      "discount": 71,
+      "final": 2900
     },
     "225360": {
       "discount": 70,
@@ -3440,13 +2676,9 @@
       "discount": 70,
       "final": 22300
     },
-    "2254430": {
-      "discount": 75,
-      "final": 1300
-    },
-    "2255970": {
-      "discount": 70,
-      "final": 9700
+    "2256810": {
+      "discount": 85,
+      "final": 2800
     },
     "2260030": {
       "discount": 80,
@@ -3456,37 +2688,17 @@
       "discount": 80,
       "final": 3300
     },
-    "2265210": {
-      "discount": 71,
-      "final": 1500
+    "2266320": {
+      "discount": 76,
+      "final": 1800
     },
-    "227000": {
-      "discount": 70,
-      "final": 5000
+    "226780": {
+      "discount": 90,
+      "final": 3900
     },
-    "2270930": {
-      "discount": 75,
-      "final": 1300
-    },
-    "2270980": {
-      "discount": 75,
-      "final": 1300
-    },
-    "2271130": {
-      "discount": 81,
-      "final": 2400
-    },
-    "2277720": {
-      "discount": 70,
-      "final": 9700
-    },
-    "2279370": {
-      "discount": 85,
-      "final": 2800
-    },
-    "2280630": {
-      "discount": 75,
-      "final": 1300
+    "227020": {
+      "discount": 80,
+      "final": 8700
     },
     "228200": {
       "discount": 80,
@@ -3496,10 +2708,6 @@
       "discount": 87,
       "final": 1900
     },
-    "2287330": {
-      "discount": 75,
-      "final": 17400
-    },
     "2288660": {
       "discount": 71,
       "final": 2900
@@ -3508,17 +2716,13 @@
       "discount": 72,
       "final": 1400
     },
+    "2293210": {
+      "discount": 85,
+      "final": 3300
+    },
     "229560": {
       "discount": 90,
       "final": 4100
-    },
-    "2295830": {
-      "discount": 70,
-      "final": 7600
-    },
-    "2295970": {
-      "discount": 80,
-      "final": 15900
     },
     "2298590": {
       "discount": 81,
@@ -3528,17 +2732,13 @@
       "discount": 71,
       "final": 2900
     },
-    "229890": {
-      "discount": 90,
-      "final": 2200
-    },
     "2299130": {
       "discount": 81,
       "final": 1900
     },
-    "2303450": {
+    "2300390": {
       "discount": 71,
-      "final": 2200
+      "final": 2900
     },
     "2304440": {
       "discount": 80,
@@ -3547,10 +2747,6 @@
     "2307950": {
       "discount": 81,
       "final": 1900
-    },
-    "230820": {
-      "discount": 90,
-      "final": 3200
     },
     "2313020": {
       "discount": 70,
@@ -3568,25 +2764,13 @@
       "discount": 70,
       "final": 9700
     },
-    "2327160": {
+    "2327200": {
       "discount": 71,
       "final": 2900
     },
-    "2327790": {
+    "2328160": {
       "discount": 71,
-      "final": 1500
-    },
-    "2327810": {
-      "discount": 71,
-      "final": 1500
-    },
-    "2327820": {
-      "discount": 71,
-      "final": 1500
-    },
-    "2328310": {
-      "discount": 80,
-      "final": 18500
+      "final": 2900
     },
     "2329660": {
       "discount": 80,
@@ -3599,6 +2783,10 @@
     "2330430": {
       "discount": 75,
       "final": 23100
+    },
+    "233310": {
+      "discount": 70,
+      "final": 6700
     },
     "2336100": {
       "discount": 70,
@@ -3632,33 +2820,21 @@
       "discount": 85,
       "final": 11100
     },
-    "2344060": {
+    "2348610": {
       "discount": 75,
-      "final": 5100
-    },
-    "2350280": {
-      "discount": 85,
-      "final": 22400
-    },
-    "2351160": {
-      "discount": 81,
-      "final": 2900
+      "final": 3100
     },
     "2351300": {
       "discount": 75,
       "final": 7100
     },
+    "235250": {
+      "discount": 81,
+      "final": 2900
+    },
     "235620": {
       "discount": 80,
       "final": 4500
-    },
-    "2359410": {
-      "discount": 81,
-      "final": 2400
-    },
-    "2362630": {
-      "discount": 75,
-      "final": 5600
     },
     "2364610": {
       "discount": 70,
@@ -3668,29 +2844,21 @@
       "discount": 81,
       "final": 1900
     },
-    "2366130": {
-      "discount": 75,
-      "final": 17400
-    },
     "236730": {
       "discount": 90,
       "final": 2200
     },
-    "2367740": {
+    "2367730": {
       "discount": 90,
-      "final": 3300
+      "final": 3200
+    },
+    "2367790": {
+      "discount": 90,
+      "final": 3200
     },
     "2368860": {
       "discount": 81,
       "final": 2400
-    },
-    "2368880": {
-      "discount": 82,
-      "final": 2200
-    },
-    "2370170": {
-      "discount": 72,
-      "final": 47500
     },
     "2373490": {
       "discount": 70,
@@ -3703,18 +2871,6 @@
     "2374280": {
       "discount": 85,
       "final": 6200
-    },
-    "237430": {
-      "discount": 75,
-      "final": 6900
-    },
-    "2374360": {
-      "discount": 72,
-      "final": 1400
-    },
-    "2375080": {
-      "discount": 85,
-      "final": 3300
     },
     "2375180": {
       "discount": 80,
@@ -3736,29 +2892,9 @@
       "discount": 90,
       "final": 1300
     },
-    "2381740": {
-      "discount": 90,
-      "final": 2600
-    },
-    "2383770": {
-      "discount": 71,
-      "final": 2900
-    },
-    "2384000": {
-      "discount": 70,
-      "final": 3700
-    },
     "2384240": {
       "discount": 75,
       "final": 7700
-    },
-    "2385230": {
-      "discount": 81,
-      "final": 2400
-    },
-    "2385280": {
-      "discount": 75,
-      "final": 1300
     },
     "2386310": {
       "discount": 75,
@@ -3772,10 +2908,6 @@
       "discount": 70,
       "final": 6700
     },
-    "239140": {
-      "discount": 90,
-      "final": 6500
-    },
     "2396000": {
       "discount": 72,
       "final": 1400
@@ -3783,10 +2915,6 @@
     "2396240": {
       "discount": 88,
       "final": 11300
-    },
-    "2398760": {
-      "discount": 92,
-      "final": 1800
     },
     "2399600": {
       "discount": 70,
@@ -3800,29 +2928,29 @@
       "discount": 76,
       "final": 2400
     },
+    "2409410": {
+      "discount": 71,
+      "final": 2900
+    },
     "2409970": {
       "discount": 80,
       "final": 2600
+    },
+    "2411910": {
+      "discount": 90,
+      "final": 2200
     },
     "2411920": {
       "discount": 75,
       "final": 3200
     },
-    "2412140": {
-      "discount": 71,
-      "final": 1500
-    },
-    "2412150": {
-      "discount": 71,
-      "final": 1500
-    },
     "2417180": {
       "discount": 90,
       "final": 3900
     },
-    "242110": {
-      "discount": 90,
-      "final": 2200
+    "2421520": {
+      "discount": 80,
+      "final": 2600
     },
     "2421780": {
       "discount": 90,
@@ -3836,10 +2964,6 @@
       "discount": 91,
       "final": 1600
     },
-    "2423470": {
-      "discount": 90,
-      "final": 1900
-    },
     "2426770": {
       "discount": 90,
       "final": 1300
@@ -3851,10 +2975,6 @@
     "242860": {
       "discount": 75,
       "final": 28100
-    },
-    "2429190": {
-      "discount": 70,
-      "final": 29500
     },
     "2429540": {
       "discount": 80,
@@ -3876,29 +2996,13 @@
       "discount": 90,
       "final": 1300
     },
-    "243930": {
-      "discount": 89,
-      "final": 1700
-    },
     "2440200": {
       "discount": 70,
       "final": 5800
     },
-    "2445130": {
-      "discount": 71,
-      "final": 1500
-    },
     "2446920": {
       "discount": 70,
       "final": 3000
-    },
-    "2448130": {
-      "discount": 72,
-      "final": 1400
-    },
-    "2448140": {
-      "discount": 72,
-      "final": 1400
     },
     "244890": {
       "discount": 90,
@@ -3920,29 +3024,13 @@
       "discount": 81,
       "final": 2400
     },
-    "2453770": {
-      "discount": 70,
-      "final": 1500
-    },
     "2454000": {
       "discount": 87,
       "final": 1700
     },
-    "2454020": {
-      "discount": 70,
-      "final": 2200
-    },
-    "2456640": {
-      "discount": 80,
-      "final": 4500
-    },
     "2458330": {
       "discount": 76,
       "final": 1800
-    },
-    "2460640": {
-      "discount": 70,
-      "final": 6700
     },
     "2461580": {
       "discount": 81,
@@ -3968,10 +3056,6 @@
       "discount": 71,
       "final": 4800
     },
-    "2470370": {
-      "discount": 95,
-      "final": 3500
-    },
     "2470700": {
       "discount": 70,
       "final": 3700
@@ -3980,17 +3064,9 @@
       "discount": 80,
       "final": 2600
     },
-    "2473110": {
-      "discount": 70,
-      "final": 3700
-    },
     "2476860": {
       "discount": 90,
       "final": 1900
-    },
-    "2479170": {
-      "discount": 76,
-      "final": 1800
     },
     "2483420": {
       "discount": 75,
@@ -4016,10 +3092,6 @@
       "discount": 90,
       "final": 3300
     },
-    "2486880": {
-      "discount": 72,
-      "final": 1400
-    },
     "2487060": {
       "discount": 75,
       "final": 10300
@@ -4027,10 +3099,6 @@
     "2487120": {
       "discount": 75,
       "final": 6300
-    },
-    "2487490": {
-      "discount": 85,
-      "final": 3300
     },
     "2489370": {
       "discount": 85,
@@ -4056,13 +3124,9 @@
       "discount": 75,
       "final": 6100
     },
-    "2495650": {
+    "2495670": {
       "discount": 90,
-      "final": 3300
-    },
-    "249650": {
-      "discount": 91,
-      "final": 1600
+      "final": 3200
     },
     "2496830": {
       "discount": 71,
@@ -4076,14 +3140,6 @@
       "discount": 70,
       "final": 12400
     },
-    "2499970": {
-      "discount": 75,
-      "final": 5600
-    },
-    "2502600": {
-      "discount": 71,
-      "final": 1500
-    },
     "2503240": {
       "discount": 77,
       "final": 1700
@@ -4091,6 +3147,10 @@
     "2505530": {
       "discount": 90,
       "final": 1300
+    },
+    "2508940": {
+      "discount": 90,
+      "final": 6000
     },
     "2512920": {
       "discount": 89,
@@ -4104,13 +3164,13 @@
       "discount": 85,
       "final": 1900
     },
-    "2516550": {
-      "discount": 90,
-      "final": 2500
-    },
     "2517200": {
       "discount": 75,
       "final": 3700
+    },
+    "2517340": {
+      "discount": 71,
+      "final": 4800
     },
     "2517970": {
       "discount": 70,
@@ -4120,6 +3180,10 @@
       "discount": 88,
       "final": 1500
     },
+    "252130": {
+      "discount": 81,
+      "final": 2400
+    },
     "252170": {
       "discount": 85,
       "final": 1900
@@ -4127,6 +3191,10 @@
     "2523630": {
       "discount": 80,
       "final": 2600
+    },
+    "252430": {
+      "discount": 80,
+      "final": 4500
     },
     "2525420": {
       "discount": 81,
@@ -4148,9 +3216,9 @@
       "discount": 90,
       "final": 2200
     },
-    "253150": {
-      "discount": 80,
-      "final": 5700
+    "2530050": {
+      "discount": 75,
+      "final": 3100
     },
     "2532360": {
       "discount": 80,
@@ -4168,10 +3236,6 @@
       "discount": 90,
       "final": 1300
     },
-    "254440": {
-      "discount": 71,
-      "final": 4800
-    },
     "2547240": {
       "discount": 90,
       "final": 2300
@@ -4184,18 +3248,6 @@
       "discount": 76,
       "final": 2400
     },
-    "2549650": {
-      "discount": 75,
-      "final": 8300
-    },
-    "2550030": {
-      "discount": 71,
-      "final": 1500
-    },
-    "255070": {
-      "discount": 70,
-      "final": 6800
-    },
     "2551690": {
       "discount": 90,
       "final": 1500
@@ -4203,14 +3255,6 @@
     "2553840": {
       "discount": 70,
       "final": 6700
-    },
-    "2556750": {
-      "discount": 80,
-      "final": 5400
-    },
-    "256010": {
-      "discount": 75,
-      "final": 6900
     },
     "2560520": {
       "discount": 71,
@@ -4224,13 +3268,13 @@
       "discount": 91,
       "final": 1400
     },
-    "2567700": {
-      "discount": 71,
-      "final": 1500
+    "2570280": {
+      "discount": 81,
+      "final": 2900
     },
-    "257030": {
-      "discount": 87,
-      "final": 2200
+    "257120": {
+      "discount": 80,
+      "final": 4500
     },
     "2571290": {
       "discount": 80,
@@ -4244,13 +3288,17 @@
       "discount": 77,
       "final": 1700
     },
+    "2574850": {
+      "discount": 85,
+      "final": 3300
+    },
+    "2574870": {
+      "discount": 85,
+      "final": 3300
+    },
     "2579380": {
       "discount": 76,
       "final": 1800
-    },
-    "2581370": {
-      "discount": 80,
-      "final": 35900
     },
     "2587980": {
       "discount": 81,
@@ -4268,25 +3316,9 @@
       "discount": 80,
       "final": 2600
     },
-    "2593780": {
-      "discount": 70,
-      "final": 5600
-    },
-    "259550": {
-      "discount": 85,
-      "final": 2800
-    },
     "2597590": {
       "discount": 73,
       "final": 1700
-    },
-    "2599320": {
-      "discount": 95,
-      "final": 2100
-    },
-    "2602020": {
-      "discount": 75,
-      "final": 14900
     },
     "260210": {
       "discount": 75,
@@ -4295,14 +3327,6 @@
     "2603040": {
       "discount": 90,
       "final": 13300
-    },
-    "260330": {
-      "discount": 80,
-      "final": 4000
-    },
-    "2610500": {
-      "discount": 71,
-      "final": 2900
     },
     "2613010": {
       "discount": 70,
@@ -4316,6 +3340,10 @@
       "discount": 90,
       "final": 5200
     },
+    "2621900": {
+      "discount": 70,
+      "final": 3700
+    },
     "262280": {
       "discount": 75,
       "final": 10800
@@ -4324,17 +3352,13 @@
       "discount": 80,
       "final": 4500
     },
-    "2627500": {
+    "2625300": {
       "discount": 71,
       "final": 2900
     },
     "2631500": {
       "discount": 85,
       "final": 1800
-    },
-    "263640": {
-      "discount": 85,
-      "final": 2500
     },
     "263740": {
       "discount": 90,
@@ -4344,57 +3368,37 @@
       "discount": 86,
       "final": 2300
     },
-    "2646050": {
-      "discount": 85,
-      "final": 3300
-    },
-    "2647820": {
-      "discount": 75,
-      "final": 4000
-    },
-    "2657310": {
-      "discount": 70,
-      "final": 6100
-    },
     "2657810": {
       "discount": 80,
       "final": 2600
+    },
+    "265930": {
+      "discount": 80,
+      "final": 5500
     },
     "2660370": {
       "discount": 80,
       "final": 2600
     },
-    "266510": {
-      "discount": 80,
-      "final": 5500
-    },
-    "2669860": {
-      "discount": 70,
-      "final": 12900
-    },
     "267060": {
       "discount": 81,
       "final": 2400
     },
-    "2672060": {
-      "discount": 70,
-      "final": 7300
+    "2678960": {
+      "discount": 75,
+      "final": 3100
     },
     "2680800": {
       "discount": 72,
       "final": 1400
     },
-    "268400": {
+    "2685570": {
       "discount": 75,
-      "final": 15000
+      "final": 8100
     },
-    "268520": {
-      "discount": 91,
-      "final": 1600
-    },
-    "2690110": {
-      "discount": 81,
-      "final": 1900
+    "269010": {
+      "discount": 75,
+      "final": 3100
     },
     "269310": {
       "discount": 90,
@@ -4404,13 +3408,9 @@
       "discount": 72,
       "final": 1400
     },
-    "2698690": {
-      "discount": 80,
-      "final": 3200
-    },
-    "2699100": {
-      "discount": 75,
-      "final": 4600
+    "269670": {
+      "discount": 85,
+      "final": 2500
     },
     "270150": {
       "discount": 75,
@@ -4468,19 +3468,11 @@
       "discount": 75,
       "final": 3700
     },
-    "274350": {
-      "discount": 90,
-      "final": 2200
+    "2739900": {
+      "discount": 71,
+      "final": 2900
     },
-    "2743520": {
-      "discount": 80,
-      "final": 14800
-    },
-    "274500": {
-      "discount": 74,
-      "final": 9100
-    },
-    "2745820": {
+    "2745830": {
       "discount": 71,
       "final": 2900
     },
@@ -4500,22 +3492,6 @@
       "discount": 90,
       "final": 2000
     },
-    "2757030": {
-      "discount": 71,
-      "final": 2900
-    },
-    "2762390": {
-      "discount": 95,
-      "final": 2100
-    },
-    "2768050": {
-      "discount": 90,
-      "final": 3100
-    },
-    "2774940": {
-      "discount": 90,
-      "final": 2200
-    },
     "277590": {
       "discount": 75,
       "final": 5600
@@ -4523,10 +3499,6 @@
     "277751": {
       "discount": 91,
       "final": 1600
-    },
-    "278360": {
-      "discount": 80,
-      "final": 8100
     },
     "278490": {
       "discount": 80,
@@ -4544,25 +3516,9 @@
       "discount": 80,
       "final": 3200
     },
-    "278810": {
-      "discount": 80,
-      "final": 2000
-    },
-    "2788150": {
-      "discount": 85,
-      "final": 3300
-    },
-    "2788160": {
-      "discount": 85,
-      "final": 3300
-    },
-    "2790190": {
-      "discount": 90,
-      "final": 2200
-    },
-    "2793950": {
-      "discount": 75,
-      "final": 17400
+    "2798300": {
+      "discount": 71,
+      "final": 2900
     },
     "279900": {
       "discount": 90,
@@ -4576,10 +3532,6 @@
       "discount": 81,
       "final": 2400
     },
-    "2800630": {
-      "discount": 85,
-      "final": 10400
-    },
     "2802070": {
       "discount": 83,
       "final": 1700
@@ -4587,10 +3539,6 @@
     "280640": {
       "discount": 85,
       "final": 1900
-    },
-    "280890": {
-      "discount": 85,
-      "final": 2500
     },
     "2810": {
       "discount": 80,
@@ -4612,6 +3560,10 @@
       "discount": 86,
       "final": 2300
     },
+    "2819120": {
+      "discount": 75,
+      "final": 4600
+    },
     "2819780": {
       "discount": 72,
       "final": 1400
@@ -4628,21 +3580,17 @@
       "discount": 90,
       "final": 4100
     },
-    "282800": {
-      "discount": 75,
-      "final": 4000
+    "282100": {
+      "discount": 80,
+      "final": 3200
     },
     "283160": {
       "discount": 70,
       "final": 8300
     },
-    "283270": {
-      "discount": 75,
-      "final": 4200
-    },
-    "2832790": {
-      "discount": 85,
-      "final": 3300
+    "283230": {
+      "discount": 76,
+      "final": 1800
     },
     "2834180": {
       "discount": 75,
@@ -4656,13 +3604,13 @@
       "discount": 81,
       "final": 2400
     },
+    "284100": {
+      "discount": 93,
+      "final": 2500
+    },
     "284240": {
       "discount": 75,
       "final": 5600
-    },
-    "2845520": {
-      "discount": 80,
-      "final": 4100
     },
     "2850": {
       "discount": 81,
@@ -4688,10 +3636,6 @@
       "discount": 81,
       "final": 2400
     },
-    "2866750": {
-      "discount": 85,
-      "final": 1900
-    },
     "286750": {
       "discount": 75,
       "final": 3200
@@ -4716,9 +3660,9 @@
       "discount": 70,
       "final": 6900
     },
-    "2878220": {
+    "2882830": {
       "discount": 70,
-      "final": 22300
+      "final": 3300
     },
     "2883280": {
       "discount": 79,
@@ -4727,10 +3671,6 @@
     "288840": {
       "discount": 80,
       "final": 2400
-    },
-    "2888830": {
-      "discount": 81,
-      "final": 2900
     },
     "2889280": {
       "discount": 80,
@@ -4768,17 +3708,9 @@
       "discount": 85,
       "final": 1900
     },
-    "2907650": {
-      "discount": 95,
-      "final": 2100
-    },
     "290850": {
       "discount": 81,
       "final": 2400
-    },
-    "2911070": {
-      "discount": 80,
-      "final": 7800
     },
     "2912060": {
       "discount": 72,
@@ -4788,37 +3720,25 @@
       "discount": 81,
       "final": 2400
     },
-    "2912700": {
+    "2912680": {
       "discount": 85,
-      "final": 1900
-    },
-    "2921180": {
-      "discount": 77,
       "final": 2800
-    },
-    "2922980": {
-      "discount": 80,
-      "final": 11900
     },
     "2924170": {
       "discount": 75,
       "final": 6600
     },
-    "2926640": {
+    "292420": {
+      "discount": 80,
+      "final": 5000
+    },
+    "2926660": {
       "discount": 70,
       "final": 9700
-    },
-    "292910": {
-      "discount": 90,
-      "final": 3700
     },
     "2936620": {
       "discount": 70,
       "final": 2200
-    },
-    "2940210": {
-      "discount": 70,
-      "final": 4400
     },
     "2943780": {
       "discount": 80,
@@ -4848,11 +3768,7 @@
       "discount": 90,
       "final": 2200
     },
-    "2956840": {
-      "discount": 71,
-      "final": 2900
-    },
-    "2956970": {
+    "2956850": {
       "discount": 71,
       "final": 2900
     },
@@ -4868,17 +3784,9 @@
       "discount": 83,
       "final": 1700
     },
-    "2966040": {
-      "discount": 90,
-      "final": 2600
-    },
     "2966450": {
       "discount": 70,
       "final": 3700
-    },
-    "297620": {
-      "discount": 80,
-      "final": 2400
     },
     "2980150": {
       "discount": 81,
@@ -4888,9 +3796,13 @@
       "discount": 85,
       "final": 2400
     },
-    "2985950": {
-      "discount": 71,
-      "final": 1500
+    "298600": {
+      "discount": 81,
+      "final": 2900
+    },
+    "298630": {
+      "discount": 80,
+      "final": 5500
     },
     "2989680": {
       "discount": 72,
@@ -4904,17 +3816,9 @@
       "discount": 81,
       "final": 2900
     },
-    "2993970": {
-      "discount": 70,
-      "final": 6700
-    },
-    "299460": {
-      "discount": 81,
-      "final": 1900
-    },
-    "299480": {
-      "discount": 75,
-      "final": 12500
+    "299340": {
+      "discount": 80,
+      "final": 6500
     },
     "2996020": {
       "discount": 75,
@@ -4924,10 +3828,6 @@
       "discount": 95,
       "final": 3000
     },
-    "299800": {
-      "discount": 85,
-      "final": 2500
-    },
     "2998650": {
       "discount": 90,
       "final": 4100
@@ -4935,6 +3835,10 @@
     "2998880": {
       "discount": 75,
       "final": 4300
+    },
+    "3005100": {
+      "discount": 90,
+      "final": 1700
     },
     "300540": {
       "discount": 85,
@@ -4956,13 +3860,13 @@
       "discount": 90,
       "final": 1300
     },
-    "3022500": {
-      "discount": 85,
-      "final": 3300
+    "3015690": {
+      "discount": 83,
+      "final": 1700
     },
-    "3023360": {
-      "discount": 70,
-      "final": 3700
+    "3022870": {
+      "discount": 71,
+      "final": 2900
     },
     "3026440": {
       "discount": 70,
@@ -4972,14 +3876,6 @@
       "discount": 80,
       "final": 3900
     },
-    "302950": {
-      "discount": 75,
-      "final": 3700
-    },
-    "3031130": {
-      "discount": 70,
-      "final": 3700
-    },
     "3034070": {
       "discount": 70,
       "final": 9700
@@ -4987,10 +3883,6 @@
     "3035570": {
       "discount": 70,
       "final": 32600
-    },
-    "303610": {
-      "discount": 87,
-      "final": 1900
     },
     "3037660": {
       "discount": 70,
@@ -5016,41 +3908,9 @@
       "discount": 91,
       "final": 1600
     },
-    "3051610": {
-      "discount": 70,
-      "final": 3700
-    },
-    "3051620": {
-      "discount": 70,
-      "final": 3700
-    },
-    "3051630": {
-      "discount": 70,
-      "final": 3700
-    },
-    "3051640": {
-      "discount": 70,
-      "final": 3700
-    },
-    "3051650": {
-      "discount": 70,
-      "final": 3700
-    },
     "3053860": {
       "discount": 81,
       "final": 2400
-    },
-    "305480": {
-      "discount": 75,
-      "final": 5600
-    },
-    "305490": {
-      "discount": 75,
-      "final": 12800
-    },
-    "3056430": {
-      "discount": 75,
-      "final": 1300
     },
     "3065880": {
       "discount": 89,
@@ -5059,10 +3919,6 @@
     "306700": {
       "discount": 86,
       "final": 2300
-    },
-    "307570": {
-      "discount": 90,
-      "final": 2200
     },
     "307960": {
       "discount": 85,
@@ -5075,10 +3931,6 @@
     "3086600": {
       "discount": 70,
       "final": 4900
-    },
-    "310390": {
-      "discount": 70,
-      "final": 18000
     },
     "3104600": {
       "discount": 87,
@@ -5096,21 +3948,9 @@
       "discount": 70,
       "final": 8900
     },
-    "3118450": {
-      "discount": 81,
-      "final": 2900
-    },
     "3119720": {
       "discount": 90,
       "final": 1300
-    },
-    "3122100": {
-      "discount": 95,
-      "final": 2100
-    },
-    "3122990": {
-      "discount": 70,
-      "final": 11500
     },
     "3124030": {
       "discount": 90,
@@ -5132,21 +3972,25 @@
       "discount": 70,
       "final": 3000
     },
-    "313740": {
-      "discount": 85,
-      "final": 2500
+    "3133760": {
+      "discount": 75,
+      "final": 3100
+    },
+    "3136150": {
+      "discount": 80,
+      "final": 3700
     },
     "3138100": {
       "discount": 80,
       "final": 6800
     },
-    "3140550": {
-      "discount": 70,
-      "final": 3700
-    },
     "314150": {
       "discount": 81,
       "final": 2300
+    },
+    "3141580": {
+      "discount": 70,
+      "final": 6100
     },
     "314520": {
       "discount": 80,
@@ -5155,10 +3999,6 @@
     "3145480": {
       "discount": 75,
       "final": 4600
-    },
-    "3145860": {
-      "discount": 75,
-      "final": 1300
     },
     "3147940": {
       "discount": 88,
@@ -5176,13 +4016,13 @@
       "discount": 80,
       "final": 5100
     },
-    "3153870": {
-      "discount": 76,
-      "final": 2400
-    },
     "3154130": {
       "discount": 72,
       "final": 1400
+    },
+    "3154890": {
+      "discount": 85,
+      "final": 1900
     },
     "3167450": {
       "discount": 81,
@@ -5191,10 +4031,6 @@
     "3172310": {
       "discount": 70,
       "final": 6700
-    },
-    "317380": {
-      "discount": 81,
-      "final": 1900
     },
     "3174430": {
       "discount": 81,
@@ -5216,10 +4052,6 @@
       "discount": 82,
       "final": 2200
     },
-    "3183260": {
-      "discount": 75,
-      "final": 1300
-    },
     "3183350": {
       "discount": 85,
       "final": 2400
@@ -5236,7 +4068,11 @@
       "discount": 80,
       "final": 5200
     },
-    "3191230": {
+    "3192050": {
+      "discount": 70,
+      "final": 3900
+    },
+    "3192490": {
       "discount": 76,
       "final": 2400
     },
@@ -5252,9 +4088,9 @@
       "discount": 81,
       "final": 1900
     },
-    "320760": {
+    "3208450": {
       "discount": 70,
-      "final": 6800
+      "final": 9700
     },
     "3210390": {
       "discount": 81,
@@ -5300,25 +4136,9 @@
       "discount": 90,
       "final": 4500
     },
-    "323580": {
-      "discount": 90,
-      "final": 3300
-    },
     "323850": {
       "discount": 75,
       "final": 5700
-    },
-    "3240500": {
-      "discount": 85,
-      "final": 3300
-    },
-    "324170": {
-      "discount": 76,
-      "final": 2400
-    },
-    "3244200": {
-      "discount": 75,
-      "final": 1300
     },
     "324740": {
       "discount": 80,
@@ -5344,6 +4164,14 @@
       "discount": 81,
       "final": 2400
     },
+    "326110": {
+      "discount": 70,
+      "final": 3700
+    },
+    "326340": {
+      "discount": 85,
+      "final": 4100
+    },
     "3265250": {
       "discount": 70,
       "final": 21600
@@ -5368,33 +4196,37 @@
       "discount": 80,
       "final": 2200
     },
-    "3275000": {
-      "discount": 70,
-      "final": 2000
+    "3276800": {
+      "discount": 85,
+      "final": 3300
     },
     "3277530": {
       "discount": 88,
       "final": 2500
     },
+    "327860": {
+      "discount": 75,
+      "final": 5700
+    },
+    "327890": {
+      "discount": 80,
+      "final": 5700
+    },
     "3282670": {
       "discount": 70,
       "final": 4800
-    },
-    "3283590": {
-      "discount": 82,
-      "final": 1700
-    },
-    "3285420": {
-      "discount": 75,
-      "final": 5600
     },
     "328640": {
       "discount": 75,
       "final": 4000
     },
-    "3291080": {
-      "discount": 80,
-      "final": 25000
+    "3290040": {
+      "discount": 72,
+      "final": 5700
+    },
+    "3290220": {
+      "discount": 75,
+      "final": 5600
     },
     "3291290": {
       "discount": 83,
@@ -5408,9 +4240,17 @@
       "discount": 90,
       "final": 2200
     },
+    "329490": {
+      "discount": 93,
+      "final": 2200
+    },
     "3298250": {
       "discount": 75,
       "final": 4600
+    },
+    "329860": {
+      "discount": 75,
+      "final": 5600
     },
     "330020": {
       "discount": 85,
@@ -5424,17 +4264,9 @@
       "discount": 90,
       "final": 2200
     },
-    "330720": {
-      "discount": 80,
-      "final": 18500
-    },
     "3313070": {
       "discount": 70,
       "final": 7900
-    },
-    "3315230": {
-      "discount": 90,
-      "final": 3200
     },
     "331600": {
       "discount": 90,
@@ -5448,10 +4280,6 @@
       "discount": 75,
       "final": 4600
     },
-    "3326100": {
-      "discount": 90,
-      "final": 3200
-    },
     "3327470": {
       "discount": 78,
       "final": 4300
@@ -5464,21 +4292,17 @@
       "discount": 75,
       "final": 6100
     },
-    "3334990": {
-      "discount": 89,
-      "final": 2000
-    },
     "333870": {
       "discount": 80,
       "final": 2400
     },
-    "3344360": {
-      "discount": 70,
-      "final": 2200
+    "334120": {
+      "discount": 80,
+      "final": 4500
     },
-    "334560": {
-      "discount": 70,
-      "final": 6200
+    "3342080": {
+      "discount": 81,
+      "final": 2400
     },
     "3345690": {
       "discount": 75,
@@ -5504,10 +4328,6 @@
       "discount": 93,
       "final": 2200
     },
-    "337480": {
-      "discount": 90,
-      "final": 1900
-    },
     "337490": {
       "discount": 90,
       "final": 2200
@@ -5519,10 +4339,6 @@
     "3377570": {
       "discount": 80,
       "final": 1500
-    },
-    "337760": {
-      "discount": 76,
-      "final": 17700
     },
     "338070": {
       "discount": 70,
@@ -5548,6 +4364,10 @@
       "discount": 90,
       "final": 2200
     },
+    "3384610": {
+      "discount": 70,
+      "final": 5600
+    },
     "338840": {
       "discount": 85,
       "final": 1900
@@ -5564,6 +4384,14 @@
       "discount": 85,
       "final": 1900
     },
+    "3400360": {
+      "discount": 85,
+      "final": 3300
+    },
+    "3402180": {
+      "discount": 76,
+      "final": 2400
+    },
     "3403090": {
       "discount": 80,
       "final": 4500
@@ -5576,13 +4404,9 @@
       "discount": 70,
       "final": 3700
     },
-    "340730": {
+    "340750": {
       "discount": 80,
-      "final": 4500
-    },
-    "340860": {
-      "discount": 75,
-      "final": 10300
+      "final": 5000
     },
     "3410980": {
       "discount": 91,
@@ -5596,21 +4420,9 @@
       "discount": 70,
       "final": 3700
     },
-    "342380": {
-      "discount": 85,
-      "final": 2500
-    },
     "342620": {
       "discount": 75,
       "final": 5600
-    },
-    "3428610": {
-      "discount": 75,
-      "final": 1300
-    },
-    "342990": {
-      "discount": 80,
-      "final": 5000
     },
     "3430630": {
       "discount": 70,
@@ -5632,10 +4444,6 @@
       "discount": 70,
       "final": 4400
     },
-    "3437470": {
-      "discount": 81,
-      "final": 7800
-    },
     "3437610": {
       "discount": 71,
       "final": 4800
@@ -5644,13 +4452,13 @@
       "discount": 72,
       "final": 11600
     },
-    "343930": {
-      "discount": 90,
-      "final": 3200
-    },
     "3439440": {
       "discount": 70,
       "final": 6700
+    },
+    "344230": {
+      "discount": 81,
+      "final": 2400
     },
     "3442760": {
       "discount": 76,
@@ -5659,14 +4467,6 @@
     "3445090": {
       "discount": 85,
       "final": 3300
-    },
-    "3447390": {
-      "discount": 81,
-      "final": 2400
-    },
-    "3447440": {
-      "discount": 81,
-      "final": 2400
     },
     "345140": {
       "discount": 90,
@@ -5684,9 +4484,9 @@
       "discount": 95,
       "final": 9300
     },
-    "3464680": {
-      "discount": 70,
-      "final": 4400
+    "346560": {
+      "discount": 85,
+      "final": 3000
     },
     "346670": {
       "discount": 85,
@@ -5708,10 +4508,6 @@
       "discount": 70,
       "final": 2200
     },
-    "348950": {
-      "discount": 75,
-      "final": 7100
-    },
     "349240": {
       "discount": 80,
       "final": 4500
@@ -5719,6 +4515,14 @@
     "349250": {
       "discount": 75,
       "final": 8100
+    },
+    "3492650": {
+      "discount": 85,
+      "final": 3300
+    },
+    "3494630": {
+      "discount": 90,
+      "final": 2200
     },
     "3499000": {
       "discount": 80,
@@ -5728,16 +4532,8 @@
       "discount": 90,
       "final": 2200
     },
-    "350810": {
-      "discount": 81,
-      "final": 2400
-    },
     "3513970": {
       "discount": 73,
-      "final": 2000
-    },
-    "351910": {
-      "discount": 90,
       "final": 2000
     },
     "352220": {
@@ -5756,14 +4552,6 @@
       "discount": 91,
       "final": 1600
     },
-    "353330": {
-      "discount": 75,
-      "final": 5600
-    },
-    "353700": {
-      "discount": 70,
-      "final": 6800
-    },
     "3540670": {
       "discount": 72,
       "final": 1400
@@ -5772,17 +4560,13 @@
       "discount": 70,
       "final": 4500
     },
-    "354600": {
-      "discount": 76,
-      "final": 17700
-    },
     "354620": {
       "discount": 70,
       "final": 2300
     },
-    "3552820": {
-      "discount": 70,
-      "final": 6700
+    "355130": {
+      "discount": 90,
+      "final": 3900
     },
     "355790": {
       "discount": 90,
@@ -5792,13 +4576,13 @@
       "discount": 70,
       "final": 6800
     },
+    "356570": {
+      "discount": 80,
+      "final": 4500
+    },
     "357070": {
       "discount": 90,
       "final": 1300
-    },
-    "3581940": {
-      "discount": 70,
-      "final": 2200
     },
     "3582270": {
       "discount": 70,
@@ -5808,13 +4592,9 @@
       "discount": 85,
       "final": 2400
     },
-    "358750": {
-      "discount": 80,
-      "final": 10300
-    },
-    "359280": {
-      "discount": 70,
-      "final": 3700
+    "3595280": {
+      "discount": 85,
+      "final": 3300
     },
     "359600": {
       "discount": 70,
@@ -5827,10 +4607,6 @@
     "360010": {
       "discount": 73,
       "final": 3400
-    },
-    "3601900": {
-      "discount": 75,
-      "final": 4600
     },
     "3603570": {
       "discount": 81,
@@ -5851,10 +4627,6 @@
     "3639230": {
       "discount": 85,
       "final": 1800
-    },
-    "363960": {
-      "discount": 80,
-      "final": 5000
     },
     "364250": {
       "discount": 80,
@@ -5884,6 +4656,10 @@
       "discount": 83,
       "final": 1700
     },
+    "365770": {
+      "discount": 75,
+      "final": 6900
+    },
     "365820": {
       "discount": 75,
       "final": 6700
@@ -5891,10 +4667,6 @@
     "365890": {
       "discount": 70,
       "final": 18000
-    },
-    "3659810": {
-      "discount": 70,
-      "final": 6000
     },
     "3660790": {
       "discount": 80,
@@ -5924,13 +4696,9 @@
       "discount": 70,
       "final": 2200
     },
-    "3681820": {
-      "discount": 70,
-      "final": 3300
-    },
-    "368260": {
-      "discount": 85,
-      "final": 20900
+    "3682370": {
+      "discount": 81,
+      "final": 2400
     },
     "368500": {
       "discount": 75,
@@ -5939,6 +4707,10 @@
     "3685280": {
       "discount": 85,
       "final": 1800
+    },
+    "368730": {
+      "discount": 80,
+      "final": 6500
     },
     "3687450": {
       "discount": 81,
@@ -5952,37 +4724,29 @@
       "discount": 70,
       "final": 4400
     },
-    "3690890": {
-      "discount": 81,
-      "final": 2400
-    },
     "3696000": {
       "discount": 72,
       "final": 1400
     },
-    "3697230": {
+    "3698360": {
       "discount": 85,
-      "final": 2300
+      "final": 4200
     },
     "3699380": {
       "discount": 72,
       "final": 1400
     },
-    "369990": {
-      "discount": 80,
-      "final": 7900
+    "3699600": {
+      "discount": 85,
+      "final": 1900
     },
     "3700760": {
       "discount": 85,
       "final": 2200
     },
-    "3704160": {
-      "discount": 80,
-      "final": 1500
-    },
-    "370540": {
-      "discount": 70,
-      "final": 44200
+    "3705010": {
+      "discount": 85,
+      "final": 3300
     },
     "3706590": {
       "discount": 88,
@@ -5992,17 +4756,13 @@
       "discount": 90,
       "final": 2200
     },
-    "3710990": {
-      "discount": 81,
-      "final": 2400
-    },
     "3711950": {
       "discount": 76,
       "final": 2900
     },
-    "371520": {
-      "discount": 90,
-      "final": 3200
+    "371530": {
+      "discount": 79,
+      "final": 2100
     },
     "3716670": {
       "discount": 85,
@@ -6036,14 +4796,6 @@
       "discount": 70,
       "final": 3700
     },
-    "375200": {
-      "discount": 85,
-      "final": 2500
-    },
-    "3765460": {
-      "discount": 91,
-      "final": 3700
-    },
     "376680": {
       "discount": 80,
       "final": 4500
@@ -6052,21 +4804,9 @@
       "discount": 81,
       "final": 2400
     },
-    "3772440": {
-      "discount": 80,
-      "final": 3700
-    },
     "3773950": {
       "discount": 76,
       "final": 1800
-    },
-    "377670": {
-      "discount": 70,
-      "final": 12400
-    },
-    "377680": {
-      "discount": 85,
-      "final": 2500
     },
     "3778350": {
       "discount": 80,
@@ -6080,10 +4820,6 @@
       "discount": 80,
       "final": 4500
     },
-    "378270": {
-      "discount": 76,
-      "final": 1800
-    },
     "3783300": {
       "discount": 76,
       "final": 1800
@@ -6092,17 +4828,9 @@
       "discount": 84,
       "final": 5200
     },
-    "3784040": {
+    "3784070": {
       "discount": 70,
       "final": 9700
-    },
-    "3784130": {
-      "discount": 70,
-      "final": 9700
-    },
-    "3785300": {
-      "discount": 70,
-      "final": 2200
     },
     "378720": {
       "discount": 75,
@@ -6132,6 +4860,10 @@
       "discount": 81,
       "final": 2400
     },
+    "3802120": {
+      "discount": 91,
+      "final": 1700
+    },
     "3802600": {
       "discount": 70,
       "final": 7900
@@ -6152,29 +4884,17 @@
       "discount": 77,
       "final": 1700
     },
-    "381100": {
-      "discount": 70,
-      "final": 11300
-    },
-    "3812280": {
-      "discount": 78,
-      "final": 2200
+    "3815470": {
+      "discount": 76,
+      "final": 1800
     },
     "3816300": {
       "discount": 70,
       "final": 6700
     },
-    "3817640": {
-      "discount": 75,
-      "final": 3100
-    },
     "3826350": {
       "discount": 81,
       "final": 2400
-    },
-    "3829150": {
-      "discount": 80,
-      "final": 3200
     },
     "3830880": {
       "discount": 72,
@@ -6184,10 +4904,6 @@
       "discount": 80,
       "final": 4500
     },
-    "383460": {
-      "discount": 75,
-      "final": 7100
-    },
     "383740": {
       "discount": 75,
       "final": 5600
@@ -6196,9 +4912,9 @@
       "discount": 71,
       "final": 1800
     },
-    "384480": {
+    "3844930": {
       "discount": 81,
-      "final": 2400
+      "final": 2900
     },
     "384690": {
       "discount": 80,
@@ -6224,33 +4940,25 @@
       "discount": 88,
       "final": 2700
     },
-    "3853470": {
-      "discount": 85,
-      "final": 3000
-    },
     "3856040": {
       "discount": 80,
       "final": 6800
-    },
-    "385690": {
-      "discount": 81,
-      "final": 2400
     },
     "386110": {
       "discount": 90,
       "final": 1300
     },
+    "386770": {
+      "discount": 80,
+      "final": 5500
+    },
     "3879560": {
       "discount": 81,
       "final": 2400
     },
-    "388140": {
+    "388060": {
       "discount": 75,
-      "final": 10300
-    },
-    "388410": {
-      "discount": 85,
-      "final": 5900
+      "final": 6400
     },
     "388430": {
       "discount": 81,
@@ -6284,9 +4992,9 @@
       "discount": 81,
       "final": 2400
     },
-    "391580": {
-      "discount": 90,
-      "final": 2200
+    "391640": {
+      "discount": 80,
+      "final": 4500
     },
     "3918500": {
       "discount": 71,
@@ -6308,13 +5016,17 @@
       "discount": 70,
       "final": 2200
     },
+    "392780": {
+      "discount": 81,
+      "final": 2400
+    },
+    "3930450": {
+      "discount": 80,
+      "final": 2600
+    },
     "3938150": {
       "discount": 75,
       "final": 2500
-    },
-    "394270": {
-      "discount": 75,
-      "final": 5600
     },
     "3942840": {
       "discount": 72,
@@ -6324,17 +5036,25 @@
       "discount": 70,
       "final": 4400
     },
+    "394310": {
+      "discount": 80,
+      "final": 4500
+    },
     "3943720": {
       "discount": 71,
       "final": 4800
     },
-    "3944850": {
-      "discount": 80,
-      "final": 1500
+    "3953220": {
+      "discount": 76,
+      "final": 2400
     },
     "395560": {
       "discount": 80,
       "final": 4800
+    },
+    "3958590": {
+      "discount": 80,
+      "final": 4100
     },
     "3960440": {
       "discount": 72,
@@ -6344,17 +5064,21 @@
       "discount": 90,
       "final": 3900
     },
+    "397060": {
+      "discount": 80,
+      "final": 8300
+    },
     "397540": {
       "discount": 90,
       "final": 8400
     },
-    "3976560": {
-      "discount": 81,
-      "final": 2900
-    },
     "3978480": {
       "discount": 70,
       "final": 3900
+    },
+    "397950": {
+      "discount": 80,
+      "final": 6500
     },
     "3980": {
       "discount": 75,
@@ -6363,6 +5087,10 @@
     "3981260": {
       "discount": 72,
       "final": 1400
+    },
+    "3982420": {
+      "discount": 85,
+      "final": 1900
     },
     "399420": {
       "discount": 85,
@@ -6376,9 +5104,9 @@
       "discount": 75,
       "final": 4600
     },
-    "399810": {
+    "3994690": {
       "discount": 85,
-      "final": 5900
+      "final": 3300
     },
     "4003280": {
       "discount": 81,
@@ -6396,17 +5124,13 @@
       "discount": 80,
       "final": 4500
     },
-    "4009120": {
-      "discount": 90,
-      "final": 3200
-    },
     "402060": {
       "discount": 88,
       "final": 1600
     },
-    "402180": {
-      "discount": 75,
-      "final": 4200
+    "402750": {
+      "discount": 93,
+      "final": 2900
     },
     "402980": {
       "discount": 90,
@@ -6424,6 +5148,10 @@
       "discount": 80,
       "final": 5200
     },
+    "403940": {
+      "discount": 80,
+      "final": 4500
+    },
     "4040530": {
       "discount": 70,
       "final": 3900
@@ -6436,25 +5164,13 @@
       "discount": 81,
       "final": 2400
     },
-    "4050650": {
-      "discount": 80,
-      "final": 2400
-    },
-    "4057810": {
-      "discount": 70,
-      "final": 9700
+    "406290": {
+      "discount": 75,
+      "final": 4200
     },
     "407130": {
       "discount": 90,
       "final": 2700
-    },
-    "407320": {
-      "discount": 75,
-      "final": 5600
-    },
-    "407330": {
-      "discount": 75,
-      "final": 6900
     },
     "407420": {
       "discount": 71,
@@ -6463,10 +5179,6 @@
     "407600": {
       "discount": 80,
       "final": 4500
-    },
-    "407980": {
-      "discount": 85,
-      "final": 2500
     },
     "408640": {
       "discount": 80,
@@ -6496,10 +5208,6 @@
       "discount": 81,
       "final": 2400
     },
-    "409600": {
-      "discount": 90,
-      "final": 3200
-    },
     "4103830": {
       "discount": 71,
       "final": 2900
@@ -6507,10 +5215,6 @@
     "4107760": {
       "discount": 81,
       "final": 2400
-    },
-    "4108540": {
-      "discount": 71,
-      "final": 2200
     },
     "4109050": {
       "discount": 81,
@@ -6528,9 +5232,9 @@
       "discount": 70,
       "final": 4400
     },
-    "413470": {
-      "discount": 75,
-      "final": 8100
+    "4136200": {
+      "discount": 85,
+      "final": 3300
     },
     "4140620": {
       "discount": 77,
@@ -6548,17 +5252,13 @@
       "discount": 80,
       "final": 4500
     },
-    "4156170": {
-      "discount": 70,
-      "final": 9700
+    "415200": {
+      "discount": 80,
+      "final": 9900
     },
     "415670": {
       "discount": 71,
       "final": 2900
-    },
-    "415950": {
-      "discount": 70,
-      "final": 3700
     },
     "4162320": {
       "discount": 81,
@@ -6567,6 +5267,10 @@
     "416290": {
       "discount": 85,
       "final": 1900
+    },
+    "4167840": {
+      "discount": 90,
+      "final": 2600
     },
     "4170810": {
       "discount": 88,
@@ -6600,13 +5304,13 @@
       "discount": 76,
       "final": 3300
     },
+    "4194010": {
+      "discount": 90,
+      "final": 2400
+    },
     "4194930": {
       "discount": 81,
       "final": 2400
-    },
-    "4199400": {
-      "discount": 80,
-      "final": 1500
     },
     "4200330": {
       "discount": 81,
@@ -6620,13 +5324,17 @@
       "discount": 70,
       "final": 2200
     },
-    "421700": {
+    "4219590": {
       "discount": 85,
-      "final": 2500
+      "final": 3300
     },
     "4220430": {
       "discount": 70,
       "final": 6900
+    },
+    "4230350": {
+      "discount": 90,
+      "final": 1800
     },
     "4230660": {
       "discount": 70,
@@ -6640,17 +5348,21 @@
       "discount": 73,
       "final": 2000
     },
-    "424760": {
-      "discount": 89,
-      "final": 1400
-    },
-    "4250660": {
+    "423550": {
       "discount": 90,
       "final": 3200
     },
     "425220": {
       "discount": 88,
       "final": 8000
+    },
+    "425410": {
+      "discount": 80,
+      "final": 6500
+    },
+    "4258440": {
+      "discount": 70,
+      "final": 4400
     },
     "4268740": {
       "discount": 72,
@@ -6660,17 +5372,9 @@
       "discount": 71,
       "final": 2900
     },
-    "427290": {
-      "discount": 90,
-      "final": 9400
-    },
     "4282020": {
       "discount": 71,
       "final": 2200
-    },
-    "4283750": {
-      "discount": 75,
-      "final": 9600
     },
     "4287370": {
       "discount": 71,
@@ -6684,37 +5388,37 @@
       "discount": 76,
       "final": 1800
     },
+    "4301030": {
+      "discount": 81,
+      "final": 1900
+    },
+    "4301570": {
+      "discount": 70,
+      "final": 3700
+    },
     "4303420": {
       "discount": 88,
       "final": 1800
     },
-    "43100": {
-      "discount": 80,
-      "final": 5000
-    },
     "431240": {
       "discount": 75,
-      "final": 5700
+      "final": 18600
     },
-    "432410": {
-      "discount": 75,
-      "final": 1300
+    "4320820": {
+      "discount": 85,
+      "final": 3400
     },
     "4325780": {
       "discount": 70,
       "final": 2200
     },
-    "4328290": {
-      "discount": 80,
-      "final": 4600
+    "432990": {
+      "discount": 73,
+      "final": 1600
     },
     "433120": {
       "discount": 80,
       "final": 4200
-    },
-    "433190": {
-      "discount": 85,
-      "final": 5600
     },
     "433210": {
       "discount": 90,
@@ -6726,15 +5430,19 @@
     },
     "433400": {
       "discount": 70,
-      "final": 6800
+      "final": 8300
     },
     "433920": {
       "discount": 80,
       "final": 6500
     },
-    "434460": {
+    "434050": {
+      "discount": 75,
+      "final": 6900
+    },
+    "4342080": {
       "discount": 70,
-      "final": 6800
+      "final": 2200
     },
     "434530": {
       "discount": 85,
@@ -6760,25 +5468,33 @@
       "discount": 90,
       "final": 1800
     },
+    "435530": {
+      "discount": 75,
+      "final": 8100
+    },
     "435790": {
       "discount": 91,
       "final": 1600
+    },
+    "436000": {
+      "discount": 81,
+      "final": 2900
+    },
+    "436140": {
+      "discount": 76,
+      "final": 1800
+    },
+    "436230": {
+      "discount": 70,
+      "final": 12900
     },
     "4369800": {
       "discount": 80,
       "final": 3400
     },
-    "437030": {
-      "discount": 81,
-      "final": 2300
-    },
     "437690": {
       "discount": 80,
       "final": 3300
-    },
-    "438130": {
-      "discount": 70,
-      "final": 21000
     },
     "438480": {
       "discount": 90,
@@ -6800,65 +5516,37 @@
       "discount": 85,
       "final": 1900
     },
-    "4411080": {
-      "discount": 75,
-      "final": 3100
-    },
-    "441350": {
-      "discount": 90,
-      "final": 2700
-    },
     "442000": {
       "discount": 85,
       "final": 1800
-    },
-    "442770": {
-      "discount": 85,
-      "final": 2400
-    },
-    "443330": {
-      "discount": 70,
-      "final": 6200
     },
     "4435420": {
       "discount": 70,
       "final": 4500
     },
-    "444280": {
-      "discount": 90,
-      "final": 2200
+    "4444130": {
+      "discount": 85,
+      "final": 3300
     },
     "444940": {
       "discount": 90,
       "final": 1300
     },
-    "445190": {
-      "discount": 75,
-      "final": 9400
-    },
     "4454200": {
       "discount": 86,
       "final": 1800
     },
-    "4457630": {
-      "discount": 70,
-      "final": 4400
+    "445870": {
+      "discount": 80,
+      "final": 6500
     },
     "446040": {
       "discount": 80,
       "final": 12000
     },
-    "446390": {
-      "discount": 76,
-      "final": 11400
-    },
     "446540": {
       "discount": 80,
       "final": 3200
-    },
-    "446550": {
-      "discount": 75,
-      "final": 5700
     },
     "4466830": {
       "discount": 85,
@@ -6872,22 +5560,6 @@
       "discount": 75,
       "final": 5700
     },
-    "447170": {
-      "discount": 70,
-      "final": 7100
-    },
-    "447180": {
-      "discount": 70,
-      "final": 7100
-    },
-    "447190": {
-      "discount": 70,
-      "final": 7700
-    },
-    "447200": {
-      "discount": 70,
-      "final": 7100
-    },
     "448060": {
       "discount": 85,
       "final": 1900
@@ -6896,17 +5568,21 @@
       "discount": 72,
       "final": 1400
     },
-    "4485870": {
-      "discount": 75,
-      "final": 4200
-    },
     "4489870": {
       "discount": 90,
       "final": 2200
     },
+    "449640": {
+      "discount": 70,
+      "final": 6800
+    },
     "449680": {
       "discount": 95,
       "final": 2600
+    },
+    "450250": {
+      "discount": 80,
+      "final": 5500
     },
     "450850": {
       "discount": 90,
@@ -6916,25 +5592,17 @@
       "discount": 76,
       "final": 1800
     },
+    "451340": {
+      "discount": 86,
+      "final": 5800
+    },
     "4520420": {
       "discount": 70,
       "final": 3900
     },
-    "452060": {
-      "discount": 91,
-      "final": 2000
-    },
     "4535630": {
       "discount": 70,
       "final": 3900
-    },
-    "453960": {
-      "discount": 76,
-      "final": 1800
-    },
-    "454410": {
-      "discount": 90,
-      "final": 2700
     },
     "4546290": {
       "discount": 76,
@@ -6960,10 +5628,6 @@
       "discount": 75,
       "final": 3200
     },
-    "456670": {
-      "discount": 80,
-      "final": 7500
-    },
     "4573060": {
       "discount": 90,
       "final": 2900
@@ -6984,17 +5648,9 @@
       "discount": 90,
       "final": 2200
     },
-    "458830": {
-      "discount": 71,
-      "final": 2900
-    },
     "4589010": {
       "discount": 85,
       "final": 1900
-    },
-    "459540": {
-      "discount": 70,
-      "final": 8500
     },
     "4610760": {
       "discount": 70,
@@ -7016,21 +5672,9 @@
       "discount": 80,
       "final": 2600
     },
-    "462780": {
-      "discount": 85,
-      "final": 4100
-    },
-    "463170": {
-      "discount": 75,
-      "final": 12500
-    },
-    "464070": {
-      "discount": 88,
-      "final": 1600
-    },
-    "464080": {
-      "discount": 70,
-      "final": 5000
+    "463510": {
+      "discount": 81,
+      "final": 1900
     },
     "465060": {
       "discount": 80,
@@ -7052,9 +5696,13 @@
       "discount": 90,
       "final": 1300
     },
-    "467470": {
-      "discount": 80,
-      "final": 4500
+    "468570": {
+      "discount": 75,
+      "final": 3700
+    },
+    "4688690": {
+      "discount": 85,
+      "final": 3400
     },
     "470270": {
       "discount": 71,
@@ -7063,10 +5711,6 @@
     "4703870": {
       "discount": 70,
       "final": 7600
-    },
-    "471010": {
-      "discount": 77,
-      "final": 14600
     },
     "4734280": {
       "discount": 80,
@@ -7084,13 +5728,17 @@
       "discount": 75,
       "final": 3800
     },
+    "475550": {
+      "discount": 90,
+      "final": 3100
+    },
     "477160": {
       "discount": 70,
       "final": 8300
     },
-    "4790340": {
-      "discount": 75,
-      "final": 5200
+    "477770": {
+      "discount": 90,
+      "final": 7900
     },
     "4799200": {
       "discount": 80,
@@ -7104,21 +5752,9 @@
       "discount": 75,
       "final": 9000
     },
-    "4825080": {
-      "discount": 95,
-      "final": 1700
-    },
-    "482990": {
-      "discount": 75,
-      "final": 10300
-    },
     "4832660": {
       "discount": 70,
       "final": 6000
-    },
-    "4848110": {
-      "discount": 95,
-      "final": 1300
     },
     "484900": {
       "discount": 80,
@@ -7127,10 +5763,6 @@
     "485040": {
       "discount": 80,
       "final": 14800
-    },
-    "485440": {
-      "discount": 90,
-      "final": 1300
     },
     "485450": {
       "discount": 90,
@@ -7152,33 +5784,37 @@
       "discount": 80,
       "final": 2600
     },
-    "4880180": {
-      "discount": 70,
-      "final": 6900
-    },
-    "4886760": {
-      "discount": 88,
-      "final": 1800
+    "489140": {
+      "discount": 80,
+      "final": 6500
     },
     "489240": {
       "discount": 85,
       "final": 1900
     },
-    "489260": {
-      "discount": 90,
-      "final": 2200
-    },
     "4895370": {
       "discount": 73,
       "final": 1400
     },
-    "489630": {
-      "discount": 90,
-      "final": 7400
-    },
     "4899600": {
       "discount": 85,
       "final": 3400
+    },
+    "490100": {
+      "discount": 71,
+      "final": 3800
+    },
+    "490510": {
+      "discount": 81,
+      "final": 2400
+    },
+    "4918060": {
+      "discount": 70,
+      "final": 5100
+    },
+    "4920880": {
+      "discount": 75,
+      "final": 9600
     },
     "492090": {
       "discount": 70,
@@ -7192,22 +5828,6 @@
       "discount": 80,
       "final": 10900
     },
-    "494440": {
-      "discount": 70,
-      "final": 7100
-    },
-    "494450": {
-      "discount": 70,
-      "final": 7100
-    },
-    "494460": {
-      "discount": 70,
-      "final": 7100
-    },
-    "494470": {
-      "discount": 70,
-      "final": 5000
-    },
     "494700": {
       "discount": 85,
       "final": 3300
@@ -7219,10 +5839,6 @@
     "49520": {
       "discount": 90,
       "final": 3800
-    },
-    "495350": {
-      "discount": 84,
-      "final": 2000
     },
     "495560": {
       "discount": 90,
@@ -7236,9 +5852,17 @@
       "discount": 81,
       "final": 2400
     },
+    "497720": {
+      "discount": 81,
+      "final": 2900
+    },
     "498620": {
       "discount": 85,
       "final": 1900
+    },
+    "499180": {
+      "discount": 75,
+      "final": 10300
     },
     "4992680": {
       "discount": 80,
@@ -7248,9 +5872,17 @@
       "discount": 79,
       "final": 3200
     },
+    "501020": {
+      "discount": 85,
+      "final": 3400
+    },
     "501120": {
       "discount": 81,
       "final": 1900
+    },
+    "501590": {
+      "discount": 90,
+      "final": 4700
     },
     "5020950": {
       "discount": 86,
@@ -7260,9 +5892,9 @@
       "discount": 85,
       "final": 1900
     },
-    "503650": {
-      "discount": 91,
-      "final": 1600
+    "5029890": {
+      "discount": 80,
+      "final": 2600
     },
     "503680": {
       "discount": 85,
@@ -7280,25 +5912,29 @@
       "discount": 88,
       "final": 1900
     },
-    "505070": {
-      "discount": 70,
-      "final": 7100
+    "505630": {
+      "discount": 80,
+      "final": 3700
+    },
+    "505640": {
+      "discount": 80,
+      "final": 6500
     },
     "5062670": {
       "discount": 75,
       "final": 8100
     },
-    "507010": {
+    "507490": {
       "discount": 80,
-      "final": 3300
-    },
-    "507120": {
-      "discount": 85,
-      "final": 1900
+      "final": 12400
     },
     "508300": {
       "discount": 80,
       "final": 6500
+    },
+    "5086960": {
+      "discount": 70,
+      "final": 5100
     },
     "5091930": {
       "discount": 80,
@@ -7308,41 +5944,37 @@
       "discount": 75,
       "final": 10300
     },
-    "510320": {
-      "discount": 80,
-      "final": 12000
-    },
     "510620": {
       "discount": 81,
       "final": 2400
-    },
-    "510740": {
-      "discount": 75,
-      "final": 8100
-    },
-    "512550": {
-      "discount": 76,
-      "final": 1800
     },
     "512790": {
       "discount": 90,
       "final": 3200
     },
+    "512900": {
+      "discount": 80,
+      "final": 8300
+    },
+    "513330": {
+      "discount": 81,
+      "final": 2400
+    },
     "514360": {
       "discount": 85,
       "final": 1900
     },
-    "514620": {
-      "discount": 81,
-      "final": 2400
+    "515260": {
+      "discount": 75,
+      "final": 12800
     },
     "515570": {
       "discount": 90,
       "final": 1300
     },
-    "517000": {
-      "discount": 85,
-      "final": 2500
+    "516120": {
+      "discount": 70,
+      "final": 2200
     },
     "5181540": {
       "discount": 80,
@@ -7364,25 +5996,9 @@
       "discount": 80,
       "final": 1500
     },
-    "521500": {
-      "discount": 85,
-      "final": 2500
-    },
-    "521510": {
-      "discount": 75,
-      "final": 8100
-    },
-    "521620": {
-      "discount": 80,
-      "final": 6500
-    },
     "522210": {
       "discount": 80,
       "final": 7900
-    },
-    "522570": {
-      "discount": 75,
-      "final": 1300
     },
     "5236010": {
       "discount": 83,
@@ -7392,9 +6008,21 @@
       "discount": 85,
       "final": 1900
     },
+    "523780": {
+      "discount": 81,
+      "final": 1900
+    },
+    "523880": {
+      "discount": 77,
+      "final": 1700
+    },
     "524030": {
       "discount": 90,
       "final": 1300
+    },
+    "524200": {
+      "discount": 75,
+      "final": 12800
     },
     "525360": {
       "discount": 80,
@@ -7416,33 +6044,13 @@
       "discount": 90,
       "final": 1900
     },
-    "533180": {
-      "discount": 75,
-      "final": 1300
-    },
-    "534250": {
-      "discount": 70,
-      "final": 6700
-    },
     "534290": {
       "discount": 80,
       "final": 3900
     },
-    "534380": {
+    "537340": {
       "discount": 80,
-      "final": 31900
-    },
-    "535260": {
-      "discount": 75,
-      "final": 1300
-    },
-    "535480": {
-      "discount": 90,
-      "final": 4300
-    },
-    "537520": {
-      "discount": 80,
-      "final": 5100
+      "final": 6500
     },
     "537800": {
       "discount": 85,
@@ -7468,14 +6076,6 @@
       "discount": 91,
       "final": 1600
     },
-    "539400": {
-      "discount": 75,
-      "final": 6900
-    },
-    "539670": {
-      "discount": 85,
-      "final": 3400
-    },
     "539720": {
       "discount": 90,
       "final": 1300
@@ -7483,10 +6083,6 @@
     "540190": {
       "discount": 85,
       "final": 1900
-    },
-    "541310": {
-      "discount": 75,
-      "final": 10300
     },
     "541920": {
       "discount": 85,
@@ -7508,17 +6104,13 @@
       "discount": 80,
       "final": 8300
     },
+    "544630": {
+      "discount": 85,
+      "final": 4100
+    },
     "544750": {
       "discount": 84,
       "final": 23500
-    },
-    "545330": {
-      "discount": 90,
-      "final": 3200
-    },
-    "545340": {
-      "discount": 80,
-      "final": 4500
     },
     "545540": {
       "discount": 71,
@@ -7528,17 +6120,9 @@
       "discount": 70,
       "final": 6800
     },
-    "546430": {
-      "discount": 70,
-      "final": 10200
-    },
     "548720": {
       "discount": 85,
       "final": 1900
-    },
-    "549100": {
-      "discount": 95,
-      "final": 1300
     },
     "549860": {
       "discount": 76,
@@ -7552,25 +6136,25 @@
       "discount": 85,
       "final": 1800
     },
+    "552200": {
+      "discount": 77,
+      "final": 1700
+    },
+    "552210": {
+      "discount": 77,
+      "final": 1700
+    },
+    "552620": {
+      "discount": 70,
+      "final": 9700
+    },
     "552780": {
       "discount": 85,
       "final": 1900
     },
-    "553520": {
-      "discount": 77,
-      "final": 9700
-    },
     "554280": {
       "discount": 85,
       "final": 6200
-    },
-    "555630": {
-      "discount": 70,
-      "final": 6700
-    },
-    "555640": {
-      "discount": 75,
-      "final": 5600
     },
     "555880": {
       "discount": 75,
@@ -7580,10 +6164,6 @@
       "discount": 85,
       "final": 1900
     },
-    "558420": {
-      "discount": 90,
-      "final": 2200
-    },
     "560220": {
       "discount": 81,
       "final": 1900
@@ -7591,6 +6171,10 @@
     "562360": {
       "discount": 90,
       "final": 1300
+    },
+    "562470": {
+      "discount": 70,
+      "final": 6800
     },
     "562500": {
       "discount": 85,
@@ -7604,10 +6188,6 @@
       "discount": 76,
       "final": 2400
     },
-    "564950": {
-      "discount": 85,
-      "final": 4900
-    },
     "566140": {
       "discount": 75,
       "final": 1500
@@ -7616,13 +6196,9 @@
       "discount": 85,
       "final": 1900
     },
-    "567030": {
-      "discount": 76,
-      "final": 2400
-    },
-    "567060": {
-      "discount": 81,
-      "final": 2400
+    "567160": {
+      "discount": 90,
+      "final": 3200
     },
     "567980": {
       "discount": 85,
@@ -7632,6 +6208,10 @@
       "discount": 90,
       "final": 7400
     },
+    "570820": {
+      "discount": 80,
+      "final": 4500
+    },
     "570980": {
       "discount": 91,
       "final": 1600
@@ -7639,6 +6219,10 @@
     "571260": {
       "discount": 85,
       "final": 10400
+    },
+    "572430": {
+      "discount": 80,
+      "final": 8300
     },
     "573120": {
       "discount": 75,
@@ -7652,6 +6236,10 @@
       "discount": 80,
       "final": 3200
     },
+    "574030": {
+      "discount": 70,
+      "final": 2200
+    },
     "574150": {
       "discount": 80,
       "final": 3300
@@ -7660,21 +6248,13 @@
       "discount": 80,
       "final": 14800
     },
-    "574200": {
-      "discount": 90,
-      "final": 2700
-    },
     "574640": {
       "discount": 85,
       "final": 1900
     },
-    "575510": {
-      "discount": 85,
-      "final": 2500
-    },
-    "575900": {
-      "discount": 90,
-      "final": 3300
+    "57620": {
+      "discount": 75,
+      "final": 8600
     },
     "576480": {
       "discount": 85,
@@ -7684,21 +6264,13 @@
       "discount": 90,
       "final": 2300
     },
-    "576540": {
-      "discount": 75,
-      "final": 1300
-    },
     "577230": {
       "discount": 76,
       "final": 1900
     },
-    "57740": {
+    "57900": {
       "discount": 75,
-      "final": 6900
-    },
-    "579110": {
-      "discount": 81,
-      "final": 1900
+      "final": 7200
     },
     "580820": {
       "discount": 81,
@@ -7712,13 +6284,13 @@
       "discount": 90,
       "final": 1300
     },
-    "581520": {
-      "discount": 85,
-      "final": 2500
-    },
     "582160": {
       "discount": 85,
       "final": 13700
+    },
+    "584940": {
+      "discount": 75,
+      "final": 10300
     },
     "584980": {
       "discount": 76,
@@ -7732,6 +6304,10 @@
       "discount": 70,
       "final": 9800
     },
+    "585710": {
+      "discount": 75,
+      "final": 5700
+    },
     "586350": {
       "discount": 90,
       "final": 1300
@@ -7740,13 +6316,13 @@
       "discount": 85,
       "final": 1900
     },
+    "588730": {
+      "discount": 70,
+      "final": 4600
+    },
     "589780": {
       "discount": 80,
       "final": 6500
-    },
-    "590850": {
-      "discount": 70,
-      "final": 3700
     },
     "593240": {
       "discount": 80,
@@ -7756,17 +6332,25 @@
       "discount": 80,
       "final": 4100
     },
-    "595560": {
-      "discount": 80,
-      "final": 3900
+    "593740": {
+      "discount": 83,
+      "final": 1700
     },
     "595780": {
       "discount": 90,
       "final": 1300
     },
+    "598550": {
+      "discount": 80,
+      "final": 10700
+    },
     "598810": {
       "discount": 70,
       "final": 6700
+    },
+    "599140": {
+      "discount": 75,
+      "final": 10300
     },
     "601180": {
       "discount": 85,
@@ -7776,10 +6360,6 @@
       "discount": 72,
       "final": 1400
     },
-    "605740": {
-      "discount": 88,
-      "final": 3900
-    },
     "606000": {
       "discount": 80,
       "final": 5300
@@ -7787,14 +6367,6 @@
     "606150": {
       "discount": 90,
       "final": 2700
-    },
-    "606280": {
-      "discount": 85,
-      "final": 7400
-    },
-    "607050": {
-      "discount": 70,
-      "final": 12400
     },
     "607210": {
       "discount": 90,
@@ -7808,53 +6380,41 @@
       "discount": 80,
       "final": 5500
     },
-    "610730": {
-      "discount": 76,
-      "final": 1800
-    },
     "610840": {
       "discount": 92,
       "final": 1700
-    },
-    "610980": {
-      "discount": 70,
-      "final": 7400
     },
     "611550": {
       "discount": 81,
       "final": 2400
     },
-    "616750": {
-      "discount": 80,
-      "final": 5000
+    "614450": {
+      "discount": 85,
+      "final": 4100
     },
-    "617290": {
-      "discount": 80,
-      "final": 9500
+    "616040": {
+      "discount": 90,
+      "final": 2200
     },
-    "617430": {
-      "discount": 75,
-      "final": 5600
+    "616490": {
+      "discount": 81,
+      "final": 3100
     },
     "621830": {
       "discount": 90,
       "final": 2700
     },
-    "621970": {
-      "discount": 85,
-      "final": 5600
-    },
-    "626660": {
-      "discount": 90,
-      "final": 2700
+    "622680": {
+      "discount": 80,
+      "final": 6500
     },
     "6270": {
       "discount": 81,
       "final": 1900
     },
-    "627620": {
-      "discount": 89,
-      "final": 1800
+    "628670": {
+      "discount": 80,
+      "final": 14000
     },
     "628800": {
       "discount": 90,
@@ -7864,23 +6424,15 @@
       "discount": 80,
       "final": 14800
     },
-    "629770": {
-      "discount": 70,
-      "final": 9700
-    },
     "630170": {
       "discount": 80,
       "final": 4200
     },
-    "630720": {
-      "discount": 80,
-      "final": 3900
-    },
-    "631570": {
+    "631540": {
       "discount": 80,
       "final": 6500
     },
-    "632900": {
+    "631570": {
       "discount": 80,
       "final": 6500
     },
@@ -7904,10 +6456,6 @@
       "discount": 90,
       "final": 2200
     },
-    "639270": {
-      "discount": 70,
-      "final": 8300
-    },
     "639730": {
       "discount": 80,
       "final": 4200
@@ -7923,10 +6471,6 @@
     "643820": {
       "discount": 75,
       "final": 4200
-    },
-    "645320": {
-      "discount": 74,
-      "final": 9700
     },
     "645630": {
       "discount": 93,
@@ -7944,37 +6488,21 @@
       "discount": 91,
       "final": 2000
     },
-    "651500": {
-      "discount": 75,
-      "final": 6700
-    },
     "653760": {
       "discount": 91,
       "final": 2000
     },
-    "654550": {
-      "discount": 75,
-      "final": 3200
+    "655610": {
+      "discount": 85,
+      "final": 2500
     },
     "656440": {
       "discount": 81,
       "final": 2400
     },
-    "656700": {
-      "discount": 85,
-      "final": 4100
-    },
     "656970": {
       "discount": 81,
       "final": 2400
-    },
-    "657530": {
-      "discount": 80,
-      "final": 4100
-    },
-    "657690": {
-      "discount": 70,
-      "final": 9700
     },
     "658500": {
       "discount": 90,
@@ -8000,6 +6528,10 @@
       "discount": 70,
       "final": 18000
     },
+    "660900": {
+      "discount": 85,
+      "final": 2200
+    },
     "661290": {
       "discount": 90,
       "final": 2600
@@ -8007,10 +6539,6 @@
     "662200": {
       "discount": 75,
       "final": 3800
-    },
-    "662960": {
-      "discount": 80,
-      "final": 5700
     },
     "663130": {
       "discount": 75,
@@ -8020,10 +6548,6 @@
       "discount": 85,
       "final": 1900
     },
-    "667790": {
-      "discount": 86,
-      "final": 1700
-    },
     "673830": {
       "discount": 80,
       "final": 3900
@@ -8032,13 +6556,13 @@
       "discount": 80,
       "final": 4100
     },
-    "675240": {
+    "677120": {
       "discount": 80,
-      "final": 12000
+      "final": 6500
     },
-    "676880": {
-      "discount": 81,
-      "final": 2900
+    "677480": {
+      "discount": 80,
+      "final": 8300
     },
     "677790": {
       "discount": 85,
@@ -8056,6 +6580,10 @@
       "discount": 90,
       "final": 2000
     },
+    "681090": {
+      "discount": 71,
+      "final": 2900
+    },
     "681280": {
       "discount": 75,
       "final": 8200
@@ -8063,14 +6591,6 @@
     "681730": {
       "discount": 75,
       "final": 8200
-    },
-    "682570": {
-      "discount": 77,
-      "final": 11000
-    },
-    "682990": {
-      "discount": 90,
-      "final": 2700
     },
     "683000": {
       "discount": 80,
@@ -8080,41 +6600,21 @@
       "discount": 90,
       "final": 1300
     },
-    "685680": {
-      "discount": 85,
-      "final": 2500
-    },
-    "685690": {
-      "discount": 70,
-      "final": 5000
-    },
-    "6860": {
-      "discount": 90,
-      "final": 2200
-    },
-    "686810": {
-      "discount": 75,
-      "final": 36200
+    "686290": {
+      "discount": 81,
+      "final": 2400
     },
     "686900": {
       "discount": 74,
       "final": 1900
     },
-    "6900": {
-      "discount": 91,
-      "final": 1600
-    },
-    "691150": {
-      "discount": 70,
-      "final": 12400
-    },
-    "691690": {
-      "discount": 80,
-      "final": 10300
-    },
     "692200": {
       "discount": 72,
       "final": 1400
+    },
+    "694990": {
+      "discount": 77,
+      "final": 2300
     },
     "695100": {
       "discount": 85,
@@ -8124,21 +6624,9 @@
       "discount": 73,
       "final": 1600
     },
-    "698110": {
-      "discount": 85,
-      "final": 4100
-    },
-    "698670": {
-      "discount": 90,
-      "final": 10900
-    },
     "699150": {
       "discount": 76,
       "final": 2400
-    },
-    "699920": {
-      "discount": 89,
-      "final": 1600
     },
     "702120": {
       "discount": 85,
@@ -8160,21 +6648,9 @@
       "discount": 70,
       "final": 5600
     },
-    "707400": {
-      "discount": 75,
-      "final": 1300
-    },
-    "710920": {
-      "discount": 85,
-      "final": 5800
-    },
-    "711660": {
-      "discount": 80,
-      "final": 5300
-    },
-    "712190": {
-      "discount": 80,
-      "final": 8000
+    "708150": {
+      "discount": 90,
+      "final": 3200
     },
     "714080": {
       "discount": 87,
@@ -8184,10 +6660,6 @@
       "discount": 76,
       "final": 2400
     },
-    "714800": {
-      "discount": 70,
-      "final": 9700
-    },
     "715290": {
       "discount": 85,
       "final": 1900
@@ -8196,10 +6668,6 @@
       "discount": 81,
       "final": 2500
     },
-    "716330": {
-      "discount": 70,
-      "final": 7300
-    },
     "717950": {
       "discount": 77,
       "final": 1700
@@ -8207,10 +6675,6 @@
     "718590": {
       "discount": 90,
       "final": 4100
-    },
-    "723100": {
-      "discount": 90,
-      "final": 2200
     },
     "724000": {
       "discount": 90,
@@ -8248,10 +6712,6 @@
       "discount": 70,
       "final": 9700
     },
-    "733740": {
-      "discount": 85,
-      "final": 2500
-    },
     "733790": {
       "discount": 85,
       "final": 4100
@@ -8284,10 +6744,6 @@
       "discount": 77,
       "final": 1700
     },
-    "741140": {
-      "discount": 70,
-      "final": 27700
-    },
     "741260": {
       "discount": 71,
       "final": 2900
@@ -8312,37 +6768,21 @@
       "discount": 71,
       "final": 2900
     },
+    "748330": {
+      "discount": 80,
+      "final": 2400
+    },
     "749340": {
       "discount": 72,
       "final": 1400
-    },
-    "749560": {
-      "discount": 83,
-      "final": 1700
     },
     "750070": {
       "discount": 90,
       "final": 2700
     },
-    "750200": {
-      "discount": 86,
-      "final": 3900
-    },
     "751480": {
       "discount": 91,
       "final": 2000
-    },
-    "752470": {
-      "discount": 70,
-      "final": 6800
-    },
-    "752520": {
-      "discount": 70,
-      "final": 6800
-    },
-    "752590": {
-      "discount": 90,
-      "final": 10400
     },
     "755500": {
       "discount": 90,
@@ -8356,21 +6796,13 @@
       "discount": 75,
       "final": 5700
     },
-    "760650": {
-      "discount": 80,
-      "final": 8300
-    },
-    "765060": {
+    "758320": {
       "discount": 75,
-      "final": 6200
+      "final": 12800
     },
     "765370": {
       "discount": 86,
       "final": 2300
-    },
-    "769030": {
-      "discount": 75,
-      "final": 1300
     },
     "770100": {
       "discount": 80,
@@ -8380,17 +6812,13 @@
       "discount": 76,
       "final": 1900
     },
-    "772610": {
-      "discount": 80,
-      "final": 4500
-    },
     "773120": {
       "discount": 77,
       "final": 1700
     },
-    "774201": {
-      "discount": 70,
-      "final": 9800
+    "773840": {
+      "discount": 80,
+      "final": 8600
     },
     "774241": {
       "discount": 95,
@@ -8404,10 +6832,6 @@
       "discount": 82,
       "final": 15200
     },
-    "775790": {
-      "discount": 75,
-      "final": 1300
-    },
     "779090": {
       "discount": 91,
       "final": 2000
@@ -8420,10 +6844,6 @@
       "discount": 80,
       "final": 12000
     },
-    "785940": {
-      "discount": 75,
-      "final": 15000
-    },
     "787040": {
       "discount": 81,
       "final": 1900
@@ -8432,41 +6852,17 @@
       "discount": 80,
       "final": 8000
     },
-    "788100": {
-      "discount": 70,
-      "final": 19300
-    },
-    "789090": {
-      "discount": 80,
-      "final": 6500
-    },
-    "789160": {
-      "discount": 91,
-      "final": 1600
-    },
-    "790610": {
-      "discount": 75,
-      "final": 1300
-    },
     "791590": {
       "discount": 83,
       "final": 1700
     },
-    "792650": {
-      "discount": 81,
-      "final": 2400
+    "793970": {
+      "discount": 85,
+      "final": 2500
     },
     "794180": {
       "discount": 91,
       "final": 1600
-    },
-    "797400": {
-      "discount": 82,
-      "final": 12600
-    },
-    "798490": {
-      "discount": 90,
-      "final": 5900
     },
     "798710": {
       "discount": 70,
@@ -8476,13 +6872,13 @@
       "discount": 70,
       "final": 12400
     },
-    "800820": {
-      "discount": 75,
-      "final": 8100
-    },
     "801480": {
       "discount": 90,
       "final": 2700
+    },
+    "805660": {
+      "discount": 80,
+      "final": 10000
     },
     "806850": {
       "discount": 72,
@@ -8496,6 +6892,10 @@
       "discount": 76,
       "final": 1800
     },
+    "811290": {
+      "discount": 81,
+      "final": 2400
+    },
     "812140": {
       "discount": 80,
       "final": 18300
@@ -8504,17 +6904,9 @@
       "discount": 76,
       "final": 5200
     },
-    "812930": {
-      "discount": 75,
-      "final": 8100
-    },
-    "813700": {
-      "discount": 85,
-      "final": 2500
-    },
-    "814370": {
-      "discount": 75,
-      "final": 10000
+    "817510": {
+      "discount": 70,
+      "final": 3900
     },
     "818360": {
       "discount": 80,
@@ -8528,13 +6920,13 @@
       "discount": 80,
       "final": 8300
     },
-    "820040": {
+    "819070": {
+      "discount": 75,
+      "final": 4200
+    },
+    "823640": {
       "discount": 90,
       "final": 3200
-    },
-    "824000": {
-      "discount": 70,
-      "final": 8900
     },
     "824550": {
       "discount": 75,
@@ -8556,17 +6948,21 @@
       "discount": 75,
       "final": 3200
     },
-    "832610": {
-      "discount": 75,
-      "final": 6400
+    "833800": {
+      "discount": 85,
+      "final": 2500
+    },
+    "833810": {
+      "discount": 85,
+      "final": 1900
+    },
+    "833820": {
+      "discount": 71,
+      "final": 2900
     },
     "834280": {
       "discount": 80,
       "final": 5500
-    },
-    "834800": {
-      "discount": 70,
-      "final": 7200
     },
     "837880": {
       "discount": 90,
@@ -8580,14 +6976,6 @@
       "discount": 85,
       "final": 1900
     },
-    "841190": {
-      "discount": 75,
-      "final": 11000
-    },
-    "844590": {
-      "discount": 75,
-      "final": 6900
-    },
     "844920": {
       "discount": 90,
       "final": 2200
@@ -8596,13 +6984,13 @@
       "discount": 90,
       "final": 2200
     },
+    "848410": {
+      "discount": 80,
+      "final": 4500
+    },
     "850060": {
       "discount": 75,
       "final": 6900
-    },
-    "853050": {
-      "discount": 80,
-      "final": 10000
     },
     "853860": {
       "discount": 72,
@@ -8612,33 +7000,29 @@
       "discount": 90,
       "final": 2000
     },
-    "854060": {
-      "discount": 76,
-      "final": 1900
+    "855030": {
+      "discount": 71,
+      "final": 1700
+    },
+    "856890": {
+      "discount": 80,
+      "final": 8300
     },
     "857540": {
       "discount": 90,
       "final": 2200
     },
-    "859970": {
-      "discount": 71,
-      "final": 2300
-    },
-    "860500": {
-      "discount": 89,
-      "final": 1700
-    },
-    "860860": {
-      "discount": 87,
-      "final": 1900
+    "859350": {
+      "discount": 80,
+      "final": 7500
     },
     "861650": {
       "discount": 75,
       "final": 11900
     },
-    "862110": {
-      "discount": 81,
-      "final": 2400
+    "863640": {
+      "discount": 85,
+      "final": 2500
     },
     "864360": {
       "discount": 80,
@@ -8656,10 +7040,6 @@
       "discount": 71,
       "final": 1700
     },
-    "869560": {
-      "discount": 90,
-      "final": 3200
-    },
     "869690": {
       "discount": 81,
       "final": 1900
@@ -8672,43 +7052,43 @@
       "discount": 90,
       "final": 2200
     },
-    "876410": {
-      "discount": 76,
-      "final": 1900
-    },
     "877200": {
       "discount": 70,
       "final": 11900
     },
-    "878100": {
-      "discount": 81,
-      "final": 2300
-    },
-    "878250": {
-      "discount": 81,
-      "final": 2400
+    "878090": {
+      "discount": 75,
+      "final": 4200
     },
     "8800": {
       "discount": 80,
       "final": 6500
     },
+    "880300": {
+      "discount": 86,
+      "final": 1700
+    },
     "881060": {
       "discount": 81,
       "final": 2900
-    },
-    "885140": {
-      "discount": 73,
-      "final": 4400
-    },
-    "885910": {
-      "discount": 90,
-      "final": 2700
     },
     "886820": {
       "discount": 77,
       "final": 16000
     },
-    "891700": {
+    "888530": {
+      "discount": 80,
+      "final": 10300
+    },
+    "890210": {
+      "discount": 85,
+      "final": 2200
+    },
+    "890220": {
+      "discount": 71,
+      "final": 2900
+    },
+    "891720": {
       "discount": 90,
       "final": 3200
     },
@@ -8719,6 +7099,10 @@
     "896030": {
       "discount": 90,
       "final": 2200
+    },
+    "897450": {
+      "discount": 80,
+      "final": 9100
     },
     "898450": {
       "discount": 90,
@@ -8744,14 +7128,6 @@
       "discount": 94,
       "final": 1600
     },
-    "904900": {
-      "discount": 80,
-      "final": 3300
-    },
-    "905690": {
-      "discount": 92,
-      "final": 1600
-    },
     "906280": {
       "discount": 81,
       "final": 2200
@@ -8772,10 +7148,6 @@
       "discount": 90,
       "final": 2800
     },
-    "914020": {
-      "discount": 90,
-      "final": 2700
-    },
     "914890": {
       "discount": 75,
       "final": 6900
@@ -8784,25 +7156,29 @@
       "discount": 70,
       "final": 5000
     },
-    "916140": {
-      "discount": 77,
-      "final": 8700
+    "915710": {
+      "discount": 70,
+      "final": 20900
     },
-    "916470": {
-      "discount": 95,
-      "final": 1300
+    "916100": {
+      "discount": 75,
+      "final": 7400
     },
     "917380": {
       "discount": 80,
       "final": 4500
     },
-    "921710": {
-      "discount": 90,
-      "final": 2200
+    "917840": {
+      "discount": 80,
+      "final": 6500
     },
-    "925010": {
-      "discount": 85,
-      "final": 4900
+    "923140": {
+      "discount": 73,
+      "final": 2100
+    },
+    "923350": {
+      "discount": 90,
+      "final": 3200
     },
     "925460": {
       "discount": 80,
@@ -8812,13 +7188,13 @@
       "discount": 80,
       "final": 3200
     },
-    "926580": {
+    "928990": {
       "discount": 80,
-      "final": 10300
+      "final": 8300
     },
-    "930280": {
-      "discount": 90,
-      "final": 2700
+    "929010": {
+      "discount": 80,
+      "final": 5700
     },
     "931250": {
       "discount": 81,
@@ -8836,10 +7212,6 @@
       "discount": 80,
       "final": 5500
     },
-    "935070": {
-      "discount": 85,
-      "final": 2500
-    },
     "935340": {
       "discount": 70,
       "final": 6500
@@ -8856,45 +7228,25 @@
       "discount": 75,
       "final": 11900
     },
-    "938220": {
-      "discount": 70,
-      "final": 8300
-    },
     "938300": {
       "discount": 90,
       "final": 2000
-    },
-    "938380": {
-      "discount": 80,
-      "final": 10000
-    },
-    "938520": {
-      "discount": 75,
-      "final": 1300
     },
     "940580": {
       "discount": 90,
       "final": 4200
     },
-    "942850": {
-      "discount": 70,
-      "final": 9700
-    },
-    "942990": {
-      "discount": 75,
-      "final": 5600
+    "940780": {
+      "discount": 90,
+      "final": 3200
     },
     "943370": {
       "discount": 80,
       "final": 8300
     },
-    "949790": {
+    "949600": {
       "discount": 75,
-      "final": 6600
-    },
-    "951700": {
-      "discount": 81,
-      "final": 2400
+      "final": 5700
     },
     "952040": {
       "discount": 76,
@@ -8904,17 +7256,13 @@
       "discount": 70,
       "final": 12900
     },
-    "958480": {
-      "discount": 70,
-      "final": 9700
-    },
     "958530": {
       "discount": 70,
       "final": 8500
     },
-    "960170": {
+    "960240": {
       "discount": 80,
-      "final": 21000
+      "final": 5000
     },
     "960680": {
       "discount": 75,
@@ -8924,17 +7272,9 @@
       "discount": 72,
       "final": 1400
     },
-    "961010": {
-      "discount": 80,
-      "final": 5300
-    },
     "963300": {
       "discount": 80,
       "final": 4300
-    },
-    "966470": {
-      "discount": 81,
-      "final": 1900
     },
     "966670": {
       "discount": 90,
@@ -8944,17 +7284,9 @@
       "discount": 90,
       "final": 2200
     },
-    "968950": {
-      "discount": 85,
-      "final": 2500
-    },
     "969970": {
       "discount": 90,
       "final": 2200
-    },
-    "969990": {
-      "discount": 75,
-      "final": 11100
     },
     "970400": {
       "discount": 80,
@@ -8964,41 +7296,17 @@
       "discount": 95,
       "final": 3100
     },
-    "970910": {
-      "discount": 90,
-      "final": 3200
-    },
-    "972660": {
-      "discount": 90,
-      "final": 6200
-    },
-    "973240": {
-      "discount": 75,
-      "final": 1300
-    },
     "974910": {
       "discount": 75,
       "final": 12800
     },
-    "975950": {
-      "discount": 80,
-      "final": 5500
-    },
-    "977300": {
-      "discount": 91,
-      "final": 1600
-    },
-    "977500": {
-      "discount": 91,
-      "final": 1800
-    },
-    "977510": {
-      "discount": 75,
-      "final": 10300
-    },
     "978450": {
       "discount": 72,
       "final": 1400
+    },
+    "978460": {
+      "discount": 91,
+      "final": 1600
     },
     "979070": {
       "discount": 90,
@@ -9007,10 +7315,6 @@
     "982720": {
       "discount": 90,
       "final": 3200
-    },
-    "984170": {
-      "discount": 75,
-      "final": 8100
     },
     "984470": {
       "discount": 81,
@@ -9032,29 +7336,17 @@
       "discount": 80,
       "final": 10300
     },
+    "985950": {
+      "discount": 70,
+      "final": 11300
+    },
     "986040": {
       "discount": 80,
       "final": 6700
     },
-    "986350": {
-      "discount": 85,
-      "final": 4100
-    },
-    "987330": {
-      "discount": 90,
-      "final": 2700
-    },
-    "987840": {
-      "discount": 75,
-      "final": 17000
-    },
     "987950": {
       "discount": 85,
       "final": 1500
-    },
-    "990630": {
-      "discount": 90,
-      "final": 3200
     },
     "990890": {
       "discount": 81,
@@ -9080,109 +7372,101 @@
       "discount": 70,
       "final": 2200
     },
-    "994730": {
-      "discount": 80,
-      "final": 7200
-    },
-    "995450": {
-      "discount": 76,
-      "final": 1900
-    },
     "996770": {
       "discount": 80,
       "final": 8300
     }
   },
-  "last_post_date": "2026-11-09",
+  "last_post_date": "2026-11-10",
   "report": {
-    "date": "09.11.2026",
+    "date": "10.11.2026",
     "flags": {
-      "1184370": "",
+      "1066780": "",
       "1190000": "",
       "12210": "",
-      "1282100": "",
       "200710": "",
+      "203140": "🆕 ",
+      "2221490": "",
       "231430": "",
-      "239140": "",
       "246620": "",
       "261640": "",
+      "265930": "🆕 ",
       "282070": "",
       "289650": "",
       "323190": "",
       "33230": "",
       "397540": "",
       "431240": "",
+      "475550": "🆕 ",
       "477160": "",
       "49520": "",
       "527230": "",
-      "534380": "",
       "582160": "",
-      "617290": "",
+      "585420": "",
+      "599140": "🆕 ",
       "633230": "",
       "645630": "",
       "678950": "",
-      "686810": "",
       "704850": "",
-      "752590": "",
+      "745920": "",
       "812140": "",
-      "8930": "",
-      "972660": ""
+      "8930": ""
     },
     "groups": [
       [
         645630,
         704850,
-        239140,
         49520,
         323190,
         397540,
         282070,
-        752590
+        203140,
+        527230
       ],
       [
-        972660,
-        527230,
         261640,
+        475550,
         1190000,
         582160,
         678950,
         812140,
-        534380,
         246620,
-        617290
+        265930,
+        200710,
+        745920
       ],
       [
-        200710,
-        1184370,
+        1066780,
         8930,
-        686810,
         289650,
         231430,
         33230,
         431240,
-        1282100,
-        633230
+        633230,
+        599140,
+        2221490,
+        477160
       ],
       [
-        477160,
-        12210
+        12210,
+        585420
       ]
     ],
     "initial_count": 30,
-    "last_checked_at": "2026-11-09T08:21:55.965393+02:00",
+    "last_checked_at": "2026-11-10T11:46:50.104112+02:00",
     "message_ids": [
-      "1569235596759670784",
-      "1569235599074791454",
-      "1569235601155293267",
-      "1569235602262593671"
+      "1569649542226509865",
+      "1569649545795739698",
+      "1569649547561410643",
+      "1569649549675597877"
     ],
     "snapshot": {
       "games": {
-        "1184370": [
+        "1066780": [
           80,
-          5900,
-          29900,
-          1794247200
+          14800,
+          74000,
+          1795370400
         ],
         "1190000": [
           89,
@@ -9196,29 +7480,29 @@
           42900,
           1795111200
         ],
-        "1282100": [
-          75,
-          32400,
-          129900,
-          1794247200
-        ],
         "200710": [
           80,
           5500,
           27900,
           1794852000
         ],
+        "203140": [
+          90,
+          2700,
+          27900,
+          1794852000
+        ],
+        "2221490": [
+          75,
+          16200,
+          64900,
+          1794330000
+        ],
         "231430": [
           75,
           9700,
           38900,
           1795111200
-        ],
-        "239140": [
-          90,
-          6500,
-          65900,
-          1794243600
         ],
         "246620": [
           80,
@@ -9230,6 +7514,12 @@
           90,
           5200,
           52900,
+          1794852000
+        ],
+        "265930": [
+          80,
+          5500,
+          27900,
           1794852000
         ],
         "282070": [
@@ -9264,9 +7554,15 @@
         ],
         "431240": [
           75,
-          5700,
-          22900,
-          1794247200
+          18600,
+          74400,
+          1795453200
+        ],
+        "475550": [
+          90,
+          3100,
+          31000,
+          1795456800
         ],
         "477160": [
           70,
@@ -9286,23 +7582,23 @@
           27900,
           1795111200
         ],
-        "534380": [
-          80,
-          31900,
-          159900,
-          1794243600
-        ],
         "582160": [
           85,
           13700,
           91500,
           1794330000
         ],
-        "617290": [
-          80,
-          9500,
-          47900,
-          1794247200
+        "585420": [
+          70,
+          9800,
+          32900,
+          1794330000
+        ],
+        "599140": [
+          75,
+          10300,
+          41500,
+          1794852000
         ],
         "633230": [
           75,
@@ -9322,23 +7618,17 @@
           179900,
           1794333600
         ],
-        "686810": [
-          75,
-          36200,
-          144900,
-          1794247200
-        ],
         "704850": [
           91,
           3700,
           41500,
           1794675600
         ],
-        "752590": [
-          90,
-          10400,
-          104900,
-          1794247200
+        "745920": [
+          80,
+          16600,
+          83000,
+          1794765600
         ],
         "812140": [
           80,
@@ -9351,12 +7641,6 @@
           9700,
           38900,
           1795111200
-        ],
-        "972660": [
-          90,
-          6200,
-          62000,
-          1794247200
         ]
       },
       "spore": {
